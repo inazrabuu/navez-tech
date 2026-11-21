@@ -1,13 +1,51 @@
 {{- /*
-  Returns dict {url, width, height} for the share image.
-  Uses the page bundle `cover` image (cropped to 1200x630) or the default OG image.
+  Returns dict {url, width, height} for the page's share image (Open Graph / LinkedIn / X).
+  Order:
+    1. Page bundle `cover` image, cropped to 1200x630.
+    2. Home page: the designed default image (params.ogImage).
+    3. Every other page: generated at build time from assets/images/og/base.png
+       (logo, accent bar, "navez.tech"), with the page type label and title written on it.
+       Case studies also show their first result (metric + label) bottom-right.
+  Fonts: assets/fonts (Plus Jakarta Sans TTF, OFL). Colours: params.og (mirror the @theme tokens).
   Context: Page.
 */ -}}
 {{- $r := dict "url" (site.Params.ogImage | absURL) "width" 1200 "height" 630 -}}
+{{- $done := false -}}
 {{- with .Params.cover -}}
   {{- with $.Resources.Get . -}}
     {{- with .Fill "1200x630 Center jpg q80" -}}
       {{- $r = dict "url" .Permalink "width" .Width "height" .Height -}}
+      {{- $done = true -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if and (not $done) (not .IsHome) -}}
+  {{- $base := resources.Get "images/og/base.png" -}}
+  {{- $bold := resources.Get "fonts/PlusJakartaSans-Bold.ttf" -}}
+  {{- $semi := resources.Get "fonts/PlusJakartaSans-SemiBold.ttf" -}}
+  {{- $c := site.Params.og -}}
+  {{- if and $base $bold $semi -}}
+    {{- $title := .Title -}}
+    {{- if .Data.Term }}{{ $title = partial "functions/label.html" .Data.Term }}{{ end -}}
+    {{- $size := 64 -}}
+    {{- if gt (len $title) 70 }}{{ $size = 50 }}{{ else if gt (len $title) 42 }}{{ $size = 58 }}{{ end -}}
+    {{- $filters := slice -}}
+    {{- /* Type label above the title: "Case study", "Insight", "Service"… (i18n og_label_<section>). */ -}}
+    {{- $label := i18n (printf "og_label_%s" (replace .Section "-" "_")) -}}
+    {{- with $label -}}
+      {{- $filters = $filters | append (images.Text . (dict "font" $semi "size" 26 "color" $c.label_color "x" 72 "y" 206)) -}}
+    {{- end -}}
+    {{- $filters = $filters | append (images.Text $title (dict "font" $bold "size" $size "color" $c.title_color "x" 72 "y" 252 "linespacing" (div $size 5))) -}}
+    {{- if eq .Section "work" -}}
+      {{- with index (.Params.results | default slice) 0 -}}
+        {{- $filters = $filters | append (images.Text .metric (dict "font" $bold "size" 72 "color" $c.label_color "x" 1128 "y" 462 "alignx" "right")) -}}
+        {{- $filters = $filters | append (images.Text .label (dict "font" $semi "size" 22 "color" $c.muted_color "x" 1128 "y" 548 "alignx" "right")) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- with $base | images.Filter $filters -}}
+      {{- with .Process "jpg q85" -}}
+        {{- $r = dict "url" .Permalink "width" .Width "height" .Height -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}

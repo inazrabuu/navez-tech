@@ -179,6 +179,14 @@ glossary_all: Browse the glossary
 glossary_term: Glossary
 glossary_az: Glossary A to Z
 
+# --- Share images (type label above the title, by section) ------------
+og_label_services: Service
+og_label_use_cases: Use case
+og_label_work: Case study
+og_label_insights: Insight
+og_label_glossary: Glossary
+og_label_authors: Author
+
 # --- Labels (slugs → names) -------------------------------------------
 label_digital_agency: Digital agency
 label_agentic_ai: Agentic AI

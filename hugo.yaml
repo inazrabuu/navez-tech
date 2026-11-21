@@ -108,6 +108,11 @@ params:
       url: /insights/
     - key: nav_about
       url: /about/
+  # Share-image text colours (hex needed by Hugo's image filters; mirror the @theme tokens in main.css).
+  og:
+    title_color: "#ffffff"
+    label_color: "#5b86ff" # brand-soft
+    muted_color: "#aab4c8"
   social:
     linkedin: https://www.linkedin.com/company/navez-tech/
 
