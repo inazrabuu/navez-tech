@@ -1,0 +1,6 @@
+{{- /* FAQPage from faq[{q,a}]. Context: Page. Returns dict. */ -}}
+{{- $qs := slice -}}
+{{- range .Params.faq -}}
+  {{- $qs = $qs | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" (.a | markdownify | plainify))) -}}
+{{- end -}}
+{{- return (dict "@type" "FAQPage" "@id" (printf "%s#faq" .Permalink) "mainEntity" $qs) -}}

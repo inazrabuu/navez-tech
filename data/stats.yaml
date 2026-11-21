@@ -1,0 +1,12 @@
+# Shown on the home page. Real numbers only.
+# While `enabled: false`, the section renders only on the local dev server.
+enabled: true
+items:
+  - value: "50"
+    label: "Projects delivered"
+  - value: "20"
+    label: "Combined years of experience"
+  - value: "4"
+    label: "Disciplines under one partner"
+  - value: "< 2 hrs"
+    label: "WhatsApp reply in business hours"

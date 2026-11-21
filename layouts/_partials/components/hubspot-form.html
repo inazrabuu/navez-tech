@@ -1,0 +1,17 @@
+{{- /*
+  HubSpot form embed (new "hs-form-frame" embed, loaded lazily by main.js). Shows an email/WhatsApp
+  fallback until the embed loads, or permanently if IDs aren't configured in data/site.yaml.
+  The redirect to /thank-you/ after submit is configured on the form in HubSpot, not here.
+  Params (dict):
+    page Page  current page
+    id   string  container id (default "hubspot-form")
+*/ -}}
+{{- $hs := hugo.Data.site.hubspot -}}
+{{- $id := or .id "hubspot-form" -}}
+<div id="{{ $id }}" class="min-h-48" data-hubspot-form data-portal-id="{{ $hs.portal_id }}" data-form-id="{{ $hs.form_id }}" data-region="{{ $hs.region }}">
+  <div data-fallback class="rounded-card border border-dashed border-line p-6 text-ink-soft">
+    <p>{{ i18n "form_fallback_text" }} <a class="font-semibold text-brand hover:underline" href="mailto:{{ hugo.Data.site.email }}">{{ hugo.Data.site.email }}</a>.</p>
+    <div class="mt-4">{{ partial "components/whatsapp-button.html" (dict "page" .page "size" "sm") }}</div>
+  </div>
+</div>
+<p class="mt-4 text-xs text-ink-soft">{{ i18n "form_note" }} <a class="underline hover:text-ink" href="{{ "/privacy/" | relURL }}">{{ i18n "nav_privacy" }}</a></p>

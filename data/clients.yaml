@@ -1,0 +1,24 @@
+# Client / partner logo strip on the home page. Add logos to assets/images/clients/.
+# While `enabled: false`, the section renders only on the local dev server.
+#   logo    path under assets/ (SVG, PNG, JPG, WebP or AVIF)
+#   invert  true for white/light logos so they show on the light strip
+#   badge   true for round or square badge logos, shown slightly taller to balance wordmarks
+#   crop    optional, raster logos only: trim empty margins, e.g. "120x120" keeps the centre 120×120 px
+enabled: true
+items:
+  - name: SawitPRO
+    logo: images/clients/sawitpro.avif
+    badge: true
+  - name: RCTI+
+    logo: images/clients/logo-nav-rcti.svg
+  - name: Indozone
+    logo: images/clients/indozone_logo.webp
+    invert: true
+  - name: Female Daily
+    logo: images/clients/logo-femaledaily.svg
+  - name: SMART Lab
+    logo: images/clients/smartlab.jpeg
+    badge: true
+    crop: "120x120"
+  - name: Hino
+    logo: images/clients/hino.png

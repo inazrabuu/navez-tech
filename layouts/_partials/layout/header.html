@@ -1,0 +1,41 @@
+{{- /*
+  Site header: full logo (all widths), mega menu (≥ lg), search, primary CTA, mobile drawer trigger.
+  Context: Page.
+*/ -}}
+{{- $services := (site.GetPage "/services").Pages.ByWeight -}}
+{{- $current := . -}}
+<header class="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85" data-pagefind-ignore="all">
+  <div class="mx-auto flex h-16 max-w-site items-center gap-4 px-4 sm:px-6 lg:h-[4.5rem] lg:px-8">
+    <a href="{{ "/" | relURL }}" class="-m-1 flex shrink-0 items-center rounded-control p-1 text-ink" aria-label="{{ hugo.Data.site.brand_name }}: {{ i18n "home" }}">
+      {{- /* Full wordmark at every width so "naveztech" is always readable (~152px wide at h-6, fits 320px screens). */}}
+      {{ partial "components/logo.html" (dict "class" "block h-6 w-auto lg:h-7") }}
+    </a>
+
+    <nav class="ml-6 hidden lg:block" aria-label="{{ i18n "nav_main" }}">
+      <ul class="flex items-center gap-1">
+        <li class="relative">
+          {{ partial "layout/mega-menu.html" (dict "page" $current "services" $services) }}
+        </li>
+        {{- range site.Params.nav }}
+        {{- $active := hasPrefix $current.RelPermalink .url }}
+        <li>
+          <a href="{{ .url | relURL }}" class="inline-flex min-h-11 items-center rounded-control px-3 text-[0.9375rem] font-medium text-ink hover:bg-surface{{ if $active }} text-brand{{ end }}"{{ if $active }} aria-current="page"{{ end }}>{{ i18n .key }}</a>
+        </li>
+        {{- end }}
+      </ul>
+    </nav>
+
+    <div class="ml-auto flex items-center gap-2">
+      <a href="{{ "/insights/" | relURL }}" data-palette-open class="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-full border border-line px-3 text-sm text-ink-soft hover:border-ink/30 hover:text-ink lg:justify-start lg:pr-2 lg:pl-3.5" aria-label="{{ i18n "search_open" }}">
+        {{ partial "components/icon.html" (dict "name" "search" "class" "size-[1.125rem]") }}
+        <span class="hidden lg:inline">{{ i18n "search" }}</span>
+        <kbd class="hidden rounded-[0.3rem] border border-line bg-surface px-1.5 py-0.5 font-sans text-xs text-ink-soft lg:inline" data-shortcut-hint>Ctrl K</kbd>
+      </a>
+      <div class="hidden sm:block">{{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call")) }}</div>
+      <a href="#site-footer-nav" data-drawer-open="mobile-nav" class="inline-flex size-11 items-center justify-center rounded-control text-ink hover:bg-surface lg:hidden" aria-label="{{ i18n "menu_open" }}" aria-haspopup="dialog" aria-controls="mobile-nav">
+        {{ partial "components/icon.html" (dict "name" "menu" "class" "size-6") }}
+      </a>
+    </div>
+  </div>
+  {{ partial "layout/mobile-nav.html" (dict "page" $current "services" $services) }}
+</header>

@@ -1,0 +1,10 @@
+{{- /*
+  Callout box.
+  Usage: {{< callout type="note|tip|warning" title="Optional title" >}}Markdown{{< /callout >}}
+*/ -}}
+{{- $type := .Get "type" | default "note" -}}
+{{- $styles := dict "note" "border-brand bg-brand/[0.04]" "tip" "border-signal bg-signal/[0.06]" "warning" "border-ink bg-surface" -}}
+<aside class="not-prose my-8 rounded-card border-l-4 p-5 {{ index $styles $type }}" role="note">
+  {{- with .Get "title" }}<p class="font-bold text-ink">{{ . }}</p>{{ end }}
+  <div class="prose-navez mt-1 text-[0.98em]">{{ .Inner | .Page.RenderString (dict "display" "block") }}</div>
+</aside>

@@ -1,0 +1,35 @@
+{{- /*
+  Responsive image via Hugo image processing: WebP, srcset, explicit width/height.
+  Params (dict):
+    image    Resource  required (image resource)
+    alt      string    required ("" for decorative)
+    sizes    string    sizes attribute (default "100vw")
+    ratio    string    optional crop ratio "WxH" (e.g. "16x9", "1x1")
+    widths   slice     optional widths (default 480 800 1200 1600)
+    class    string    classes
+    eager    bool      LCP image: loading=eager + fetchpriority=high
+*/ -}}
+{{- $img := .image -}}
+{{- $widths := or .widths (slice 480 800 1200 1600) -}}
+{{- $ratio := .ratio -}}
+{{- $srcset := slice -}}
+{{- $fallback := false -}}
+{{- range $widths -}}
+  {{- if le . $img.Width -}}
+    {{- $r := false -}}
+    {{- if $ratio -}}
+      {{- $parts := split $ratio "x" -}}
+      {{- $h := int (math.Round (div (mul (float .) (float (index $parts 1))) (float (index $parts 0)))) -}}
+      {{- $r = $img.Fill (printf "%dx%d webp Smart" . $h) -}}
+    {{- else -}}
+      {{- $r = $img.Resize (printf "%dx webp" .) -}}
+    {{- end -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink $r.Width) -}}
+    {{- $fallback = $r -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $fallback -}}
+  {{- $fallback = $img.Resize (printf "%dx webp" $img.Width) -}}
+  {{- $srcset = slice (printf "%s %dw" $fallback.RelPermalink $fallback.Width) -}}
+{{- end -}}
+<img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="{{ or .sizes "100vw" }}" width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" alt="{{ .alt }}" class="{{ .class }}" {{ if .eager }}loading="eager" fetchpriority="high"{{ else }}loading="lazy" decoding="async"{{ end }}>

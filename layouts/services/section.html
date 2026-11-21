@@ -1,0 +1,36 @@
+{{- /* /services/ overview */ -}}
+{{- define "main" }}
+{{ partial "sections/page-hero.html" (dict "page" . "ctas" true) }}
+<section aria-labelledby="services-list-title">
+  <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-12 lg:px-8">
+    <h2 id="services-list-title" class="sr-only">{{ i18n "services_title" }}</h2>
+    <ul class="grid gap-6">
+      {{- range .Pages.ByWeight }}
+      <li>
+        <article class="grid gap-8 rounded-panel border border-line p-6 md:p-10 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <span class="inline-flex size-12 items-center justify-center rounded-control bg-brand/10 text-brand">{{ partial "components/icon.html" (dict "name" .Params.icon "class" "size-6") }}</span>
+            <h3 class="mt-5 text-2xl md:text-3xl"><a class="hover:text-brand" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p class="mt-3 text-lg text-ink-soft">{{ .Params.summary }}</p>
+            <div class="mt-6">{{ partial "components/button.html" (dict "url" .RelPermalink "label" (i18n "explore_service" (dict "Service" .Title)) "variant" "secondary" "icon" "arrow-right") }}</div>
+          </div>
+          {{- with .Params.included }}
+          <div class="rounded-card bg-surface p-6">
+            <p class="text-sm font-semibold text-ink-soft">{{ i18n "service_included_title" }}</p>
+            <ul class="mt-3 grid gap-2">
+              {{- range first 5 . }}
+              <li class="flex gap-3"><span class="mt-1 text-signal">{{ partial "components/icon.html" (dict "name" "check" "class" "size-4") }}</span><span>{{ .title }}</span></li>
+              {{- end }}
+            </ul>
+          </div>
+          {{- end }}
+        </article>
+      </li>
+      {{- end }}
+    </ul>
+  </div>
+</section>
+{{ partial "sections/process.html" (dict "steps" site.Home.Params.process) }}
+{{ partial "sections/faq.html" (dict "items" .Params.faq) }}
+{{ partial "sections/cta-band.html" (dict "page" .) }}
+{{- end }}

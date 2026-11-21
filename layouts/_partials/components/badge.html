@@ -1,0 +1,12 @@
+{{- /*
+  Small pill label.
+  Params (dict):
+    label string  required
+    tone  string  "neutral" (default) | "brand" | "inverse"
+*/ -}}
+{{- $tones := dict
+  "neutral" "border border-line bg-surface text-ink-soft"
+  "brand" "bg-brand/10 text-brand-deep"
+  "inverse" "bg-white/10 text-white"
+-}}
+<span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold {{ index $tones (or .tone "neutral") }}">{{ .label }}</span>

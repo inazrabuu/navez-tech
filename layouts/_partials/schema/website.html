@@ -1,0 +1,9 @@
+{{- /* WebSite. Context: Page. Returns dict. */ -}}
+{{- return (dict
+  "@type" "WebSite"
+  "@id" (printf "%s#website" site.Home.Permalink)
+  "url" site.Home.Permalink
+  "name" site.Title
+  "inLanguage" site.Language.Locale
+  "publisher" (dict "@id" (printf "%s#organization" site.Home.Permalink))
+) -}}

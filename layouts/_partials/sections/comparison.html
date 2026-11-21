@@ -1,0 +1,42 @@
+{{- /*
+  Comparison table from data/comparison.yaml. Values rendered as icon + text (never colour alone).
+  Params (dict):
+    title, lead strings (optional)
+*/ -}}
+{{- $d := hugo.Data.comparison -}}
+{{- $labels := dict "yes" (i18n "compare_yes") "partial" (i18n "compare_partial") "no" (i18n "compare_no") -}}
+{{- $icons := dict "yes" "check" "partial" "minus" "no" "x" -}}
+{{- $tone := dict "yes" "text-signal" "partial" "text-ink-soft" "no" "text-ink-soft/70" -}}
+<section class="bg-surface" aria-labelledby="compare-title">
+  <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-12 lg:px-8">
+    {{ partial "components/section-heading.html" (dict "id" "compare-title" "title" (or .title (i18n "compare_title")) "lead" (or .lead (i18n "compare_lead"))) }}
+    <div class="mt-10 overflow-x-auto rounded-card border border-line bg-white" tabindex="0" role="region" aria-labelledby="compare-title">
+      <table class="w-full min-w-[44rem] border-collapse text-left">
+        <caption class="sr-only">{{ i18n "compare_caption" }}</caption>
+        <thead>
+          <tr class="border-b border-line">
+            <th scope="col" class="w-[34%] p-4 text-sm font-semibold text-ink-soft">{{ i18n "compare_criteria" }}</th>
+            {{- range $d.columns }}
+            <th scope="col" class="p-4 text-sm font-bold {{ if .highlight }}bg-brand/[0.06] text-brand-deep{{ else }}text-ink{{ end }}">{{ .label }}</th>
+            {{- end }}
+          </tr>
+        </thead>
+        <tbody>
+          {{- range $row := $d.rows }}
+          <tr class="border-b border-line last:border-0">
+            <th scope="row" class="p-4 font-medium text-ink">{{ $row.label }}</th>
+            {{- range $d.columns }}
+            {{- $v := index $row .key }}
+            <td class="p-4{{ if .highlight }} bg-brand/[0.06]{{ end }}">
+              <span class="inline-flex items-center gap-2 text-sm {{ if .highlight }}font-semibold text-ink{{ else }}text-ink-soft{{ end }}">
+                <span class="{{ index $tone $v }}">{{ partial "components/icon.html" (dict "name" (index $icons $v) "class" "size-5") }}</span>{{ index $labels $v }}
+              </span>
+            </td>
+            {{- end }}
+          </tr>
+          {{- end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

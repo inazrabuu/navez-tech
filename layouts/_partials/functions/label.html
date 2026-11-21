@@ -1,0 +1,8 @@
+{{- /*
+  Human label for a slug value (industries, categories): i18n "label_<slug>" or humanized slug.
+  Context: string slug.
+*/ -}}
+{{- $k := printf "label_%s" (replace . "-" "_") -}}
+{{- $t := i18n $k -}}
+{{- if not $t }}{{ $t = humanize . }}{{ end -}}
+{{- return $t -}}

@@ -1,0 +1,4 @@
+{{- /* External links open normally but get rel=noopener; internal links pass through. */ -}}
+{{- $u := urls.Parse .Destination -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $u.IsAbs }}{{ if not (strings.Contains $u.Host "navez.tech") }} rel="noopener"{{ end }}{{ end }}>{{ .Text }}</a>
+{{- /**/ -}}

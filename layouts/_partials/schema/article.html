@@ -1,0 +1,15 @@
+{{- /* Article for case studies. Context: Page (work). Returns dict. */ -}}
+{{- $img := partial "functions/og-image.html" . -}}
+{{- return (dict
+  "@type" "Article"
+  "@id" (printf "%s#article" .Permalink)
+  "headline" .Title
+  "description" (partial "functions/seo-description.html" .)
+  "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "mainEntityOfPage" .Permalink
+  "image" $img.url
+  "author" (dict "@id" (printf "%s#organization" site.Home.Permalink))
+  "publisher" (dict "@id" (printf "%s#organization" site.Home.Permalink))
+  "about" (delimit (.Params.services | default slice) ", ")
+) -}}

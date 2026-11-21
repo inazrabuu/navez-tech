@@ -1,0 +1,6 @@
+{{- /* BreadcrumbList. Context: Page. Returns dict. */ -}}
+{{- $items := slice -}}
+{{- range $i, $c := partial "functions/breadcrumbs.html" . -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" (add $i 1) "name" $c.title "item" ($c.url | absURL)) -}}
+{{- end -}}
+{{- return (dict "@type" "BreadcrumbList" "@id" (printf "%s#breadcrumb" .Permalink) "itemListElement" $items) -}}

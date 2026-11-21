@@ -1,0 +1,10 @@
+{{- /*
+  "Chat on WhatsApp" button. Number from data/site.yaml.
+  Params (dict):
+    page    Page    current page (for prefill text)
+    variant string  button variant (default "whatsapp")
+    size    string  button size
+    class   string  extra classes
+*/ -}}
+{{- $url := partial "functions/whatsapp-url.html" (dict "page" .page) -}}
+{{ partial "components/button.html" (dict "url" $url "label" (i18n "cta_whatsapp") "variant" (or .variant "whatsapp") "size" (or .size "md") "icon" "chat" "external" true "class" (or .class "")) }}

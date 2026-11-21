@@ -1,0 +1,23 @@
+{{- /*
+  Testimonials from data/testimonials.yaml (approved quotes only).
+  Renders when `enabled`, or always on the dev server.
+  Params: none.
+*/ -}}
+{{- $d := hugo.Data.testimonials -}}
+{{- if and $d (or $d.enabled hugo.IsDevelopment) }}
+<section class="bg-surface" aria-labelledby="testimonials-title">
+  <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-12 lg:px-8">
+    {{ partial "components/section-heading.html" (dict "id" "testimonials-title" "title" (i18n "testimonials_title")) }}
+    <ul class="mt-10 grid gap-4 md:grid-cols-2">
+      {{- range $d.items }}
+      <li>
+        <figure class="flex h-full flex-col rounded-card border border-line bg-white p-8">
+          <blockquote class="flex-1 text-lg/relaxed text-ink"><p>“{{ .quote }}”</p></blockquote>
+          <figcaption class="mt-6 text-sm"><span class="block font-semibold text-ink">{{ .name }}</span><span class="text-ink-soft">{{ .role }}</span></figcaption>
+        </figure>
+      </li>
+      {{- end }}
+    </ul>
+  </div>
+</section>
+{{- end -}}

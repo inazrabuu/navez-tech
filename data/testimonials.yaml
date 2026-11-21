@@ -1,0 +1,10 @@
+# Real, approved quotes only.
+# While `enabled: false`, the section renders only on the local dev server.
+enabled: true
+items:
+  - quote: "We were running a distribution business on spreadsheets and WhatsApp groups. navez mapped our processes, set up the ERP, and moved three years of data over without stopping operations. Month-end closing went from 10 days to 3, and for the first time I can see stock and receivables in one place."
+    name: "Agus"
+    role: "Finance Director, Jakarta"
+  - quote: "navez didn’t sell us ‘AI’, they asked where our team was losing hours. They built an agent that reads supplier invoices, matches them to POs, and flags mismatches for review. Our admin team now handles twice the volume, and the team was genuinely easy to work with from day one."
+    name: "Artur"
+    role: "VP Ops, Jakarta"

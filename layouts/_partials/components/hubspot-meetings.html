@@ -1,0 +1,10 @@
+{{- /*
+  HubSpot Meetings embed (loaded lazily by main.js). Fallback until loaded / if unset.
+  Params: none.
+*/ -}}
+{{- $url := hugo.Data.site.hubspot.meetings_url -}}
+<div class="min-h-[40rem]" data-hubspot-meetings data-src="{{ $url }}">
+  <div data-fallback class="rounded-card border border-dashed border-line p-6 text-ink-soft">
+    <p>{{ i18n "meetings_fallback_text" }} <a class="font-semibold text-brand hover:underline" href="mailto:{{ hugo.Data.site.email }}">{{ hugo.Data.site.email }}</a></p>
+  </div>
+</div>

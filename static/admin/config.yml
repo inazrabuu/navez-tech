@@ -1,0 +1,388 @@
+# Sveltia CMS configuration — https://github.com/sveltia/sveltia-cms
+# Every content type here must also have an archetype in /archetypes (CLAUDE.md §6).
+
+backend:
+  name: github
+  repo: TODO-org/navez-tech # TODO: GitHub owner/repo
+  branch: main
+  # Sveltia CMS Authenticator on Cloudflare Workers (OAuth secrets live in Worker env vars)
+  base_url: https://TODO-sveltia-cms-auth.workers.dev # TODO: deployed worker URL
+  commit_messages:
+    create: "content: create {{collection}} “{{slug}}”"
+    update: "content: update {{collection}} “{{slug}}”"
+    delete: "content: delete {{collection}} “{{slug}}”"
+    uploadMedia: "content: upload “{{path}}”"
+    deleteMedia: "content: delete “{{path}}”"
+
+site_url: https://navez.tech
+display_url: https://navez.tech
+logo_url: /favicon.svg
+publish_mode: simple
+
+media_folder: assets/images/uploads
+public_folder: /images/uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# Single locale today; add `id` to `locales` to enable Indonesian without restructuring.
+i18n:
+  structure: multiple_files
+  locales: [en]
+  default_locale: en
+  omit_default_locale_from_filename: true
+
+collections:
+  # ------------------------------------------------------------------ Insights
+  - name: insights
+    label: Insights
+    label_singular: Post
+    folder: content/insights
+    path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
+    create: true
+    format: yaml-frontmatter
+    i18n: true
+    sortable_fields: [date, title]
+    summary: "{{title}} ({{date | date('YYYY-MM-DD')}})"
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: description, label: Meta description (≤155 chars), widget: text, i18n: true }
+      - { name: answer_summary, label: Answer summary (2–3 sentences that directly answer the title), widget: text, i18n: true }
+      - { name: date, label: Published, widget: datetime, i18n: duplicate }
+      - { name: lastmod, label: Last updated (optional; Git date is used otherwise), widget: datetime, required: false, i18n: duplicate }
+      - { name: author, label: Author, widget: relation, collection: authors, value_field: "{{slug}}", search_fields: [name], display_fields: [name], i18n: duplicate }
+      - name: category
+        label: Category
+        widget: select
+        i18n: duplicate
+        options:
+          - { label: Digital agency, value: digital-agency }
+          - { label: Agentic AI, value: agentic-ai }
+          - { label: Cybersecurity, value: cybersecurity }
+          - { label: ERP & business systems, value: erp-business-systems }
+          - { label: Business technology, value: business-technology }
+      - name: service
+        label: Related service (pillar)
+        i18n: duplicate
+        widget: select
+        options:
+          - { label: B2B Digital Agency, value: digital-agency }
+          - { label: Agentic AI Development, value: agentic-ai }
+          - { label: Cybersecurity, value: cybersecurity }
+          - { label: ERP & Business System Setup, value: erp-business-systems }
+      - { name: tags, label: Tags, widget: list, required: false, i18n: duplicate }
+      - { name: cover, label: Cover image, widget: image, required: false, i18n: duplicate }
+      - { name: cover_alt, label: Cover alt text, widget: string, required: false, i18n: true }
+      - &faq
+        name: faq
+        label: FAQ
+        widget: list
+        required: false
+        i18n: true
+        fields:
+          - { name: q, label: Question, widget: string }
+          - { name: a, label: Answer, widget: text }
+      - { name: draft, label: Draft, widget: boolean, default: true, i18n: duplicate }
+      - { name: body, label: Body, widget: markdown, i18n: true }
+
+  # ------------------------------------------------------------------ Services
+  - name: services
+    label: Services
+    label_singular: Service
+    folder: content/services
+    filter: { field: title, pattern: "." }
+    create: false
+    delete: false
+    format: yaml-frontmatter
+    i18n: true
+    sortable_fields: [weight, title]
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: slug, label: Slug, widget: string, i18n: duplicate }
+      - { name: summary, label: One-line summary (mega menu, cards), widget: string, i18n: true }
+      - { name: icon, label: Icon, widget: select, options: [monitor, layers, bot, shield], i18n: duplicate }
+      - { name: weight, label: Order, widget: number, value_type: int, i18n: duplicate }
+      - { name: hero_headline, label: Hero headline (the outcome), widget: string, i18n: true }
+      - name: problems
+        label: Problems we solve
+        widget: list
+        i18n: true
+        fields: [{ name: title, label: Title, widget: string }, { name: text, label: Text, widget: text }]
+      - name: included
+        label: What's included
+        widget: list
+        i18n: true
+        fields: [{ name: title, label: Title, widget: string }, { name: text, label: Text, widget: text, required: false }]
+      - { name: platforms, label: Platforms / stack, widget: list, i18n: duplicate }
+      - name: engagement_models
+        label: Engagement models
+        widget: list
+        i18n: true
+        fields: [{ name: title, label: Title, widget: string }, { name: best_for, label: Best for, widget: string }, { name: text, label: Text, widget: text }]
+      - *faq
+      - { name: related_services, label: Related services (cross-sell), multiple: true, i18n: duplicate, widget: select, options: [{ label: B2B Digital Agency, value: digital-agency }, { label: Agentic AI Development, value: agentic-ai }, { label: Cybersecurity, value: cybersecurity }, { label: ERP & Business System Setup, value: erp-business-systems }] }
+      - name: seo
+        label: SEO
+        widget: object
+        i18n: true
+        fields: [{ name: title, label: Title (≤60), widget: string }, { name: description, label: Description (≤155), widget: text }]
+      - { name: body, label: Extra body (optional), widget: markdown, required: false, i18n: true }
+
+  # ------------------------------------------------------------------ Use cases
+  - name: use-cases
+    label: Use cases
+    label_singular: Use case
+    folder: content/use-cases
+    filter: { field: service, pattern: "." }
+    create: true
+    format: yaml-frontmatter
+    i18n: true
+    sortable_fields: [weight, title]
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: description, label: Meta description (≤155), widget: text, i18n: true }
+      - { name: service, label: Service, i18n: duplicate, widget: select, options: [{ label: B2B Digital Agency, value: digital-agency }, { label: Agentic AI Development, value: agentic-ai }, { label: Cybersecurity, value: cybersecurity }, { label: ERP & Business System Setup, value: erp-business-systems }] }
+      - name: industry
+        label: Industry
+        i18n: duplicate
+        widget: select
+        options:
+          - { label: Any industry, value: cross-industry }
+          - { label: Manufacturing, value: manufacturing }
+          - { label: Distribution & wholesale, value: distribution }
+          - { label: Retail, value: retail }
+          - { label: E-commerce, value: ecommerce }
+          - { label: Professional services, value: professional-services }
+          - { label: Agribusiness, value: agribusiness }
+          - { label: Logistics, value: logistics }
+          - { label: Financial services, value: financial-services }
+          - { label: Healthcare, value: healthcare }
+          - { label: Construction, value: construction }
+          - { label: Hospitality, value: hospitality }
+          - { label: Property, value: property }
+      - { name: problem, label: Problem, widget: markdown, i18n: true }
+      - { name: approach, label: Approach, widget: markdown, i18n: true }
+      - { name: outcome, label: Expected outcome, widget: markdown, i18n: true }
+      - *faq
+      - { name: featured, label: Feature on home page, widget: boolean, default: false, i18n: duplicate }
+      - { name: weight, label: Order, widget: number, value_type: int, i18n: duplicate }
+
+  # ------------------------------------------------------------------ Work (case studies)
+  - name: work
+    label: Case studies
+    label_singular: Case study
+    folder: content/work
+    path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
+    create: true
+    format: yaml-frontmatter
+    i18n: true
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: description, label: Meta description (≤155), widget: text, i18n: true }
+      - { name: client, label: Client (internal, real name), widget: string, i18n: duplicate }
+      - { name: client_display, label: Client as shown (real or anonymized), widget: string, i18n: true }
+      - { name: industry, label: Industry, i18n: duplicate, widget: select, options: [{ label: Any industry, value: cross-industry }, { label: Manufacturing, value: manufacturing }, { label: Distribution & wholesale, value: distribution }, { label: Retail, value: retail }, { label: E-commerce, value: ecommerce }, { label: Professional services, value: professional-services }, { label: Agribusiness, value: agribusiness }, { label: Logistics, value: logistics }, { label: Financial services, value: financial-services }, { label: Healthcare, value: healthcare }, { label: Construction, value: construction }, { label: Hospitality, value: hospitality }, { label: Property, value: property }] }
+      - { name: location, label: Location, widget: string, i18n: duplicate }
+      - { name: services, label: Services, multiple: true, i18n: duplicate, widget: select, options: [{ label: B2B Digital Agency, value: digital-agency }, { label: Agentic AI Development, value: agentic-ai }, { label: Cybersecurity, value: cybersecurity }, { label: ERP & Business System Setup, value: erp-business-systems }] }
+      - { name: challenge, label: Challenge, widget: markdown, i18n: true }
+      - { name: solution, label: Solution, widget: markdown, i18n: true }
+      - name: results
+        label: Results (real metrics only)
+        widget: list
+        i18n: true
+        fields: [{ name: metric, label: Metric, widget: string }, { name: label, label: Label, widget: string }]
+      - { name: stack, label: Stack, widget: list, i18n: duplicate }
+      - name: testimonial
+        label: Testimonial
+        widget: object
+        required: false
+        i18n: true
+        fields: [{ name: quote, label: Quote, widget: text, required: false }, { name: name, label: Name, widget: string, required: false }, { name: role, label: Role, widget: string, required: false }]
+      - { name: cover, label: Cover image, widget: image, required: false, i18n: duplicate }
+      - { name: cover_alt, label: Cover alt text, widget: string, required: false, i18n: true }
+      - { name: featured, label: Feature on home page, widget: boolean, default: false, i18n: duplicate }
+      - { name: weight, label: Order, widget: number, value_type: int, required: false, i18n: duplicate }
+      - { name: draft, label: Draft (needs client approval), widget: boolean, default: true, i18n: duplicate }
+      - { name: body, label: Extra body (optional), widget: markdown, required: false, i18n: true }
+
+  # ------------------------------------------------------------------ Glossary
+  - name: glossary
+    label: Glossary
+    label_singular: Term
+    folder: content/glossary
+    filter: { field: short_definition, pattern: "." }
+    create: true
+    format: yaml-frontmatter
+    i18n: true
+    sortable_fields: [title]
+    fields:
+      - { name: title, label: Term, widget: string, i18n: true }
+      - { name: short_definition, label: Short definition (1–2 sentences), widget: text, i18n: true }
+      - { name: related_service, label: Related service, i18n: duplicate, widget: select, options: [{ label: B2B Digital Agency, value: digital-agency }, { label: Agentic AI Development, value: agentic-ai }, { label: Cybersecurity, value: cybersecurity }, { label: ERP & Business System Setup, value: erp-business-systems }] }
+      - *faq
+      - { name: body, label: Body, widget: markdown, i18n: true }
+
+  # ------------------------------------------------------------------ Authors
+  - name: authors
+    label: Authors
+    label_singular: Author
+    folder: content/authors
+    filter: { field: name, pattern: "." }
+    create: true
+    format: yaml-frontmatter
+    identifier_field: name
+    i18n: true
+    fields:
+      - { name: title, label: Page title (usually the name), widget: string, i18n: true }
+      - { name: name, label: Name, widget: string, i18n: duplicate }
+      - { name: role, label: Role, widget: string, i18n: true }
+      - { name: bio, label: Bio, widget: text, i18n: true }
+      - { name: credentials, label: Credentials, widget: list, required: false, i18n: duplicate }
+      - { name: linkedin, label: LinkedIn URL, widget: string, required: false, i18n: duplicate }
+      - { name: photo, label: Photo, widget: image, required: false, i18n: duplicate }
+
+  # ------------------------------------------------------------------ Pages
+  - name: pages
+    label: Pages
+    format: yaml-frontmatter
+    i18n: true
+    files:
+      - name: home
+        label: Home
+        file: content/_index.md
+        i18n: true
+        fields:
+          - { name: title, label: Title, widget: string, i18n: true }
+          - { name: description, label: Meta description, widget: text, i18n: true }
+          - name: hero
+            label: Hero
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Eyebrow, widget: string }
+              - { name: headline, label: Headline, widget: string }
+              - { name: lead, label: Lead, widget: text }
+              - { name: note, label: Note, widget: string, required: false }
+          - name: process
+            label: Process steps
+            widget: list
+            i18n: true
+            fields: [{ name: title, label: Title, widget: string }, { name: text, label: Text, widget: text }]
+          - *faq
+      - name: about
+        label: About
+        file: content/about.md
+        i18n: true
+        fields:
+          - { name: title, label: Title, widget: string, i18n: true }
+          - { name: description, label: Meta description, widget: text, i18n: true }
+          - { name: body, label: Body, widget: markdown, i18n: true }
+      - name: book-a-call
+        label: Book a call
+        file: content/book-a-call.md
+        i18n: true
+        fields:
+          - { name: title, label: Title, widget: string, i18n: true }
+          - { name: description, label: Intro / meta description, widget: text, i18n: true }
+          - name: expect
+            label: What to expect (3 points)
+            widget: list
+            i18n: true
+            fields: [{ name: title, label: Title, widget: string }, { name: text, label: Text, widget: text }]
+      - name: thank-you
+        label: Thank you
+        file: content/thank-you.md
+        i18n: true
+        fields:
+          - { name: title, label: Title, widget: string, i18n: true }
+          - { name: description, label: Intro, widget: text, i18n: true }
+          - name: steps
+            label: Next steps
+            widget: list
+            i18n: true
+            fields: [{ name: title, label: Title, widget: string }, { name: text, label: Text, widget: text }]
+      - { name: contact, label: Contact, file: content/contact.md, i18n: true, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }] }
+      - { name: privacy, label: Privacy policy, file: content/privacy.md, i18n: true, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }, { name: body, label: Body, widget: markdown, i18n: true }] }
+      - { name: terms, label: Terms of use, file: content/terms.md, i18n: true, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }, { name: body, label: Body, widget: markdown, i18n: true }] }
+      - { name: security, label: Security, file: content/security.md, i18n: true, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }, { name: body, label: Body, widget: markdown, i18n: true }] }
+
+  # ------------------------------------------------------------------ Site settings (data/*.yaml)
+  - name: settings
+    label: Site settings
+    format: yaml
+    editor: { preview: false }
+    files:
+      - name: site
+        label: Company & integrations
+        file: data/site.yaml
+        fields:
+          - { name: legal_name, label: Legal name (PT …), widget: string }
+          - { name: brand_name, label: Brand name, widget: string }
+          - { name: nib, label: NIB, widget: string }
+          - name: address
+            label: Address
+            widget: object
+            fields:
+              - { name: street, label: Street, widget: string }
+              - { name: locality, label: City, widget: string }
+              - { name: region, label: Province, widget: string }
+              - { name: postal_code, label: Postal code, widget: string, required: false }
+              - { name: country, label: Country code, widget: string, default: ID }
+          - { name: email, label: Email, widget: string }
+          - { name: whatsapp, label: WhatsApp number (digits only, e.g. 62812…), widget: string, pattern: ['^[0-9]{8,15}$', 'Digits only, with country code'] }
+          - name: hubspot
+            label: HubSpot
+            widget: object
+            fields:
+              - { name: portal_id, label: Portal ID, widget: string, required: false }
+              - { name: form_id, label: Form GUID, widget: string, required: false }
+              - { name: region, label: Region, widget: select, options: [na1, eu1, ap1], default: na1 }
+              - { name: meetings_url, label: Meetings embed URL, widget: string, required: false }
+          - name: announcement
+            label: Announcement bar
+            widget: object
+            fields:
+              - { name: enabled, label: Show, widget: boolean, default: false }
+              - { name: text, label: Text, widget: string }
+              - { name: url, label: Link, widget: string, required: false }
+      - name: stats
+        label: Stats
+        file: data/stats.yaml
+        fields:
+          - { name: enabled, label: Show on site (real numbers only), widget: boolean, default: false }
+          - { name: items, label: Stats, widget: list, fields: [{ name: value, label: Value, widget: string }, { name: label, label: Label, widget: string }] }
+      - name: clients
+        label: Client logos
+        file: data/clients.yaml
+        fields:
+          - { name: enabled, label: Show on site, widget: boolean, default: false }
+          - { name: items, label: Clients, widget: list, fields: [{ name: name, label: Name, widget: string }, { name: logo, label: Logo (SVG, PNG, WebP or AVIF), widget: image, required: false, media_folder: /assets/images/clients, public_folder: images/clients }, { name: invert, label: White logo (invert to dark), widget: boolean, default: false, required: false }, { name: badge, label: Round or square badge (show taller), widget: boolean, default: false, required: false }, { name: crop, label: Trim margins (raster only, e.g. 120x120), widget: string, required: false }] }
+      - name: testimonials
+        label: Testimonials
+        file: data/testimonials.yaml
+        fields:
+          - { name: enabled, label: Show on site (approved quotes only), widget: boolean, default: false }
+          - { name: items, label: Testimonials, widget: list, fields: [{ name: quote, label: Quote, widget: text }, { name: name, label: Name, widget: string }, { name: role, label: Role, widget: string }] }
+      - name: comparison
+        label: Comparison table
+        file: data/comparison.yaml
+        fields:
+          - name: columns
+            label: Columns
+            widget: list
+            fields: [{ name: key, label: Key, widget: string }, { name: label, label: Label, widget: string }, { name: highlight, label: Highlight, widget: boolean, default: false }]
+          - name: rows
+            label: Rows
+            widget: list
+            fields:
+              - { name: label, label: Criterion, widget: string }
+              - { name: navez, label: navez.tech, widget: select, options: ["yes", "partial", "no"] }
+              - { name: inhouse, label: In-house, widget: select, options: ["yes", "partial", "no"] }
+              - { name: freelancers, label: Freelancers, widget: select, options: ["yes", "partial", "no"] }
+              - { name: si, label: Large SI, widget: select, options: ["yes", "partial", "no"] }

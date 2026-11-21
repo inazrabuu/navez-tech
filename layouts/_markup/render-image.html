@@ -1,0 +1,9 @@
+{{- /* Markdown images: page-bundle images are processed (WebP, srcset, width/height, lazy). */ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $img := false -}}
+{{- if not $u.IsAbs }}{{ $img = or (.Page.Resources.Get $u.Path) (resources.Get (strings.TrimPrefix "/" $u.Path)) }}{{ end -}}
+{{- if and $img (ne $img.MediaType.SubType "svg") -}}
+{{ partial "components/image.html" (dict "image" $img "alt" .PlainText "sizes" "(min-width: 768px) 720px, 100vw" "widths" (slice 480 720 1080 1440) "class" "rounded-card") }}
+{{- else -}}
+<img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async">
+{{- end -}}

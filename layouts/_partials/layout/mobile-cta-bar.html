@@ -1,0 +1,12 @@
+{{- /*
+  Sticky bottom CTA bar on mobile (< lg). Hidden on /book-a-call/ and /thank-you/.
+  Context: Page.
+*/ -}}
+{{- if not (in (slice "/book-a-call/" "/thank-you/") .RelPermalink) }}
+<div class="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden" data-pagefind-ignore="all">
+  <div class="mx-auto flex max-w-md gap-2 max-[359px]:[&_svg]:hidden">
+    {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "icon" "calendar" "class" "flex-1 px-3 max-[359px]:text-sm") }}
+    {{ partial "components/whatsapp-button.html" (dict "page" . "class" "flex-1 px-3 max-[359px]:text-sm") }}
+  </div>
+</div>
+{{- end -}}

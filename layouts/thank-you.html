@@ -1,0 +1,21 @@
+{{- /* /thank-you/: next steps after a form submission. noindex. */ -}}
+{{- define "main" }}
+<section class="mx-auto max-w-site px-4 py-16 sm:px-6 md:py-16 lg:px-8">
+  <span class="inline-flex size-12 items-center justify-center rounded-full bg-signal/15 text-signal">{{ partial "components/icon.html" (dict "name" "check" "class" "size-6") }}</span>
+  <h1 class="mt-6 max-w-2xl text-4xl sm:text-5xl">{{ .Title }}</h1>
+  <p class="mt-5 max-w-xl text-lg text-ink-soft">{{ .Description }}</p>
+  <ol class="mt-12 grid max-w-4xl gap-4 md:grid-cols-3">
+    {{- range $i, $s := .Params.steps }}
+    <li class="rounded-card border border-line p-6">
+      <span class="text-sm font-bold text-brand tabular-nums" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+      <h2 class="mt-2 text-lg">{{ $s.title }}</h2>
+      <p class="mt-1 text-ink-soft">{{ $s.text }}</p>
+    </li>
+    {{- end }}
+  </ol>
+  <div class="mt-12 flex flex-col gap-3 sm:flex-row">
+    {{ partial "components/button.html" (dict "url" ("/insights/" | relURL) "label" (i18n "all_insights") "variant" "secondary" "icon" "arrow-right") }}
+    {{ partial "components/whatsapp-button.html" (dict "page" .) }}
+  </div>
+</section>
+{{- end }}

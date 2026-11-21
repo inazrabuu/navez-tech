@@ -1,0 +1,43 @@
+{{- /* /book-a-call/: intro + what to expect → tabs (meetings / form) → WhatsApp alternative. */ -}}
+{{- define "main" }}
+<section class="bg-surface">
+  <div class="mx-auto max-w-site px-4 pt-8 pb-10 sm:px-6 md:pb-10 lg:px-8">
+    {{ partial "components/breadcrumb.html" . }}
+    <div class="mt-8 grid gap-12 lg:grid-cols-[1fr_1.35fr] lg:gap-16">
+      <div>
+        <h1 class="text-4xl sm:text-5xl">{{ .Title }}</h1>
+        <p class="mt-5 text-lg/relaxed text-ink-soft">{{ .Description }}</p>
+        <h2 class="mt-10 text-lg">{{ i18n "book_expect_title" }}</h2>
+        <ol class="mt-4 grid gap-5">
+          {{- range $i, $e := .Params.expect }}
+          <li class="flex gap-4">
+            <span class="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white" aria-hidden="true">{{ add $i 1 }}</span>
+            <div><p class="font-semibold">{{ $e.title }}</p><p class="mt-1 text-ink-soft">{{ $e.text }}</p></div>
+          </li>
+          {{- end }}
+        </ol>
+        <div class="mt-10 rounded-card border border-line bg-white p-6">
+          <p class="font-semibold">{{ i18n "book_wa_title" }}</p>
+          <p class="mt-1 text-sm text-ink-soft">{{ i18n "book_wa_text" }}</p>
+          <div class="mt-4">{{ partial "components/whatsapp-button.html" (dict "page" . "size" "sm") }}</div>
+        </div>
+      </div>
+
+      <div class="rounded-panel border border-line bg-white p-4 sm:p-6" x-data="tabs(0)">
+        <div role="tablist" aria-label="{{ i18n "book_tabs_label" }}" class="grid grid-cols-2 gap-1 rounded-full bg-surface p-1" x-cloak @keydown="onKey($event)">
+          <button type="button" role="tab" id="tab-time" aria-controls="panel-time" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full text-sm font-semibold" :class="active === 0 ? 'bg-white text-ink shadow-sm' : 'text-ink-soft hover:text-ink'" :aria-selected="active === 0" :tabindex="active === 0 ? 0 : -1" @click="select(0)">{{ partial "components/icon.html" (dict "name" "calendar" "class" "size-4") }}{{ i18n "book_tab_time" }}</button>
+          <button type="button" role="tab" id="tab-details" aria-controls="panel-details" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full text-sm font-semibold" :class="active === 1 ? 'bg-white text-ink shadow-sm' : 'text-ink-soft hover:text-ink'" :aria-selected="active === 1" :tabindex="active === 1 ? 0 : -1" @click="select(1)">{{ partial "components/icon.html" (dict "name" "file" "class" "size-4") }}{{ i18n "book_tab_details" }}</button>
+        </div>
+        <div id="panel-time" role="tabpanel" aria-labelledby="tab-time" class="mt-6" x-show="active === 0" tabindex="0">
+          <h2 class="sr-only">{{ i18n "book_tab_time" }}</h2>
+          {{ partial "components/hubspot-meetings.html" . }}
+        </div>
+        <div id="panel-details" role="tabpanel" aria-labelledby="tab-details" class="mt-6" x-show="active === 1" tabindex="0">
+          <h2 class="text-xl">{{ i18n "form_title" }}</h2>
+          <div class="mt-4">{{ partial "components/hubspot-form.html" (dict "page" .) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{- end }}

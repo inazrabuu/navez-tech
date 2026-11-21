@@ -1,0 +1,25 @@
+{{- /*
+  Latest insights (3 cards).
+  Params (dict):
+    pages Pages   optional — defaults to latest 3 posts
+    title string  optional
+    id    string  heading id (default "insights-title")
+    bg    string  "white" | "surface"
+*/ -}}
+{{- $pages := or .pages (first 3 (where site.RegularPages "Section" "insights").ByDate.Reverse) -}}
+{{- $id := or .id "insights-title" -}}
+{{- with $pages }}
+<section class="{{ if eq $.bg "surface" }}bg-surface{{ end }}" aria-labelledby="{{ $id }}">
+  <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-12 lg:px-8">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      {{ partial "components/section-heading.html" (dict "id" $id "title" (or $.title (i18n "insights_latest_title")) "lead" (i18n "insights_latest_lead")) }}
+      {{ partial "components/button.html" (dict "url" ("/insights/" | relURL) "label" (i18n "all_insights") "variant" "secondary" "icon" "arrow-right") }}
+    </div>
+    <ul class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {{- range . }}
+      <li>{{ partial "components/card-post.html" (dict "page" .) }}</li>
+      {{- end }}
+    </ul>
+  </div>
+</section>
+{{- end -}}

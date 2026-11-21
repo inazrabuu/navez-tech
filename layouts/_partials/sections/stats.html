@@ -1,0 +1,21 @@
+{{- /*
+  Stats band from data/stats.yaml (real numbers only).
+  Renders when `enabled`, or always on the dev server.
+  Params: none.
+*/ -}}
+{{- $d := hugo.Data.stats -}}
+{{- if and $d (or $d.enabled hugo.IsDevelopment) }}
+<section aria-labelledby="stats-title">
+  <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">
+    <h2 id="stats-title" class="sr-only">{{ i18n "stats_title" }}</h2>
+    <dl class="grid grid-cols-2 gap-px overflow-hidden rounded-card border border-line bg-line lg:grid-cols-4">
+      {{- range $d.items }}
+      <div class="flex flex-col-reverse items-center justify-end bg-white p-6 text-center md:p-8">
+        <dt class="mt-2 text-sm text-ink-soft">{{ .label }}</dt>
+        <dd class="text-3xl font-bold tracking-tight whitespace-nowrap text-ink min-[360px]:text-4xl md:text-5xl">{{ .value }}</dd>
+      </div>
+      {{- end }}
+    </dl>
+  </div>
+</section>
+{{- end -}}

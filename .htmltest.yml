@@ -1,0 +1,14 @@
+# htmltest — broken-link check run by `npm run check`. https://github.com/wjdp/htmltest
+DirectoryPath: public
+CheckExternal: false
+CheckInternalHash: true
+IgnoreAltMissing: false
+IgnoreDirectoryMissingTrailingSlash: true
+IgnoreURLs:
+  - "^/pagefind/"
+IgnoreDirs:
+  - pagefind
+  - admin
+CheckMailto: false
+CheckTel: false
+OutputDir: tmp/.htmltest

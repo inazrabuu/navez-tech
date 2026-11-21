@@ -1,0 +1,241 @@
+# All UI strings. Never hardcode UI text in templates.
+# Add i18n/id.yaml with the same keys for the Indonesian site.
+
+# --- Site / global ---------------------------------------------------
+site_tagline: B2B technology partner in Indonesia
+skip_to_content: Skip to content
+home: Home
+close: Close
+related: Related
+breadcrumb: Breadcrumb
+table: Table
+tags: Tags
+pagination: Pagination
+learn_more: Learn more
+published: Published
+updated: Updated
+reading_time:
+  one: "{{ .Count }} min read"
+  other: "{{ .Count }} min read"
+posts_count:
+  one: "{{ .Count }} article"
+  other: "{{ .Count }} articles"
+
+# --- Navigation --------------------------------------------------------
+nav_main: Main
+nav_services: Services
+nav_all_services: All services
+nav_use_cases: Use cases
+nav_work: Work
+nav_insights: Insights
+nav_glossary: Glossary
+nav_about: About
+nav_contact: Contact
+nav_privacy: Privacy
+nav_terms: Terms
+nav_security: Security
+menu_open: Open menu
+menu_close: Close menu
+mega_help_title: Not sure where to start?
+mega_help_text: Tell us what's slowing your team down. We'll point you to the right fix, even if it isn't us.
+
+# --- CTAs --------------------------------------------------------------
+cta_book_call: Book a call
+cta_whatsapp: Chat on WhatsApp
+cta_band_title: Let's map your next system together
+cta_band_text: A 30-minute call with a senior consultant. You leave with a clear next step, whether or not you work with us.
+cta_inline_title: Want this working in your company?
+cta_inline_text: Book a 30-minute call and we'll tell you what it would take.
+service_cta_title: "Talk to us about {{ .Service }}"
+whatsapp_prefill_default: "Hi navez.tech, I'd like to talk about a project."
+whatsapp_prefill_service: "Hi navez.tech, I'd like to talk about {{ .Service }}."
+whatsapp_prefill_page: "Hi navez.tech, I read about \"{{ .Title }}\" and would like to talk."
+
+# --- Search ------------------------------------------------------------
+search: Search
+search_open: Search the site
+search_label: Search the site
+search_placeholder: Search services, use cases, insights…
+search_insights: Search insights
+search_results: Search results
+search_quick_links: Quick links
+search_no_results: No results. Try a different word.
+search_unavailable: Search is available on the published site.
+
+# --- Home --------------------------------------------------------------
+sysmap_title: How navez connects your systems
+sysmap_desc: "Three connected layers: your website and digital channels feed your business systems (ERP), which AI agents use to automate work. A security layer wraps all three."
+sysmap_web_title: Website & digital
+sysmap_web_text: Wins and serves customers
+sysmap_web_chips: Leads, Content, Commerce
+sysmap_erp_title: Business systems
+sysmap_erp_text: Runs orders, stock and finance
+sysmap_erp_chips: Orders, Inventory, Finance
+sysmap_ai_title: AI agents
+sysmap_ai_text: Takes on the repetitive work
+sysmap_ai_chips: Triage, Reports, Follow-ups
+sysmap_security: Security across every layer
+clients_title: Teams we've worked with
+services_eyebrow: What we do
+services_title: Four disciplines, one accountable partner
+services_lead: Most growing companies juggle an agency, an ERP consultant, an AI vendor and a security firm. We cover all four, so the pieces actually fit.
+process_title: How we work
+process_lead: Every engagement follows the same four steps, sized to your budget and timeline.
+use_cases_featured_title: Problems we solve every week
+use_cases_featured_lead: Real scenarios from Indonesian companies, and what we do about them.
+all_use_cases: All use cases
+featured_case_study: Featured case study
+compare_title: How we compare
+compare_lead: An honest look at your options for building and running your company's systems.
+compare_caption: "Comparison of navez.tech with an in-house team, freelancers and a large systems integrator"
+compare_criteria: What you get
+compare_yes: "Yes"
+compare_partial: Partly
+compare_no: "No"
+stats_title: navez.tech in numbers
+testimonials_title: What clients say
+faq_title: Frequently asked questions
+faq_lead: Can't find your answer?
+faq_contact: Contact us
+insights_latest_title: Latest insights
+insights_latest_lead: Practical guides on websites, ERP, AI and security for Indonesian businesses.
+all_insights: All insights
+contact_title: Talk to a person, not a sales funnel
+contact_lead: Pick whatever is easiest. WhatsApp gets a reply within 2 hours in business hours (WIB); email within one business day.
+contact_call_title: Book a call
+contact_call_text: 30 minutes on video. Pick a time that suits you.
+contact_wa_title: WhatsApp
+contact_wa_text: Quick question? Message us directly.
+contact_email_title: Email
+contact_email_text: Send a brief, RFP or documents.
+
+# --- Services ----------------------------------------------------------
+explore_service: "Explore {{ .Service }}"
+service_problems_title: Problems we solve
+service_included_title: What's included
+service_platforms_title: Platforms and stack
+service_platforms_lead: We work with proven, well-supported tools, and we'll tell you when you don't need a new one.
+service_engagement_title: Ways to work with us
+service_glance_title: At a glance
+service_glance_all: See everything included
+service_glance_platforms: Platforms
+service_glance_engagements: Ways to engage
+best_for: "Best for:"
+related_work_title: Related case studies
+related_use_cases_title: Related use cases
+related_insights_title: "Insights on {{ .Service }}"
+cross_sell_title: Works well with
+cross_sell_lead: Our services are designed to connect. These are the ones clients usually pair with this one.
+
+# --- Use cases ---------------------------------------------------------
+read_use_case: Read the use case
+use_case_problem: The problem
+use_case_approach: Our approach
+use_case_outcome: Expected outcome
+use_case_aside_title: Sound familiar?
+use_case_aside_text: Tell us how it looks in your company. We'll suggest a first step on the call.
+related_service: Related service
+related_case_study: Related case study
+filter_service: Service
+filter_industry: Industry
+filter_all_services: All services
+filter_all_industries: All industries
+filter_no_results: No use cases match these filters yet.
+
+# --- Work --------------------------------------------------------------
+case_study: Case study
+read_case_study: Read the case study
+next_case_study: Next case study
+work_client: Client
+work_industry: Industry
+work_location: Location
+work_services: Services
+work_challenge: The challenge
+work_solution: What we did
+work_results: Results
+work_stack: Stack
+work_empty_title: Case studies are on their way
+work_empty_text: We're finishing write-ups with client approval. Meanwhile, see the scenarios we handle most often.
+
+# --- Insights ----------------------------------------------------------
+answer_summary: Short answer
+on_this_page: On this page
+written_by: Written by
+about_author: About the author
+credentials: Credentials
+author_posts: "Articles by {{ .Name }}"
+related_posts: Related insights
+post_service_cta_eyebrow: Need help with this?
+post_service_cta_title: "Get help with {{ .Service }}"
+newer_posts: Newer
+older_posts: Older
+categories_title: Categories
+categories_lead: Browse insights by topic.
+category_lead: "Articles about {{ .Category }}."
+all_categories: All
+glossary_title: Glossary
+glossary_lead: Plain-English definitions of the terms that come up in our projects.
+glossary_all: Browse the glossary
+glossary_term: Glossary
+glossary_az: Glossary A to Z
+
+# --- Labels (slugs → names) -------------------------------------------
+label_digital_agency: Digital agency
+label_agentic_ai: Agentic AI
+label_cybersecurity: Cybersecurity
+label_erp_business_systems: ERP & business systems
+label_business_technology: Business technology
+label_manufacturing: Manufacturing
+label_distribution: Distribution & wholesale
+label_retail: Retail
+label_ecommerce: E-commerce
+label_professional_services: Professional services
+label_agribusiness: Agribusiness
+label_logistics: Logistics
+label_financial_services: Financial services
+label_healthcare: Healthcare
+label_construction: Construction
+label_hospitality: Hospitality
+label_property: Property
+label_cross_industry: Any industry
+
+# --- Book a call / contact --------------------------------------------
+book_expect_title: What to expect
+book_tab_time: Book a time
+book_tab_details: Send details
+book_tabs_label: How would you like to start?
+book_wa_title: Prefer WhatsApp?
+book_wa_text: Send us a message and we'll reply within 2 hours during business hours (WIB).
+form_title: Tell us about your project
+form_fallback_text: "The form loads here. If it doesn't appear, email us at"
+meetings_fallback_text: "The calendar loads here. If it doesn't appear, email us to arrange a time:"
+form_note: We use your details only to reply to this enquiry. See our privacy policy.
+
+# --- Footer ------------------------------------------------------------
+footer_blurb: "One partner for your company's digital stack: the site that wins customers, the systems that run operations, the AI that automates them, and the security that protects them."
+footer_nav: Footer
+footer_company: Company
+footer_latest: Latest insights
+footer_no_posts: New articles coming soon.
+footer_nib: NIB
+footer_rights: All rights reserved.
+
+# --- 404 ---------------------------------------------------------------
+not_found_title: We couldn't find that page
+not_found_text: The link may be old or mistyped. Try search, or start from the home page.
+not_found_home: Go to the home page
+
+# --- Consent (UU PDP) --------------------------------------------------
+consent_title: Your privacy choices
+consent_description: We use essential cookies to run this site. With your permission, we also use HubSpot analytics to understand which pages help visitors.
+consent_privacy_link: Privacy policy
+consent_accept_all: Accept all
+consent_reject_all: Essential only
+consent_manage: Choose
+consent_save: Save choices
+consent_settings: Cookie settings
+consent_prefs_title: Cookie preferences
+consent_necessary_title: Essential
+consent_necessary_description: Needed for the site to work, such as remembering your consent choice. Always on.
+consent_analytics_title: Analytics (HubSpot)
+consent_analytics_description: Helps us understand how visitors use the site and connect enquiries to the pages that prompted them. Off unless you turn it on.

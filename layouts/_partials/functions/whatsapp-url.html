@@ -1,0 +1,20 @@
+{{- /*
+  Returns a wa.me URL with page-aware prefilled text.
+  Params (dict):
+    page Page    current page (service pages include the service name)
+    text string  optional explicit prefill
+*/ -}}
+{{- $number := hugo.Data.site.whatsapp -}}
+{{- $text := .text -}}
+{{- if not $text -}}
+  {{- $p := .page -}}
+  {{- if and $p $p.IsPage (eq $p.Section "services") -}}
+    {{- $text = i18n "whatsapp_prefill_service" (dict "Service" $p.Title) -}}
+  {{- else if and $p $p.IsPage (eq $p.Section "use-cases") -}}
+    {{- $text = i18n "whatsapp_prefill_page" (dict "Title" $p.Title) -}}
+  {{- else -}}
+    {{- $text = i18n "whatsapp_prefill_default" -}}
+  {{- end -}}
+{{- end -}}
+{{- $q := replace (querify "text" $text) "+" "%20" -}}
+{{- return (printf "https://wa.me/%s?%s" $number $q) -}}

@@ -1,0 +1,16 @@
+{{- /* Generic page (about, legal, contact…). */ -}}
+{{- define "main" }}
+{{ partial "sections/page-hero.html" (dict "page" . "ctas" .Params.show_ctas) }}
+<div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">
+  <div class="prose-navez">
+    {{ .Content }}
+  </div>
+  {{- if .Params.show_updated }}
+  {{- if not .Lastmod.IsZero }}
+  <p class="mt-10 text-sm text-ink-soft">{{ i18n "updated" }} <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time></p>
+  {{- end }}
+  {{- end }}
+</div>
+{{ partial "sections/faq.html" (dict "items" .Params.faq "bg" "surface") }}
+{{- if not .Params.hide_cta }}{{ partial "sections/cta-band.html" (dict "page" .) }}{{ end }}
+{{- end }}

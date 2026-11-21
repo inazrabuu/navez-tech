@@ -1,0 +1,29 @@
+{{- /* /insights/glossary/ — A–Z list of definitions. */ -}}
+{{- define "main" }}
+{{ partial "sections/page-hero.html" (dict "page" .) }}
+<div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">
+  {{- $byLetter := dict -}}
+  {{- range .Pages.ByTitle }}{{ $l := upper (substr .Title 0 1) }}{{ $byLetter = merge $byLetter (dict $l ((index $byLetter $l | default slice) | append .)) }}{{ end -}}
+  <nav aria-label="{{ i18n "glossary_az" }}" class="mb-10">
+    <ul class="flex flex-wrap gap-1">
+      {{- range $l, $_ := $byLetter }}<li><a href="#letter-{{ lower $l }}" class="inline-flex size-10 items-center justify-center rounded-control border border-line font-semibold hover:border-brand/50">{{ $l }}</a></li>{{ end }}
+    </ul>
+  </nav>
+  <div class="grid gap-12">
+    {{- range $l, $pages := $byLetter }}
+    <section aria-labelledby="letter-{{ lower $l }}">
+      <h2 id="letter-{{ lower $l }}" class="border-b border-line pb-3 text-2xl">{{ $l }}</h2>
+      <dl class="mt-6 grid gap-x-10 gap-y-6 md:grid-cols-2">
+        {{- range $pages }}
+        <div>
+          <dt class="text-lg font-bold"><a class="hover:text-brand" href="{{ .RelPermalink }}">{{ .Title }}</a></dt>
+          <dd class="mt-1 text-ink-soft">{{ .Params.short_definition | plainify }}</dd>
+        </div>
+        {{- end }}
+      </dl>
+    </section>
+    {{- end }}
+  </div>
+</div>
+{{ partial "sections/cta-band.html" (dict "page" .) }}
+{{- end }}

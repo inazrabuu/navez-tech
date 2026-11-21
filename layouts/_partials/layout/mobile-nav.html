@@ -1,0 +1,40 @@
+{{- /*
+  Mobile navigation drawer (< lg). Native <dialog>, opened by main.js from
+  [data-drawer-open="mobile-nav"]. Without JS, the trigger links to the footer nav.
+  Params (dict):
+    page     Page   current page
+    services Pages  service pages ordered by weight
+*/ -}}
+<dialog id="mobile-nav" class="m-0 ml-auto h-dvh max-h-dvh w-[min(24rem,100vw)] max-w-none bg-white p-0 text-ink lg:hidden" aria-label="{{ i18n "nav_main" }}">
+  <div class="flex h-full flex-col">
+    <div class="flex h-16 items-center justify-between border-b border-line px-4">
+      <span class="text-ink">{{ partial "components/logo.html" (dict "class" "h-6 w-auto") }}</span>
+      <button type="button" class="inline-flex size-11 items-center justify-center rounded-control hover:bg-surface" data-drawer-close aria-label="{{ i18n "menu_close" }}">
+        {{ partial "components/icon.html" (dict "name" "x" "class" "size-6") }}
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto px-4 py-4" aria-label="{{ i18n "nav_main" }}">
+      <p class="px-2 text-sm font-semibold text-ink-soft">{{ i18n "nav_services" }}</p>
+      <ul class="mt-2 grid gap-1">
+        {{- range .services }}
+        <li>
+          <a href="{{ .RelPermalink }}" class="flex min-h-11 items-center gap-3 rounded-control px-2 py-2 hover:bg-surface">
+            <span class="inline-flex size-9 items-center justify-center rounded-control bg-brand/10 text-brand">{{ partial "components/icon.html" (dict "name" .Params.icon) }}</span>
+            <span class="font-semibold">{{ .Title }}</span>
+          </a>
+        </li>
+        {{- end }}
+      </ul>
+      <ul class="mt-4 grid gap-1 border-t border-line pt-4">
+        {{- range site.Params.nav }}
+        <li><a href="{{ .url | relURL }}" class="flex min-h-11 items-center rounded-control px-2 font-medium hover:bg-surface">{{ i18n .key }}</a></li>
+        {{- end }}
+        <li><a href="{{ "/contact/" | relURL }}" class="flex min-h-11 items-center rounded-control px-2 font-medium hover:bg-surface">{{ i18n "nav_contact" }}</a></li>
+      </ul>
+    </nav>
+    <div class="grid gap-2 border-t border-line p-4">
+      {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "icon" "calendar" "size" "lg") }}
+      {{ partial "components/whatsapp-button.html" (dict "page" .page "variant" "whatsapp" "size" "lg") }}
+    </div>
+  </div>
+</dialog>

@@ -1,0 +1,41 @@
+{{- /*
+  Services mega menu (≥ lg). Native <details> so it works without JS;
+  main.js adds Escape / outside-click closing.
+  Params (dict):
+    page     Page   current page
+    services Pages  service pages ordered by weight
+*/ -}}
+{{- $inServices := eq .page.Section "services" -}}
+<details class="group" data-mega-menu>
+  <summary class="inline-flex min-h-11 list-none items-center gap-1 rounded-control px-3 text-[0.9375rem] font-medium text-ink hover:bg-surface{{ if $inServices }} text-brand{{ end }}">
+    {{ i18n "nav_services" }}
+    {{ partial "components/icon.html" (dict "name" "chevron-down" "class" "size-4 transition-transform group-open:rotate-180") }}
+  </summary>
+  <div class="absolute top-full left-0 mt-3 w-[min(46rem,calc(100vw-4rem))] rounded-card border border-line bg-white p-3 shadow-[0_18px_40px_-24px_rgb(10_22_48/0.35)]">
+    <div class="grid gap-3 md:grid-cols-[1fr_15rem]">
+      <ul class="grid gap-1 sm:grid-cols-2">
+        {{- range .services }}
+        <li>
+          <a href="{{ .RelPermalink }}" class="flex h-full gap-3 rounded-control p-3 hover:bg-surface"{{ if eq .RelPermalink $.page.RelPermalink }} aria-current="page"{{ end }}>
+            <span class="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-control bg-brand/10 text-brand">{{ partial "components/icon.html" (dict "name" .Params.icon) }}</span>
+            <span>
+              <span class="block font-semibold text-ink">{{ .Title }}</span>
+              <span class="mt-0.5 block text-sm/snug text-ink-soft">{{ .Params.summary }}</span>
+            </span>
+          </a>
+        </li>
+        {{- end }}
+      </ul>
+      <div class="flex flex-col justify-between rounded-control bg-surface p-4">
+        <div>
+          <p class="font-semibold text-ink">{{ i18n "mega_help_title" }}</p>
+          <p class="mt-1 text-sm/snug text-ink-soft">{{ i18n "mega_help_text" }}</p>
+        </div>
+        <div class="mt-4 flex flex-col gap-2">
+          {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "sm") }}
+          {{ partial "components/button.html" (dict "url" ("/services/" | relURL) "label" (i18n "nav_all_services") "variant" "link" "icon" "arrow-right" "class" "justify-center text-sm") }}
+        </div>
+      </div>
+    </div>
+  </div>
+</details>

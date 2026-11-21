@@ -1,0 +1,85 @@
+{{- /* Case study: client, industry, location, services → challenge → solution → results → stack → testimonial → next → CTA. */ -}}
+{{- define "main" }}
+{{- $p := . -}}
+<section class="border-b border-line bg-surface">
+  <div class="mx-auto max-w-site px-4 pt-8 pb-10 sm:px-6 md:pb-10 lg:px-8">
+    {{ partial "components/breadcrumb.html" . }}
+    <div class="mt-8 max-w-3xl">
+      <p class="mb-4 text-sm font-semibold text-brand">{{ i18n "case_study" }}</p>
+      <h1 class="text-4xl sm:text-5xl">{{ .Title }}</h1>
+      {{- with .Description }}<p class="mt-5 text-lg/relaxed text-ink-soft md:text-xl/relaxed">{{ . }}</p>{{ end }}
+    </div>
+    <dl class="mt-10 grid gap-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div><dt class="text-sm text-ink-soft">{{ i18n "work_client" }}</dt><dd class="mt-1 font-semibold">{{ .Params.client_display }}</dd></div>
+      <div><dt class="text-sm text-ink-soft">{{ i18n "work_industry" }}</dt><dd class="mt-1 font-semibold">{{ with .Params.industry }}{{ partial "functions/label.html" . }}{{ end }}</dd></div>
+      <div><dt class="text-sm text-ink-soft">{{ i18n "work_location" }}</dt><dd class="mt-1 font-semibold">{{ .Params.location }}</dd></div>
+      <div><dt class="text-sm text-ink-soft">{{ i18n "work_services" }}</dt><dd class="mt-1 flex flex-wrap gap-x-3 gap-y-1 font-semibold">{{ range .Params.services }}{{ with partial "functions/service-page.html" . }}<a class="text-brand hover:underline" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}{{ end }}</dd></div>
+    </dl>
+  </div>
+</section>
+
+{{- with .Params.cover }}{{ with $p.Resources.Get . }}
+<div class="mx-auto max-w-site px-4 pt-12 sm:px-6 lg:px-8">
+  {{ partial "components/image.html" (dict "image" . "alt" (or $p.Params.cover_alt "") "sizes" "(min-width: 1280px) 1200px, 100vw" "ratio" "21x9" "class" "w-full rounded-panel" "eager" true) }}
+</div>
+{{- end }}{{ end }}
+
+<div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">
+  <div class="grid max-w-3xl gap-12">
+    {{- with .Params.challenge }}
+    <section aria-labelledby="challenge-title">
+      <h2 id="challenge-title" class="text-2xl md:text-3xl">{{ i18n "work_challenge" }}</h2>
+      <div class="prose-navez mt-4">{{ . | $p.RenderString (dict "display" "block") }}</div>
+    </section>
+    {{- end }}
+    {{- with .Params.solution }}
+    <section aria-labelledby="solution-title">
+      <h2 id="solution-title" class="text-2xl md:text-3xl">{{ i18n "work_solution" }}</h2>
+      <div class="prose-navez mt-4">{{ . | $p.RenderString (dict "display" "block") }}</div>
+    </section>
+    {{- end }}
+  </div>
+
+  {{- with .Params.results }}
+  <section class="mt-16" aria-labelledby="results-title">
+    <h2 id="results-title" class="text-2xl md:text-3xl">{{ i18n "work_results" }}</h2>
+    {{- /* 4 results sit in one row at xl: ~226px per label, so keep result labels to ~26 characters. */}}
+    <dl class="mt-6 grid gap-4 sm:grid-cols-2 {{ if eq (len $p.Params.results) 4 }}xl:grid-cols-4{{ else }}lg:grid-cols-3{{ end }}">
+      {{- range . }}
+      <div class="flex flex-col-reverse rounded-card border border-line p-6">
+        <dt class="mt-2 text-ink-soft">{{ .label }}</dt>
+        <dd class="text-4xl font-bold tracking-tight whitespace-nowrap text-brand">{{ .metric }}</dd>
+      </div>
+      {{- end }}
+    </dl>
+  </section>
+  {{- end }}
+
+  {{- with .Content }}<div class="prose-navez mt-16">{{ . }}</div>{{ end }}
+
+  {{- with .Params.stack }}
+  <section class="mt-16" aria-labelledby="stack-title">
+    <h2 id="stack-title" class="text-2xl md:text-3xl">{{ i18n "work_stack" }}</h2>
+    <ul class="mt-6 flex flex-wrap gap-2">
+      {{- range . }}<li class="rounded-full border border-line px-4 py-2 text-sm font-medium">{{ . }}</li>{{ end }}
+    </ul>
+  </section>
+  {{- end }}
+
+  {{- with .Params.testimonial }}{{ if .quote }}
+  <figure class="mt-16 max-w-3xl rounded-panel bg-surface p-8 md:p-12">
+    <blockquote class="text-xl/relaxed font-medium text-ink md:text-2xl/relaxed"><p>“{{ .quote }}”</p></blockquote>
+    <figcaption class="mt-6"><span class="block font-semibold">{{ .name }}</span><span class="text-sm text-ink-soft">{{ .role }}</span></figcaption>
+  </figure>
+  {{- end }}{{ end }}
+
+  {{- $next := .NextInSection | default (index (where site.RegularPages "Section" "work") 0) -}}
+  {{- if and $next (ne $next.RelPermalink .RelPermalink) }}
+  <nav class="mt-16 border-t border-line pt-8" aria-label="{{ i18n "next_case_study" }}">
+    <p class="text-sm text-ink-soft">{{ i18n "next_case_study" }}</p>
+    <a href="{{ $next.RelPermalink }}" class="mt-2 inline-flex items-center gap-2 text-2xl font-bold hover:text-brand">{{ $next.Title }} {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "size-6") }}</a>
+  </nav>
+  {{- end }}
+</div>
+{{ partial "sections/cta-band.html" (dict "page" .) }}
+{{- end }}

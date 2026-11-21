@@ -1,0 +1,84 @@
+{{- /*
+  Site footer: services, company, latest 3 posts, legal entity, contact, socials, legal links.
+  Context: Page.
+*/ -}}
+{{- $s := hugo.Data.site -}}
+{{- $services := (site.GetPage "/services").Pages.ByWeight -}}
+{{- $posts := first 3 (where site.RegularPages "Section" "insights").ByDate.Reverse -}}
+<footer id="site-footer" class="bg-ink pb-24 text-white/80 lg:pb-0" data-pagefind-ignore="all">
+  <div class="mx-auto max-w-site px-4 pt-16 pb-10 sm:px-6 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-[1.3fr_1fr_1fr_1.4fr]">
+      <div>
+        <a href="{{ "/" | relURL }}" class="inline-flex rounded-control text-white" aria-label="{{ $s.brand_name }}: {{ i18n "home" }}">{{ partial "components/logo.html" (dict "class" "h-7 w-auto") }}</a>
+        <p class="mt-4 max-w-xs text-sm/relaxed">{{ i18n "footer_blurb" }}</p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "variant" "inverse" "size" "sm") }}
+          {{ partial "components/whatsapp-button.html" (dict "page" . "variant" "outline-inverse" "size" "sm") }}
+        </div>
+      </div>
+
+      <nav id="site-footer-nav" aria-label="{{ i18n "footer_nav" }}" class="contents">
+        <div>
+          <h2 class="text-sm font-semibold text-white">{{ i18n "nav_services" }}</h2>
+          <ul class="mt-4 grid gap-1 text-sm">
+            {{- range $services }}
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+            {{- end }}
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/use-cases/" | relURL }}">{{ i18n "nav_use_cases" }}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-sm font-semibold text-white">{{ i18n "footer_company" }}</h2>
+          <ul class="mt-4 grid gap-1 text-sm">
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/about/" | relURL }}">{{ i18n "nav_about" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/work/" | relURL }}">{{ i18n "nav_work" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/insights/" | relURL }}">{{ i18n "nav_insights" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/insights/glossary/" | relURL }}">{{ i18n "nav_glossary" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/contact/" | relURL }}">{{ i18n "nav_contact" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/book-a-call/" | relURL }}">{{ i18n "cta_book_call" }}</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div>
+        <h2 class="text-sm font-semibold text-white">{{ i18n "footer_latest" }}</h2>
+        {{- with $posts }}
+        <ul class="mt-4 grid gap-3 text-sm">
+          {{- range . }}
+          <li>
+            <a class="hover:text-white hover:underline" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <span class="mt-0.5 block text-xs text-white/60"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time></span>
+          </li>
+          {{- end }}
+        </ul>
+        {{- else }}
+        <p class="mt-4 text-sm">{{ i18n "footer_no_posts" }}</p>
+        {{- end }}
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-8 border-t border-white/15 pt-8 text-sm md:grid-cols-[1fr_auto]">
+      <address class="grid gap-2 not-italic">
+        <p class="font-semibold text-white">{{ $s.legal_name }}</p>
+        {{- with $s.nib }}<p>{{ i18n "footer_nib" }}: {{ . }}</p>{{ end }}
+        <p class="flex gap-2">{{ partial "components/icon.html" (dict "name" "map-pin" "class" "mt-0.5 size-4") }}<span>{{ $s.address.street }}, {{ $s.address.locality }}{{ with $s.address.postal_code }} {{ . }}{{ end }}, Indonesia</span></p>
+        <p class="flex gap-2">{{ partial "components/icon.html" (dict "name" "mail" "class" "mt-0.5 size-4") }}<a class="hover:text-white hover:underline" href="mailto:{{ $s.email }}">{{ $s.email }}</a></p>
+      </address>
+      <div class="flex items-start gap-2 md:justify-end">
+        {{- with site.Params.social.linkedin }}
+        <a href="{{ . }}" class="inline-flex size-11 items-center justify-center rounded-control border border-white/15 hover:border-white hover:text-white" target="_blank" rel="noopener me" aria-label="LinkedIn">{{ partial "components/icon.html" (dict "name" "linkedin") }}</a>
+        {{- end }}
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-col gap-4 border-t border-white/15 pt-6 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
+      <p>© {{ now.Year }} {{ $s.legal_name }}. {{ i18n "footer_rights" }}</p>
+      <ul class="flex flex-wrap gap-x-5 gap-y-1">
+        <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/privacy/" | relURL }}">{{ i18n "nav_privacy" }}</a></li>
+        <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/terms/" | relURL }}">{{ i18n "nav_terms" }}</a></li>
+        <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/security/" | relURL }}">{{ i18n "nav_security" }}</a></li>
+        <li><button type="button" class="inline-flex min-h-9 items-center hover:text-white hover:underline" data-cc="show-preferencesModal" data-consent-settings hidden>{{ i18n "consent_settings" }}</button></li>
+      </ul>
+    </div>
+  </div>
+</footer>

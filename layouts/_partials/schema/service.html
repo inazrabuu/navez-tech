@@ -1,0 +1,11 @@
+{{- /* Service. Context: Page (service). Returns dict. */ -}}
+{{- return (dict
+  "@type" "Service"
+  "@id" (printf "%s#service" .Permalink)
+  "name" .Title
+  "description" (partial "functions/seo-description.html" .)
+  "serviceType" .Title
+  "url" .Permalink
+  "provider" (dict "@id" (printf "%s#organization" site.Home.Permalink))
+  "areaServed" (slice (dict "@type" "Country" "name" "Indonesia") (dict "@type" "Place" "name" "Southeast Asia"))
+) -}}

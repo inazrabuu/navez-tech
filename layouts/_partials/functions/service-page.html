@@ -1,0 +1,7 @@
+{{- /*
+  Returns the service Page for a slug (e.g. "agentic-ai"), or nil.
+  Context: string slug.
+*/ -}}
+{{- $r := false -}}
+{{- with . }}{{ with site.GetPage (printf "/services/%s" .) }}{{ $r = . }}{{ end }}{{ end -}}
+{{- return $r -}}

@@ -1,0 +1,14 @@
+{{- /*
+  Returns dict {url, width, height} for the share image.
+  Uses the page bundle `cover` image (cropped to 1200x630) or the default OG image.
+  Context: Page.
+*/ -}}
+{{- $r := dict "url" (site.Params.ogImage | absURL) "width" 1200 "height" 630 -}}
+{{- with .Params.cover -}}
+  {{- with $.Resources.Get . -}}
+    {{- with .Fill "1200x630 Center jpg q80" -}}
+      {{- $r = dict "url" .Permalink "width" .Width "height" .Height -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $r -}}

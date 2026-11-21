@@ -1,0 +1,14 @@
+{{- /* Category term page, e.g. /insights/category/agentic-ai/ */ -}}
+{{- define "main" }}
+{{- $label := partial "functions/label.html" .Data.Term -}}
+{{ partial "sections/page-hero.html" (dict "page" . "title" $label "lead" (i18n "category_lead" (dict "Category" $label))) }}
+<div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">
+  {{ partial "components/category-nav.html" (dict "current" .Data.Term) }}
+  <ul class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {{- range .Pages.ByDate.Reverse }}
+    <li>{{ partial "components/card-post.html" (dict "page" . "headingLevel" 2) }}</li>
+    {{- end }}
+  </ul>
+</div>
+{{ partial "sections/cta-band.html" (dict "page" .) }}
+{{- end }}

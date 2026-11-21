@@ -1,0 +1,103 @@
+{{- /*
+  Insight post: breadcrumb → title → answer summary (lead) → meta → TOC (if > 3 H2) → body →
+  FAQ → author card → related service CTA → related posts.
+*/ -}}
+{{- define "main" }}
+{{- $p := . -}}
+{{- $author := false }}{{ with .Params.author }}{{ $author = site.GetPage (printf "/authors/%s" .) }}{{ end -}}
+{{- $svc := partial "functions/service-page.html" .Params.service -}}
+{{- $h2count := len (findRE `<h2[^>]*>` .Content) -}}
+<article>
+  <header class="border-b border-line bg-surface">
+    <div class="mx-auto max-w-site px-4 pt-8 pb-12 sm:px-6 md:pb-10 lg:px-8">
+      {{ partial "components/breadcrumb.html" . }}
+      <div class="mt-8 max-w-3xl">
+        {{- with .Params.category }}<p class="mb-4 text-sm font-semibold"><a class="text-brand hover:underline" href="{{ printf "/insights/category/%s/" (. | urlize) | relURL }}">{{ partial "functions/label.html" . }}</a></p>{{ end }}
+        <h1 class="text-4xl sm:text-5xl">{{ .Title }}</h1>
+        {{- with .Params.answer_summary }}
+        <div class="mt-6 border-l-4 border-brand pl-5 text-lg/relaxed text-ink md:text-xl/relaxed" data-answer-summary>
+          <p class="sr-only">{{ i18n "answer_summary" }}</p>
+          {{ . | $p.RenderString (dict "display" "block") }}
+        </div>
+        {{- end }}
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink-soft">
+          {{- with $author }}
+          <a href="{{ .RelPermalink }}" class="flex items-center gap-3 font-semibold text-ink hover:text-brand">
+            {{ partial "components/avatar.html" (dict "page" . "size" 40) }}
+            <span>{{ .Params.name | default .Title }}<span class="block text-xs font-normal text-ink-soft">{{ .Params.role }}</span></span>
+          </a>
+          {{- end }}
+          <p>{{ i18n "published" }} <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time></p>
+          {{- if gt (.Lastmod.Sub .Date).Hours 24 }}
+          <p>{{ i18n "updated" }} <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time></p>
+          {{- end }}
+          <p>{{ i18n "reading_time" .ReadingTime }}</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {{- with .Params.cover }}{{ with $p.Resources.Get . }}
+  <div class="mx-auto max-w-site px-4 pt-10 sm:px-6 lg:px-8">
+    {{ partial "components/image.html" (dict "image" . "alt" (or $p.Params.cover_alt "") "sizes" "(min-width: 1280px) 1200px, 100vw" "ratio" "2x1" "class" "w-full rounded-panel" "eager" true) }}
+  </div>
+  {{- end }}{{ end }}
+
+  <div class="mx-auto max-w-site px-4 py-12 sm:px-6 md:py-12 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-[1fr_17rem] lg:gap-16">
+      <div class="min-w-0">
+        {{- if gt $h2count 3 }}
+        <div class="mb-10 lg:hidden">{{ partial "components/toc.html" . }}</div>
+        {{- end }}
+        <div class="prose-navez">{{ .Content }}</div>
+        {{- with .Params.tags }}
+        <ul class="mt-10 flex flex-wrap gap-2" aria-label="{{ i18n "tags" }}">
+          {{- range . }}<li>{{ partial "components/badge.html" (dict "label" .) }}</li>{{ end }}
+        </ul>
+        {{- end }}
+      </div>
+      <aside class="hidden lg:block" aria-label="{{ i18n "on_this_page" }}">
+        <div class="sticky top-28 grid gap-6">
+          {{- if gt $h2count 3 }}{{ partial "components/toc.html" . }}{{ end }}
+          {{- with $svc }}
+          <div class="rounded-card bg-ink p-6 text-white" data-pagefind-ignore>
+            <p class="text-sm text-white/70">{{ i18n "post_service_cta_eyebrow" }}</p>
+            <p class="mt-2 text-lg font-bold">{{ .Title }}</p>
+            <p class="mt-2 text-sm text-white/75">{{ .Params.summary }}</p>
+            {{ partial "components/button.html" (dict "url" .RelPermalink "label" (i18n "explore_service" (dict "Service" .Title)) "variant" "inverse" "size" "sm" "class" "mt-5") }}
+          </div>
+          {{- end }}
+        </div>
+      </aside>
+    </div>
+  </div>
+</article>
+
+{{- with .Params.faq }}
+<div class="border-t border-line">{{ partial "sections/faq.html" (dict "items" . "narrow" true) }}</div>
+{{- end }}
+
+<div class="mx-auto max-w-site px-4 pb-4 sm:px-6 lg:px-8" data-pagefind-ignore>
+  <div class="grid max-w-3xl gap-6">
+    {{- with $author }}{{ partial "components/author.html" (dict "page" .) }}{{ end }}
+    {{- with $svc }}
+    <div class="flex flex-col gap-4 rounded-card border border-brand/30 bg-brand/[0.04] p-6 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="font-bold">{{ i18n "post_service_cta_title" (dict "Service" .Title) }}</p>
+        <p class="mt-1 text-sm text-ink-soft">{{ .Params.summary }}</p>
+      </div>
+      {{ partial "components/button.html" (dict "url" .RelPermalink "label" (i18n "learn_more") "icon" "arrow-right" "size" "sm") }}
+    </div>
+    {{- end }}
+  </div>
+</div>
+
+{{- /* Related by front-matter `service`, topped up with the latest posts. */ -}}
+{{- $others := where (where site.RegularPages "Section" "insights") "RelPermalink" "ne" .RelPermalink -}}
+{{- $related := (where $others "Params.service" .Params.service).ByDate.Reverse -}}
+{{- $related = first 3 ($related | union $others.ByDate.Reverse) -}}
+<div data-pagefind-ignore>
+{{ partial "sections/latest-insights.html" (dict "pages" $related "title" (i18n "related_posts") "id" "related-posts-title") }}
+{{ partial "sections/cta-band.html" (dict "page" .) }}
+</div>
+{{- end }}

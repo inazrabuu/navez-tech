@@ -1,0 +1,18 @@
+{{- /*
+  Use-case card.
+  Params (dict):
+    page Page  use-case page
+*/ -}}
+{{- $p := .page -}}
+{{- $svc := partial "functions/service-page.html" $p.Params.service -}}
+<article class="group relative flex h-full flex-col rounded-card border border-line bg-white p-6 transition-colors hover:border-brand/50">
+  <div class="flex flex-wrap gap-2">
+    {{- with $svc }}{{ partial "components/badge.html" (dict "label" .Title "tone" "brand") }}{{ end }}
+    {{- with $p.Params.industry }}{{ partial "components/badge.html" (dict "label" (partial "functions/label.html" .)) }}{{ end }}
+  </div>
+  <h3 class="mt-4 text-lg">
+    <a href="{{ $p.RelPermalink }}" class="after:absolute after:inset-0 after:rounded-card focus-visible:outline-none group-has-[:focus-visible]:underline">{{ $p.Title }}</a>
+  </h3>
+  <p class="mt-2 flex-1 text-ink-soft">{{ $p.Params.problem | plainify | truncate 140 }}</p>
+  <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand" aria-hidden="true">{{ i18n "read_use_case" }} {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "size-4") }}</span>
+</article>

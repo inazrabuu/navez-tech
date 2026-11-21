@@ -1,0 +1,23 @@
+# Site constants. Templates read these ONLY from here.
+# TODO(content): every value marked TODO must be confirmed before launch.
+legal_name: "PT. Navez Karsa Labs"
+brand_name: "navez.tech"
+nib: "" # NIB (business ID number). Hidden on the site while empty; fill in to show it in the footer and on /contact/.
+address:
+  street: "Jl. Kalibata Selatan 1A No. 14"
+  locality: "Jakarta"
+  region: "DKI Jakarta"
+  postal_code: "12740"
+  country: "ID"
+email: "hello@navez.tech" # TODO(content): confirm inbox
+# WhatsApp number in international format, digits only (no +, spaces or dashes).
+whatsapp: "62818173797"
+hubspot:
+  portal_id: "248027747"
+  form_id: "eb867f0e-37ab-423c-b737-c559b33af359" # qualifier form; its "after submit" redirect to /thank-you/ is set in HubSpot
+  region: "na2" # HubSpot data region of the portal (na1 / na2 / eu1 / ap1), from the embed code's data-region
+  meetings_url: "https://meetings-na2.hubspot.com/arman-rizal?embed=true"
+announcement:
+  enabled: false
+  text: "TODO(content): announcement text"
+  url: "/insights/"

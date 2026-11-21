@@ -1,0 +1,11 @@
+{{- /* Person (author). Context: author Page. Returns dict. */ -}}
+{{- $p := dict "@type" "Person" "@id" (printf "%s#person" .Permalink) "name" (or .Params.name .Title) "url" .Permalink -}}
+{{- with .Params.role }}{{ $p = merge $p (dict "jobTitle" .) }}{{ end -}}
+{{- with .Params.bio }}{{ $p = merge $p (dict "description" (. | plainify)) }}{{ end -}}
+{{- with .Params.linkedin }}{{ $p = merge $p (dict "sameAs" (slice .)) }}{{ end -}}
+{{- with .Params.credentials }}
+  {{- $c := slice }}{{ range . }}{{ $c = $c | append (partial "schema/credential.html" .) }}{{ end }}
+  {{- $p = merge $p (dict "hasCredential" $c) }}
+{{- end -}}
+{{- $p = merge $p (dict "worksFor" (dict "@id" (printf "%s#organization" site.Home.Permalink))) -}}
+{{- return $p -}}

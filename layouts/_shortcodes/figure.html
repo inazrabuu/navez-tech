@@ -1,0 +1,13 @@
+{{- /*
+  Processed figure from a page-bundle image.
+  Usage: {{< figure src="diagram.png" alt="Description" caption="Optional caption" >}}
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- with .Page.Resources.Get $src }}
+<figure class="not-prose my-8">
+  {{ partial "components/image.html" (dict "image" . "alt" ($.Get "alt") "sizes" "(min-width: 768px) 720px, 100vw" "widths" (slice 480 720 1080 1440) "class" "w-full rounded-card border border-line") }}
+  {{- with $.Get "caption" }}<figcaption class="mt-3 text-sm text-ink-soft">{{ . | markdownify }}</figcaption>{{ end }}
+</figure>
+{{- else }}
+{{- errorf "figure shortcode: image %q not found in %s" $src .Page.File.Path }}
+{{- end }}

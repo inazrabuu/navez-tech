@@ -1,0 +1,37 @@
+{{- /*
+  Button-styled link.
+  Params (dict):
+    url      string  required
+    label    string  required
+    variant  string  primary (default) | secondary | inverse | outline-inverse | whatsapp | link
+    size     string  md (default) | sm | lg
+    icon     string  optional icon name (rendered after label; "chat"/"calendar" render before)
+    external bool    optional — opens in new tab with rel=noopener
+    class    string  optional extra classes
+    attrs    string  optional extra attributes (trusted, e.g. data-palette-open)
+*/ -}}
+{{- $variant := or .variant "primary" -}}
+{{- $size := or .size "md" -}}
+{{- $base := "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-150 whitespace-nowrap" -}}
+{{- $sizes := dict
+  "sm" "min-h-10 px-4 text-sm"
+  "md" "min-h-11 px-5 text-[0.9375rem]"
+  "lg" "min-h-12 px-6 text-base"
+-}}
+{{- $variants := dict
+  "primary" "bg-brand text-white hover:bg-brand-deep"
+  "secondary" "border border-line bg-white text-ink hover:border-ink/30 hover:bg-surface"
+  "inverse" "bg-white text-ink hover:bg-surface"
+  "outline-inverse" "border border-white/30 text-white hover:border-white hover:bg-white/10"
+  "whatsapp" "border border-line bg-white text-ink hover:border-signal hover:bg-surface"
+  "link" "min-h-0 px-0 text-brand hover:text-brand-deep underline-offset-4 hover:underline rounded-control"
+-}}
+{{- $cls := printf "%s %s %s %s" $base (index $sizes $size) (index $variants $variant) (or .class "") -}}
+{{- if eq $variant "link" }}{{ $cls = printf "inline-flex items-center gap-1.5 font-semibold %s %s" (index $variants $variant) (or .class "") }}{{ end -}}
+{{- $leading := in (slice "chat" "calendar" "search" "mail") .icon -}}
+<a href="{{ .url }}" class="{{ $cls }}"{{ if .external }} target="_blank" rel="noopener"{{ end }}{{ with .attrs }} {{ . | safeHTMLAttr }}{{ end }}>
+  {{- if and .icon $leading }}{{ partial "components/icon.html" (dict "name" .icon "class" "size-5") }}{{ end -}}
+  <span>{{ .label }}</span>
+  {{- if and .icon (not $leading) }}{{ partial "components/icon.html" (dict "name" .icon "class" "size-4") }}{{ end -}}
+</a>
+{{- /**/ -}}

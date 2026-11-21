@@ -1,0 +1,33 @@
+{{- /* Author profile (E-E-A-T): bio, credentials, posts. */ -}}
+{{- define "main" }}
+{{- $slug := .File.ContentBaseName -}}
+{{- $posts := (where (where site.RegularPages "Section" "insights") "Params.author" $slug).ByDate.Reverse -}}
+<section class="border-b border-line bg-surface">
+  <div class="mx-auto max-w-site px-4 pt-8 pb-10 sm:px-6 md:pb-10 lg:px-8">
+    {{ partial "components/breadcrumb.html" . }}
+    <div class="mt-8 flex max-w-3xl flex-col gap-6 sm:flex-row sm:items-start">
+      {{ partial "components/avatar.html" (dict "page" . "size" 96) }}
+      <div>
+        <h1 class="text-4xl sm:text-5xl">{{ .Params.name | default .Title }}</h1>
+        <p class="mt-2 text-lg text-ink-soft">{{ .Params.role }}</p>
+        {{- with .Params.linkedin }}<a class="mt-4 inline-flex min-h-11 items-center gap-2 font-semibold text-brand hover:underline" href="{{ . }}" target="_blank" rel="noopener me">{{ partial "components/icon.html" (dict "name" "linkedin") }} LinkedIn</a>{{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+<div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">
+  <div class="grid gap-12 lg:grid-cols-[1fr_20rem]">
+    <div class="prose-navez">
+      {{- with .Params.bio }}{{ . | $.RenderString (dict "display" "block") }}{{ end }}
+      {{ .Content }}
+    </div>
+    {{- with .Params.credentials }}
+    <aside class="rounded-card border border-line p-6 self-start" aria-labelledby="credentials-title">
+      <h2 id="credentials-title" class="text-lg">{{ i18n "credentials" }}</h2>
+      <ul class="mt-4 grid gap-2">{{ range . }}<li class="flex gap-2"><span class="mt-1 text-signal">{{ partial "components/icon.html" (dict "name" "check" "class" "size-4") }}</span>{{ . }}</li>{{ end }}</ul>
+    </aside>
+    {{- end }}
+  </div>
+</div>
+{{ partial "sections/latest-insights.html" (dict "pages" $posts "title" (i18n "author_posts" (dict "Name" (.Params.name | default .Title))) "id" "author-posts-title" "bg" "surface") }}
+{{- end }}

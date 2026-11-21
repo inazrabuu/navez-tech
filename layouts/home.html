@@ -1,0 +1,20 @@
+{{- define "main" }}
+{{- $p := . -}}
+{{- $useCases := where (where site.RegularPages "Section" "use-cases") "Params.featured" true -}}
+{{- if lt (len $useCases) 3 }}{{ $useCases = (where site.RegularPages "Section" "use-cases").ByWeight }}{{ end -}}
+{{- $work := first 1 (where (where site.RegularPages "Section" "work") "Params.featured" true) -}}
+
+{{ partial "sections/hero.html" (dict "page" $p) }}
+{{ partial "sections/logo-strip.html" . }}
+{{ partial "sections/service-grid.html" (dict "eyebrow" (i18n "services_eyebrow")) }}
+{{ partial "sections/process.html" (dict "steps" .Params.process) }}
+{{ partial "sections/use-case-grid.html" (dict "pages" (first 4 $useCases) "title" (i18n "use_cases_featured_title") "lead" (i18n "use_cases_featured_lead") "more" true) }}
+{{ with index $work 0 }}{{ partial "sections/featured-work.html" (dict "page" .) }}{{ end }}
+{{ partial "sections/comparison.html" (dict) }}
+{{ partial "sections/stats.html" . }}
+{{ partial "sections/testimonials.html" . }}
+{{ partial "sections/faq.html" (dict "items" .Params.faq) }}
+{{ partial "sections/latest-insights.html" (dict "bg" "surface") }}
+{{ partial "sections/contact.html" (dict "page" $p) }}
+{{ partial "sections/cta-band.html" (dict "page" $p) }}
+{{- end }}

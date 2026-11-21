@@ -1,0 +1,20 @@
+{{- /*
+  Returns a slice of dict {title, url} from home to the current page.
+  Glossary terms are nested under Insights (/insights/glossary/…).
+  Context: Page.
+*/ -}}
+{{- $crumbs := slice -}}
+{{- range .Ancestors.Reverse -}}
+  {{- $title := cond .IsHome (i18n "home") .LinkTitle -}}
+  {{- $crumbs = $crumbs | append (dict "title" $title "url" .RelPermalink) -}}
+{{- end -}}
+{{- if eq .Section "glossary" -}}
+  {{- $ins := site.GetPage "/insights" -}}
+  {{- $crumbs = slice (index $crumbs 0) (dict "title" $ins.LinkTitle "url" $ins.RelPermalink) | append (after 1 $crumbs) -}}
+{{- end -}}
+{{- if eq .Kind "term" "taxonomy" -}}
+  {{- $ins := site.GetPage "/insights" -}}
+  {{- $crumbs = slice (index $crumbs 0) (dict "title" $ins.LinkTitle "url" $ins.RelPermalink) | append (after 1 $crumbs) -}}
+{{- end -}}
+{{- $crumbs = $crumbs | append (dict "title" .LinkTitle "url" .RelPermalink) -}}
+{{- return $crumbs -}}

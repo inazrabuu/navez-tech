@@ -1,0 +1,30 @@
+{{- /*
+  Inner-page hero: breadcrumb, title, lead, optional CTAs.
+  Params (dict):
+    page    Page    required
+    title   string  optional (default page title)
+    lead    string  optional (default description)
+    eyebrow string  optional
+    ctas    bool    show Book a call + WhatsApp
+    meta    string  optional HTML below lead (trusted)
+*/ -}}
+{{- $p := .page -}}
+<section class="border-b border-line bg-surface">
+  <div class="mx-auto max-w-site px-4 pt-8 pb-10 sm:px-6 md:pb-10 lg:px-8">
+    {{ partial "components/breadcrumb.html" $p }}
+    <div class="mt-8 max-w-3xl">
+      {{- with .eyebrow }}<p class="mb-4 text-sm font-semibold text-brand">{{ . }}</p>{{ end }}
+      <h1 class="text-4xl sm:text-5xl">{{ or .title $p.Title }}</h1>
+      {{- with or .lead $p.Description }}
+      <p class="mt-5 text-lg/relaxed text-ink-soft md:text-xl/relaxed">{{ . | markdownify }}</p>
+      {{- end }}
+      {{- with .meta }}<div class="mt-6">{{ . | safeHTML }}</div>{{ end }}
+      {{- if .ctas }}
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "lg" "icon" "arrow-right") }}
+        {{ partial "components/whatsapp-button.html" (dict "page" $p "size" "lg") }}
+      </div>
+      {{- end }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+# Home comparison table. value: yes | partial | no (rendered as icon + text, never colour alone).
+# TODO(content): review every claim with the team before launch.
+columns:
+  - key: navez
+    label: "navez.tech"
+    highlight: true
+  - key: inhouse
+    label: "In-house team"
+  - key: freelancers
+    label: "Freelancers"
+  - key: si
+    label: "Large SI"
+rows:
+  - label: "Website, ERP, AI and security from one team"
+    navez: "yes"
+    inhouse: "partial"
+    freelancers: "no"
+    si: "yes"
+  - label: "Senior people do the work, not just the pitch"
+    navez: "yes"
+    inhouse: "partial"
+    freelancers: "partial"
+    si: "partial"
+  - label: "Start within weeks, not quarters"
+    navez: "yes"
+    inhouse: "no"
+    freelancers: "yes"
+    si: "no"
+  - label: "Fixed scope and price per phase"
+    navez: "yes"
+    inhouse: "no"
+    freelancers: "partial"
+    si: "partial"
+  - label: "Ongoing support after go-live"
+    navez: "yes"
+    inhouse: "yes"
+    freelancers: "no"
+    si: "yes"
+  - label: "Priced for mid-sized Indonesian companies"
+    navez: "yes"
+    inhouse: "partial"
+    freelancers: "yes"
+    si: "no"

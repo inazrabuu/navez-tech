@@ -1,0 +1,22 @@
+{{- /*
+  Inline brand SVG from assets/brand, recoloured to currentColor so it works on light and dark.
+  Strips embedded provenance metadata, title and fixed size from the inlined copy only
+  (the master files in assets/brand are untouched).
+  Params (dict):
+    variant string  "full" (default) | "mark"
+    class   string  sizing classes, e.g. "h-7 w-auto"
+*/ -}}
+{{- $file := cond (eq .variant "mark") "brand/logomark.svg" "brand/logo.svg" -}}
+{{- with resources.Get $file -}}
+  {{- $svg := .Content -}}
+  {{- $svg = replaceRE `(?s)<metadata>.*?</metadata>` "" $svg -}}
+  {{- $svg = replaceRE `(?s)<title>.*?</title>` "" $svg -}}
+  {{- $svg = replaceRE `(?s)<style>.*?</style>` "" $svg -}}
+  {{- $svg = replaceRE ` xmlns:c2pa="[^"]*"` "" $svg -}}
+  {{- $svg = replaceRE ` width="[^"]*" height="[^"]*"` (printf ` class="%s"` (or $.class "h-7 w-auto")) $svg 1 -}}
+  {{- $svg = replaceRE ` role="img" aria-label="[^"]*"` ` aria-hidden="true" focusable="false"` $svg -}}
+  {{- $svg = replace $svg `fill="#0A1630"` `fill="currentColor"` -}}
+  {{- $svg = replace $svg `fill="#4A5878"` `fill="currentColor" fill-opacity=".62"` -}}
+  {{- $svg = replace $svg `id="cursor"` `class="logo-cursor"` -}}
+  {{- $svg | safeHTML -}}
+{{- end -}}

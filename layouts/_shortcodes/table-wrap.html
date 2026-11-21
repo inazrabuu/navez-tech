@@ -1,0 +1,7 @@
+{{- /*
+  Horizontally scrollable wrapper for wide Markdown tables.
+  Usage: {{< table-wrap caption="Optional caption" >}}| a | b |…{{< /table-wrap >}}
+*/ -}}
+<div class="my-8 overflow-x-auto" role="region" tabindex="0"{{ with .Get "caption" }} aria-label="{{ . }}"{{ end }}>
+  {{ .Inner | .Page.RenderString (dict "display" "block") }}
+</div>

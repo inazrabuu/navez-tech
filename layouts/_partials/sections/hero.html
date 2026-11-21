@@ -1,0 +1,29 @@
+{{- /*
+  Home hero with the signature "systems map".
+  Params (dict):
+    page Page  home page; reads .Params.hero {eyebrow, headline, lead, note}
+*/ -}}
+{{- $h := .page.Params.hero -}}
+<section class="relative overflow-hidden" aria-labelledby="hero-title">
+  <div class="mx-auto grid max-w-site items-center gap-12 px-4 pt-10 pb-12 sm:px-6 md:pt-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:px-8 lg:pt-12 lg:pb-12">
+    <div>
+      {{- with $h.eyebrow }}
+      <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 text-sm font-medium text-ink-soft">
+        <span class="size-1.5 rounded-full bg-signal" aria-hidden="true"></span>{{ . }}
+      </p>
+      {{- end }}
+      <h1 id="hero-title" class="text-4xl/[1.08] sm:text-5xl/[1.06] lg:text-[3.5rem]/[1.04]">{{ $h.headline }}</h1>
+      <p class="mt-6 max-w-xl text-lg/relaxed text-ink-soft md:text-xl/relaxed">{{ $h.lead }}</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "lg" "icon" "arrow-right") }}
+        {{ partial "components/whatsapp-button.html" (dict "page" .page "size" "lg") }}
+      </div>
+      {{- with $h.note }}
+      <p class="mt-6 text-sm text-ink-soft">{{ . }}</p>
+      {{- end }}
+    </div>
+    <div>
+      {{ partial "sections/systems-map.html" . }}
+    </div>
+  </div>
+</section>

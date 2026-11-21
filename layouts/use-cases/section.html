@@ -1,0 +1,38 @@
+{{- /* /use-cases/ — filter by service + industry (links work without JS; buttons filter in place). */ -}}
+{{- define "main" }}
+{{- $pages := .Pages.ByWeight -}}
+{{- $industries := slice }}{{ range $pages }}{{ with .Params.industry }}{{ $industries = $industries | append . }}{{ end }}{{ end -}}
+{{- $industries = $industries | uniq | sort -}}
+{{ partial "sections/page-hero.html" (dict "page" .) }}
+<section x-data="filterList">
+  <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">
+    <div class="grid gap-4 md:grid-cols-2 lg:max-w-3xl" x-cloak>
+      <div>
+        <label for="filter-service" class="form-label">{{ i18n "filter_service" }}</label>
+        <select id="filter-service" class="form-input" x-model="service">
+          <option value="">{{ i18n "filter_all_services" }}</option>
+          {{- range (site.GetPage "/services").Pages.ByWeight }}
+          <option value="{{ .File.ContentBaseName }}">{{ .Title }}</option>
+          {{- end }}
+        </select>
+      </div>
+      <div>
+        <label for="filter-industry" class="form-label">{{ i18n "filter_industry" }}</label>
+        <select id="filter-industry" class="form-input" x-model="industry">
+          <option value="">{{ i18n "filter_all_industries" }}</option>
+          {{- range $industries }}
+          <option value="{{ . }}">{{ partial "functions/label.html" . }}</option>
+          {{- end }}
+        </select>
+      </div>
+    </div>
+    <ul class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3" aria-live="polite">
+      {{- range $pages }}
+      <li data-service="{{ .Params.service }}" data-industry="{{ .Params.industry }}" x-show="matches($el)">{{ partial "components/card-use-case.html" (dict "page" .) }}</li>
+      {{- end }}
+    </ul>
+    <p class="mt-10 text-ink-soft" x-cloak x-show="count === 0">{{ i18n "filter_no_results" }}</p>
+  </div>
+</section>
+{{ partial "sections/cta-band.html" (dict "page" .) }}
+{{- end }}

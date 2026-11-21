@@ -1,0 +1,14 @@
+{{- /*
+  Returns the meta description (aim ≤ 155 chars).
+  Order: seo.description → description → summary → short_definition → answer_summary → site description.
+  Context: Page.
+*/ -}}
+{{- $d := "" -}}
+{{- with .Params.seo }}{{ with .description }}{{ $d = . }}{{ end }}{{ end -}}
+{{- if not $d }}{{ with .Description }}{{ $d = . }}{{ end }}{{ end -}}
+{{- if not $d }}{{ with .Params.summary }}{{ $d = . }}{{ end }}{{ end -}}
+{{- if not $d }}{{ with .Params.short_definition }}{{ $d = . }}{{ end }}{{ end -}}
+{{- if not $d }}{{ with .Params.answer_summary }}{{ $d = . }}{{ end }}{{ end -}}
+{{- if and (not $d) (eq .Kind "term") }}{{ $d = i18n "category_lead" (dict "Category" (partial "functions/label.html" .Data.Term)) }}{{ end -}}
+{{- if not $d }}{{ $d = site.Params.description }}{{ end -}}
+{{- return ($d | plainify | truncate 150 | htmlUnescape) -}}

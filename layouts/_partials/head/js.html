@@ -1,0 +1,39 @@
+{{- /*
+  Site JS bundle (Alpine, menu, palette, consent) built with js.Build.
+  Site constants are passed via `params` (import from "@params").
+  Context: Page.
+*/ -}}
+{{- with resources.Get "js/main.js" }}
+  {{- $params := dict
+      "hubspotPortalId" hugo.Data.site.hubspot.portal_id
+      "hubspotRegion" hugo.Data.site.hubspot.region
+      "privacyUrl" ("/privacy/" | relURL)
+      "i18n" (dict
+        "searchNoResults" (i18n "search_no_results")
+        "searchUnavailable" (i18n "search_unavailable")
+        "consentTitle" (i18n "consent_title")
+        "consentDescription" (i18n "consent_description")
+        "consentAcceptAll" (i18n "consent_accept_all")
+        "consentRejectAll" (i18n "consent_reject_all")
+        "consentManage" (i18n "consent_manage")
+        "consentSave" (i18n "consent_save")
+        "consentPrefsTitle" (i18n "consent_prefs_title")
+        "consentNecessaryTitle" (i18n "consent_necessary_title")
+        "consentNecessaryDescription" (i18n "consent_necessary_description")
+        "consentAnalyticsTitle" (i18n "consent_analytics_title")
+        "consentAnalyticsDescription" (i18n "consent_analytics_description")
+        "consentPrivacyLink" (i18n "consent_privacy_link")
+        "close" (i18n "close")
+      )
+  }}
+  {{- $opts := dict "minify" (not hugo.IsDevelopment) "target" "es2020" "format" "esm" "params" $params }}
+  {{- with . | js.Build $opts }}
+    {{- if hugo.IsDevelopment }}
+<script type="module" src="{{ .RelPermalink }}"></script>
+    {{- else }}
+      {{- with . | fingerprint }}
+<script type="module" src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

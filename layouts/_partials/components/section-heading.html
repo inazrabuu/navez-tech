@@ -1,0 +1,22 @@
+{{- /*
+  Section heading block.
+  Params (dict):
+    id      string  optional id for the heading (aria-labelledby target)
+    eyebrow string  optional sentence-case label above the title
+    title   string  required
+    lead    string  optional supporting paragraph (markdownified)
+    align   string  "left" (default) | "center"
+    inverse bool    light text for dark sections
+    level   int     heading level (default 2)
+*/ -}}
+{{- $center := eq .align "center" -}}
+{{- $lvl := or .level 2 -}}
+<div class="max-w-2xl{{ if $center }} mx-auto text-center{{ end }}">
+  {{- with .eyebrow }}
+  <p class="mb-3 text-sm font-semibold {{ if $.inverse }}text-brand-soft{{ else }}text-brand{{ end }}">{{ . }}</p>
+  {{- end }}
+  <h{{ $lvl }}{{ with .id }} id="{{ . }}"{{ end }} class="text-3xl md:text-4xl {{ if .inverse }}text-white{{ else }}text-ink{{ end }}">{{ .title }}</h{{ $lvl }}>
+  {{- with .lead }}
+  <p class="mt-4 text-lg/relaxed {{ if $.inverse }}text-white/75{{ else }}text-ink-soft{{ end }}">{{ . | markdownify }}</p>
+  {{- end }}
+</div>

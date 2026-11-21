@@ -1,0 +1,34 @@
+{{- /* /contact/: channels + HubSpot form. */ -}}
+{{- define "main" }}
+{{- $s := hugo.Data.site -}}
+{{ partial "sections/page-hero.html" (dict "page" . "lead" (i18n "contact_lead")) }}
+<div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">
+  <div class="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+    <div class="grid content-start gap-4">
+      <div class="rounded-card border border-line p-6">
+        <p class="flex items-center gap-2 font-semibold">{{ partial "components/icon.html" (dict "name" "chat" "class" "size-5 text-signal") }}{{ i18n "contact_wa_title" }}</p>
+        <p class="mt-1 text-sm text-ink-soft">{{ i18n "contact_wa_text" }}</p>
+        <div class="mt-4">{{ partial "components/whatsapp-button.html" (dict "page" . "size" "sm") }}</div>
+      </div>
+      <div class="rounded-card border border-line p-6">
+        <p class="flex items-center gap-2 font-semibold">{{ partial "components/icon.html" (dict "name" "calendar" "class" "size-5 text-brand") }}{{ i18n "contact_call_title" }}</p>
+        <p class="mt-1 text-sm text-ink-soft">{{ i18n "contact_call_text" }}</p>
+        <div class="mt-4">{{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "sm") }}</div>
+      </div>
+      <div class="rounded-card border border-line p-6">
+        <p class="flex items-center gap-2 font-semibold">{{ partial "components/icon.html" (dict "name" "mail" "class" "size-5 text-brand") }}{{ i18n "contact_email_title" }}</p>
+        <p class="mt-2"><a class="font-semibold text-brand hover:underline" href="mailto:{{ $s.email }}">{{ $s.email }}</a></p>
+      </div>
+      <address class="rounded-card bg-surface p-6 text-sm not-italic text-ink-soft">
+        <p class="font-semibold text-ink">{{ $s.legal_name }}</p>
+        <p class="mt-1">{{ $s.address.street }}, {{ $s.address.locality }}{{ with $s.address.postal_code }} {{ . }}{{ end }}, Indonesia</p>
+        {{- with $s.nib }}<p class="mt-1">{{ i18n "footer_nib" }}: {{ . }}</p>{{ end }}
+      </address>
+    </div>
+    <div class="rounded-panel border border-line p-6 md:p-8">
+      <h2 class="text-2xl">{{ i18n "form_title" }}</h2>
+      <div class="mt-6">{{ partial "components/hubspot-form.html" (dict "page" .) }}</div>
+    </div>
+  </div>
+</div>
+{{- end }}

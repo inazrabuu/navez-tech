@@ -1,0 +1,33 @@
+{{- /*
+  FAQ accordion (native <details>). JSON-LD FAQPage is emitted separately from the same faq[].
+  Params (dict):
+    items []{q,a}  required
+    title string   optional (default i18n faq_title)
+    bg    string   "white" | "surface"
+    narrow bool    single-column layout for article pages
+*/ -}}
+{{- with .items }}
+<section class="{{ if eq $.bg "surface" }}bg-surface{{ end }}" aria-labelledby="faq-title">
+  <div class="mx-auto max-w-site px-4 {{ if $.narrow }}py-12{{ else }}py-16 md:py-12{{ end }} sm:px-6 lg:px-8">
+    <div class="{{ if not $.narrow }}grid gap-10 lg:grid-cols-[1fr_2fr]{{ end }}">
+      <div>
+        <h2 id="faq-title" class="text-3xl md:text-4xl">{{ or $.title (i18n "faq_title") }}</h2>
+        {{- if not $.narrow }}
+        <p class="mt-4 text-ink-soft">{{ i18n "faq_lead" }} <a class="font-semibold text-brand underline-offset-4 hover:underline" href="{{ "/contact/" | relURL }}">{{ i18n "faq_contact" }}</a></p>
+        {{- end }}
+      </div>
+      <div class="divide-y divide-line border-y border-line{{ if $.narrow }} mt-6 max-w-prose{{ end }}">
+        {{- range . }}
+        <details class="group">
+          <summary class="flex min-h-14 items-center justify-between gap-4 py-4 text-lg font-semibold text-ink">
+            <span>{{ .q }}</span>
+            <span class="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-line text-ink-soft transition-transform group-open:rotate-180">{{ partial "components/icon.html" (dict "name" "chevron-down" "class" "size-4") }}</span>
+          </summary>
+          <div class="prose-navez pb-6">{{ .a | markdownify }}</div>
+        </details>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{- end -}}

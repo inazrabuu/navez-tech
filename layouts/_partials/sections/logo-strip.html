@@ -1,0 +1,38 @@
+{{- /*
+  Client/partner logo strip from data/clients.yaml.
+  Renders when `enabled`, or always on the dev server (to preview placeholders).
+  Item fields: name, logo (path under assets/), invert (bool, for white logos), badge (bool, round/square logos),
+  crop (raster only, e.g. "120x120": keep the centre to trim wide margins).
+  Logos are shown monochrome and regain colour on hover; mix-blend-multiply hides white backgrounds baked into images.
+  Params: none.
+*/ -}}
+{{- $d := hugo.Data.clients -}}
+{{- if and $d (or $d.enabled hugo.IsDevelopment) }}
+<section class="border-y border-line bg-surface" aria-labelledby="clients-title">
+  <div class="mx-auto max-w-site px-4 py-10 sm:px-6 lg:px-8">
+    <h2 id="clients-title" class="text-center text-sm font-semibold text-ink-soft">{{ i18n "clients_title" }}</h2>
+    <ul class="mt-6 grid grid-cols-3 items-center gap-x-6 gap-y-6 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-14">
+      {{- range $d.items }}
+      {{- $name := .name }}{{ $crop := .crop }}
+      {{- /* Inverted (white) logos turn solid black, so they get a lighter resting opacity to match the grey of the others. */}}
+      {{- $cls := printf "w-auto max-w-full object-contain sm:max-w-40 mix-blend-multiply grayscale transition duration-150 hover:opacity-100 hover:grayscale-0 %s %s" (cond (eq .badge true) "h-11 md:h-12" "h-7 md:h-8") (cond (eq .invert true) "invert opacity-50" "opacity-70") }}
+      <li class="flex h-12 items-center justify-center">
+        {{- with and .logo (resources.Get .logo) }}
+          {{- if eq .MediaType.SubType "svg" }}
+          {{- $w := 160 }}{{ $h := 40 }}
+          {{- with findRESubmatch `<svg[^>]*?\swidth="([0-9.]+)"[^>]*?\sheight="([0-9.]+)"` .Content 1 }}{{ $w = math.Round (float (index (index . 0) 1)) }}{{ $h = math.Round (float (index (index . 0) 2)) }}{{ end }}
+          <img src="{{ .RelPermalink }}" alt="{{ $name }}" class="{{ $cls }}" width="{{ $w }}" height="{{ $h }}" loading="lazy" decoding="async">
+          {{- else }}
+          {{- $src := . }}{{ with $crop }}{{ $src = $src.Crop (printf "%s center" .) }}{{ end }}
+          {{- $img := cond (gt $src.Width 320) ($src.Resize "320x webp") ($src.Process "webp") }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ $name }}" class="{{ $cls }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" decoding="async">
+          {{- end }}
+        {{- else }}
+        <span class="rounded-control border border-dashed border-line px-3 py-2 text-center text-xs text-ink-soft">{{ .name }}</span>
+        {{- end }}
+      </li>
+      {{- end }}
+    </ul>
+  </div>
+</section>
+{{- end -}}

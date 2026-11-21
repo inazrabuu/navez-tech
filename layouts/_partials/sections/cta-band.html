@@ -1,0 +1,26 @@
+{{- /*
+  Dark CTA band.
+  Params (dict):
+    page  Page    current page (WhatsApp prefill)
+    title string  optional (default i18n cta_band_title)
+    text  string  optional (default i18n cta_band_text)
+*/ -}}
+<section aria-labelledby="cta-band-title">
+  <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">
+    <div class="relative overflow-hidden rounded-panel bg-brand-deep px-6 py-12 text-white md:px-12 md:py-12">
+      <svg class="pointer-events-none absolute -right-16 -bottom-24 size-[26rem] text-white/[0.07]" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="20" y="20" width="160" height="160" rx="32"/><rect x="50" y="50" width="100" height="100" rx="20"/><rect x="80" y="80" width="40" height="40" rx="8"/>
+      </svg>
+      <div class="relative grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">
+        <div>
+          <h2 id="cta-band-title" class="text-3xl text-white md:text-4xl">{{ or .title (i18n "cta_band_title") }}</h2>
+          <p class="mt-4 max-w-xl text-lg/relaxed text-white/80">{{ or .text (i18n "cta_band_text") }}</p>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row lg:justify-end">
+          {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "variant" "inverse" "size" "lg" "icon" "arrow-right") }}
+          {{ partial "components/whatsapp-button.html" (dict "page" .page "variant" "outline-inverse" "size" "lg") }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

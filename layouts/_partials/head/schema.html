@@ -1,0 +1,15 @@
+{{- /*
+  JSON-LD @graph for the page. Builders live in _partials/schema/.
+  Context: Page.
+*/ -}}
+{{- $graph := slice (partial "schema/organization.html" .) (partial "schema/website.html" .) -}}
+{{- if not .IsHome }}{{ $graph = $graph | append (partial "schema/breadcrumb.html" .) }}{{ end -}}
+{{- if .IsPage -}}
+  {{- if eq .Section "services" }}{{ $graph = $graph | append (partial "schema/service.html" .) }}{{ end -}}
+  {{- if eq .Section "insights" }}{{ $graph = $graph | append (partial "schema/blogposting.html" .) }}{{ end -}}
+  {{- if eq .Section "work" }}{{ $graph = $graph | append (partial "schema/article.html" .) }}{{ end -}}
+  {{- if eq .Section "glossary" }}{{ $graph = $graph | append (partial "schema/definedterm.html" .) }}{{ end -}}
+  {{- if eq .Section "authors" }}{{ $graph = $graph | append (partial "schema/person.html" .) }}{{ end -}}
+{{- end -}}
+{{- with .Params.faq }}{{ $graph = $graph | append (partial "schema/faqpage.html" $) }}{{ end -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

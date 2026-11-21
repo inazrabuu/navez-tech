@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}" dir="{{ or site.Language.Direction "ltr" }}">
+<head>
+  {{ partial "head/meta.html" . }}
+  {{ partial "head/css.html" . }}
+  {{ partial "head/schema.html" . }}
+</head>
+<body class="flex min-h-dvh flex-col">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-control focus:bg-ink focus:px-4 focus:py-3 focus:text-white">{{ i18n "skip_to_content" }}</a>
+  {{ partial "layout/announcement.html" . }}
+  {{ partial "layout/header.html" . }}
+  <main id="main" class="flex-1" tabindex="-1"{{ if not .Params.noindex }} data-pagefind-body{{ end }}>
+    {{- with .Section }}<span hidden data-pagefind-filter="section:{{ . }}"></span>{{ end }}
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "layout/footer.html" . }}
+  {{ partial "layout/mobile-cta-bar.html" . }}
+  {{ partial "components/palette.html" . }}
+  {{ partial "head/js.html" . }}
+</body>
+</html>

@@ -1,0 +1,18 @@
+{{- /*
+  Visible breadcrumb (BreadcrumbList JSON-LD is built from the same function).
+  Context: Page.
+*/ -}}
+{{- if not .IsHome }}
+{{- $crumbs := partial "functions/breadcrumbs.html" . -}}
+<nav aria-label="{{ i18n "breadcrumb" }}">
+  <ol class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-soft">
+    {{- range $i, $c := $crumbs }}
+    {{- $last := eq (add $i 1) (len $crumbs) }}
+    <li class="flex items-center gap-2">
+      {{- if $last }}<span aria-current="page" class="font-medium text-ink">{{ $c.title }}</span>
+      {{- else }}<a class="hover:text-ink hover:underline" href="{{ $c.url }}">{{ $c.title }}</a><span aria-hidden="true" class="text-line">/</span>{{ end }}
+    </li>
+    {{- end }}
+  </ol>
+</nav>
+{{- end -}}

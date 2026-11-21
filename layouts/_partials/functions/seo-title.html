@@ -1,0 +1,23 @@
+{{- /*
+  Returns the <title> string (aim ≤ 60 chars).
+  Order: seo.title → home tagline → "Page title | Site title" (suffix dropped if > 60 chars;
+  set seo.title in front matter for titles that are still too long).
+  Context: Page.
+*/ -}}
+{{- $t := "" -}}
+{{- with .Params.seo }}{{ with .title }}{{ $t = . }}{{ end }}{{ end -}}
+{{- if not $t -}}
+  {{- if .IsHome -}}
+    {{- $t = printf "%s | %s" site.Title (i18n "site_tagline") -}}
+  {{- else if eq .Kind "term" -}}
+    {{- $t = printf "%s | %s" (partial "functions/label.html" .Data.Term) site.Title -}}
+  {{- else if eq .Kind "taxonomy" -}}
+    {{- $t = printf "%s | %s" (i18n "categories_title") site.Title -}}
+  {{- else if eq .Kind "404" -}}
+    {{- $t = printf "%s | %s" (i18n "not_found_title") site.Title -}}
+  {{- else -}}
+    {{- $t = printf "%s | %s" .Title site.Title -}}
+    {{- if gt (strings.RuneCount $t) 60 }}{{ $t = .Title }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $t -}}

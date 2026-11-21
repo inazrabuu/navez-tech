@@ -1,0 +1,10 @@
+{{- /* DefinedTerm for glossary pages. Context: Page. Returns dict. */ -}}
+{{- $set := site.GetPage "/glossary" -}}
+{{- return (dict
+  "@type" "DefinedTerm"
+  "@id" (printf "%s#term" .Permalink)
+  "name" .Title
+  "description" (.Params.short_definition | plainify)
+  "url" .Permalink
+  "inDefinedTermSet" (dict "@type" "DefinedTermSet" "name" $set.Title "url" $set.Permalink)
+) -}}

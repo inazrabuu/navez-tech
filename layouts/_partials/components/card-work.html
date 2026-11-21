@@ -1,0 +1,21 @@
+{{- /*
+  Case-study card.
+  Params (dict):
+    page Page  work page
+*/ -}}
+{{- $p := .page -}}
+<article class="group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-white transition-colors hover:border-brand/50">
+  {{- with $p.Params.cover }}{{ with $p.Resources.Get . }}
+  {{ partial "components/image.html" (dict "image" . "alt" "" "sizes" "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" "ratio" "16x9" "class" "aspect-video w-full object-cover") }}
+  {{- end }}{{ end }}
+  <div class="flex flex-1 flex-col p-6">
+    <p class="text-sm text-ink-soft">{{ $p.Params.client_display }}{{ with $p.Params.industry }} · {{ partial "functions/label.html" . }}{{ end }}</p>
+    <h3 class="mt-2 text-lg">
+      <a href="{{ $p.RelPermalink }}" class="after:absolute after:inset-0 after:rounded-card focus-visible:outline-none group-has-[:focus-visible]:underline">{{ $p.Title }}</a>
+    </h3>
+    {{- with index ($p.Params.results | default slice) 0 }}
+    <p class="mt-4 flex items-center gap-3"><span class="shrink-0 text-2xl leading-none font-bold whitespace-nowrap text-brand">{{ .metric }}</span><span class="text-sm leading-snug text-ink-soft">{{ .label }}</span></p>
+    {{- end }}
+    <span class="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-brand" aria-hidden="true">{{ i18n "read_case_study" }} {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "size-4") }}</span>
+  </div>
+</article>

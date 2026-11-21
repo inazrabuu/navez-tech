@@ -1,0 +1,52 @@
+{{- /*
+  Head meta: title, description, canonical, Open Graph, Twitter, icons, preloads.
+  Context: Page.
+*/ -}}
+{{- $title := partial "functions/seo-title.html" . -}}
+{{- $desc := partial "functions/seo-description.html" . -}}
+{{- $ogImage := partial "functions/og-image.html" . -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- if or .Params.noindex (eq .Kind "404") }}
+<meta name="robots" content="noindex, follow">
+{{- end }}
+<meta name="theme-color" content="#0a1630">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+{{- with site.GetPage "/insights" }}{{ with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}: {{ i18n "nav_insights" }}">
+{{- end }}{{ end }}
+<link rel="alternate" type="text/plain" href="{{ "llms.txt" | absURL }}" title="llms.txt">
+
+{{- /* Open Graph */}}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="{{ if and .IsPage (in (slice "insights" "work") .Section) }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $ogImage.url }}">
+{{- with $ogImage.width }}
+<meta property="og:image:width" content="{{ . }}">
+<meta property="og:image:height" content="{{ $ogImage.height }}">
+{{- end }}
+{{- if and .IsPage (eq .Section "insights") }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+
+{{- /* Twitter */}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $ogImage.url }}">

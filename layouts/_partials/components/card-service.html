@@ -1,0 +1,16 @@
+{{- /*
+  Service card.
+  Params (dict):
+    page Page  service page (title, summary, icon)
+    headingLevel int  default 3
+*/ -}}
+{{- $p := .page -}}
+{{- $lvl := or .headingLevel 3 -}}
+<article class="group relative flex h-full flex-col rounded-card border border-line bg-white p-6 transition-colors hover:border-brand/50">
+  <span class="inline-flex size-11 items-center justify-center rounded-control bg-brand/10 text-brand">{{ partial "components/icon.html" (dict "name" $p.Params.icon "class" "size-6") }}</span>
+  <h{{ $lvl }} class="mt-5 text-xl">
+    <a href="{{ $p.RelPermalink }}" class="after:absolute after:inset-0 after:rounded-card focus-visible:outline-none group-has-[:focus-visible]:underline">{{ $p.Title }}</a>
+  </h{{ $lvl }}>
+  <p class="mt-2 flex-1 text-ink-soft">{{ $p.Params.summary }}</p>
+  <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand" aria-hidden="true">{{ i18n "learn_more" }} {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "size-4 transition-transform group-hover:translate-x-0.5") }}</span>
+</article>

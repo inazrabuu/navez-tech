@@ -1,0 +1,23 @@
+{
+  "name": "navez-tech",
+  "private": true,
+  "description": "navez.tech marketing website (Hugo + Tailwind CSS v4)",
+  "scripts": {
+    "dev": "hugo server -D --renderToMemory",
+    "build": "hugo --gc --minify --cleanDestinationDir && npx pagefind --site public",
+    "check": "npm run build && htmltest"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "@tailwindcss/typography": "^0.5.20",
+    "pagefind": "^1.6.0",
+    "tailwindcss": "^4.3.5"
+  },
+  "dependencies": {
+    "alpinejs": "^3.17.5",
+    "vanilla-cookieconsent": "^3.3.0"
+  }
+}

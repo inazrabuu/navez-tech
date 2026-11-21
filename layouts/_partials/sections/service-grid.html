@@ -1,0 +1,19 @@
+{{- /*
+  Service grid: 1 col → 2×2 (md) → 4 col (xl).
+  Params (dict):
+    title, lead, eyebrow  strings (optional; defaults from i18n)
+    exclude               Page (optional) — omit this service
+    bg                    "white" (default) | "surface"
+*/ -}}
+{{- $services := (site.GetPage "/services").Pages.ByWeight -}}
+{{- with .exclude }}{{ $services = where $services "RelPermalink" "ne" .RelPermalink }}{{ end -}}
+<section class="{{ if eq .bg "surface" }}bg-surface{{ end }}" aria-labelledby="services-title">
+  <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-12 lg:px-8">
+    {{ partial "components/section-heading.html" (dict "id" "services-title" "eyebrow" .eyebrow "title" (or .title (i18n "services_title")) "lead" (or .lead (i18n "services_lead"))) }}
+    <ul class="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-{{ len $services }}">
+      {{- range $services }}
+      <li>{{ partial "components/card-service.html" (dict "page" .) }}</li>
+      {{- end }}
+    </ul>
+  </div>
+</section>
