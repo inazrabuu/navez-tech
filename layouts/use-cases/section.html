@@ -26,6 +26,7 @@
         </select>
       </div>
     </div>
+    <h2 class="sr-only">{{ i18n "all_use_cases" }}</h2>
     <ul class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3" aria-live="polite">
       {{- range $pages }}
       <li data-service="{{ .Params.service }}" data-industry="{{ .Params.industry }}" x-show="matches($el)">{{ partial "components/card-use-case.html" (dict "page" .) }}</li>

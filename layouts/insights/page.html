@@ -86,7 +86,7 @@
         <p class="font-bold">{{ i18n "post_service_cta_title" (dict "Service" .Title) }}</p>
         <p class="mt-1 text-sm text-ink-soft">{{ .Params.summary }}</p>
       </div>
-      {{ partial "components/button.html" (dict "url" .RelPermalink "label" (i18n "learn_more") "icon" "arrow-right" "size" "sm") }}
+      {{ partial "components/button.html" (dict "url" .RelPermalink "label" (i18n "explore_service" (dict "Service" .Title)) "icon" "arrow-right" "size" "sm") }}
     </div>
     {{- end }}
   </div>
