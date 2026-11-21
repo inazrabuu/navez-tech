@@ -1,14 +1,15 @@
 {{- /*
   Author card (E-E-A-T).
   Params (dict):
-    page Page  author page
+    page   Page  author page
+    byline bool  show the "Written by" label (default true; false on the /authors/ list)
 */ -}}
 {{- $a := .page -}}
 <aside class="flex flex-col gap-5 rounded-card border border-line p-6 sm:flex-row" aria-label="{{ i18n "about_author" }}">
   {{ partial "components/avatar.html" (dict "page" $a "size" 64) }}
   <div>
-    <p class="text-sm text-ink-soft">{{ i18n "written_by" }}</p>
-    <p class="mt-1 text-lg font-bold"><a class="hover:text-brand" href="{{ $a.RelPermalink }}">{{ $a.Params.name | default $a.Title }}</a></p>
+    {{- if ne .byline false }}<p class="mb-1 text-sm text-ink-soft">{{ i18n "written_by" }}</p>{{ end }}
+    <p class="text-lg font-bold"><a class="hover:text-brand" href="{{ $a.RelPermalink }}">{{ $a.Params.name | default $a.Title }}</a></p>
     <p class="text-sm text-ink-soft">{{ $a.Params.role }}</p>
     {{- with $a.Params.bio }}<p class="mt-3 text-sm/relaxed">{{ . | markdownify }}</p>{{ end }}
     {{- with $a.Params.credentials }}

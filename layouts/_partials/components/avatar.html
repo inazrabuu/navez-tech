@@ -8,11 +8,13 @@
 {{- $size := or .size 48 -}}
 {{- $img := false -}}
 {{- with $p.Params.photo }}{{ $img = or ($p.Resources.Get .) (resources.Get (strings.TrimPrefix "/" .)) }}{{ end -}}
+{{- /* Fixed square box (classes, not just width/height attributes) so flex parents can't stretch it into an oval. */ -}}
+{{- $box := index (dict "40" "size-10" "64" "size-16" "96" "size-24") (string $size) | default "size-12" -}}
 {{- if $img -}}
   {{- $r := $img.Fill (printf "%dx%d webp Smart" (mul $size 2) (mul $size 2)) -}}
-  <img src="{{ $r.RelPermalink }}" width="{{ $size }}" height="{{ $size }}" alt="" class="rounded-full object-cover" loading="lazy" decoding="async">
+  <img src="{{ $r.RelPermalink }}" width="{{ $size }}" height="{{ $size }}" alt="" class="{{ $box }} shrink-0 self-start rounded-full object-cover" loading="lazy" decoding="async">
 {{- else -}}
   {{- $name := $p.Params.name | default $p.Title -}}
   {{- $initials := "" }}{{ range first 2 (split $name " ") }}{{ $initials = printf "%s%s" $initials (substr . 0 1) }}{{ end -}}
-  <span class="inline-flex shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white {{ if ge $size 64 }}size-16 text-xl{{ else }}size-10{{ end }}" aria-hidden="true">{{ upper $initials }}</span>
+  <span class="inline-flex {{ $box }} shrink-0 self-start items-center justify-center rounded-full bg-brand font-bold text-white {{ if ge $size 64 }}text-xl{{ else }}text-sm{{ end }}" aria-hidden="true">{{ upper $initials }}</span>
 {{- end -}}
