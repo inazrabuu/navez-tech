@@ -107,7 +107,8 @@ Alpine.data("palette", () => ({
       this.message = t.searchUnavailable;
       return;
     }
-    const res = await pf.debouncedSearch(q, { filters: this.filters }, 120);
+    // Pagefind searches in a Web Worker: pass a plain copy, an Alpine proxy can't be cloned (DataCloneError).
+    const res = await pf.debouncedSearch(q, { filters: { ...Alpine.raw(this.filters) } }, 120);
     if (res === null) return; // superseded by a newer query
     const data = await Promise.all(res.results.slice(0, 8).map((r) => r.data()));
     this.results = data.map((d) => ({ url: d.url, title: d.meta.title, excerpt: d.excerpt }));
