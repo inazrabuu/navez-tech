@@ -3,10 +3,10 @@
 
 backend:
   name: github
-  repo: TODO-org/navez-tech # TODO: GitHub owner/repo
+  repo: inazrabuu/navez-tech
   branch: main
   # Sveltia CMS Authenticator on Cloudflare Workers (OAuth secrets live in Worker env vars)
-  base_url: https://TODO-sveltia-cms-auth.workers.dev # TODO: deployed worker URL
+  base_url: https://sveltia-cms-auth.inazrabuu.workers.dev
   commit_messages:
     create: "content: create {{collection}} “{{slug}}”"
     update: "content: update {{collection}} “{{slug}}”"
