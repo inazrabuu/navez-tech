@@ -3,7 +3,7 @@ title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 slug: "{{ .File.ContentBaseName }}"
 description: "TODO(content): meta description (≤ 155 chars)"
 date: {{ .Date }}
-author: navez-team
+author: arman-rizal
 category: business-technology # a service slug or business-technology
 service: digital-agency # pillar this post links to
 tags: []

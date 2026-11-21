@@ -5,7 +5,7 @@ title: What does Indonesia's PDP Law (UU PDP) mean for your company website?
 slug: uu-pdp-company-website
 description: "UU PDP applies to the personal data your website collects. What to check: forms, cookies, analytics, privacy notices, security and breach response."
 date: 2026-10-28
-author: navez-team
+author: arman-rizal
 category: cybersecurity
 service: cybersecurity
 tags: [uu pdp, privacy, website, compliance]

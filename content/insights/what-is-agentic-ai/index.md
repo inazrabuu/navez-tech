@@ -5,7 +5,7 @@ title: What is agentic AI, and how is it different from a chatbot?
 slug: what-is-agentic-ai
 description: "Agentic AI plans and carries out multi-step tasks in your systems; a chatbot only replies. Here's the difference and where agents fit in a business."
 date: 2026-10-14
-author: navez-team
+author: arman-rizal
 category: agentic-ai
 service: agentic-ai
 tags: [ai agents, chatbots, automation]

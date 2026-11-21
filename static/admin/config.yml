@@ -54,7 +54,7 @@ collections:
       - { name: answer_summary, label: Answer summary (2–3 sentences that directly answer the title), widget: text, i18n: true }
       - { name: date, label: Published, widget: datetime, i18n: duplicate }
       - { name: lastmod, label: Last updated (optional; Git date is used otherwise), widget: datetime, required: false, i18n: duplicate }
-      - { name: author, label: Author, widget: relation, collection: authors, value_field: "{{slug}}", search_fields: [name], display_fields: [name], i18n: duplicate }
+      - { name: author, label: Author, widget: relation, collection: authors, value_field: "{{slug}}", search_fields: [name], display_fields: [name], default: arman-rizal, i18n: duplicate }
       - name: category
         label: Category
         widget: select

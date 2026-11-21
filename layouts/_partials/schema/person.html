@@ -3,6 +3,7 @@
 {{- with .Params.role }}{{ $p = merge $p (dict "jobTitle" .) }}{{ end -}}
 {{- with .Params.bio }}{{ $p = merge $p (dict "description" (. | plainify)) }}{{ end -}}
 {{- with .Params.linkedin }}{{ $p = merge $p (dict "sameAs" (slice .)) }}{{ end -}}
+{{- with .Params.photo }}{{ with or ($.Resources.Get .) (resources.Get (strings.TrimPrefix "/" .)) }}{{ with .Fill "400x400 webp Smart" }}{{ $p = merge $p (dict "image" .Permalink) }}{{ end }}{{ end }}{{ end -}}
 {{- with .Params.credentials }}
   {{- $c := slice }}{{ range . }}{{ $c = $c | append (partial "schema/credential.html" .) }}{{ end }}
   {{- $p = merge $p (dict "hasCredential" $c) }}

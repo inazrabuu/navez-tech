@@ -12,3 +12,5 @@ IgnoreDirs:
 CheckMailto: false
 CheckTel: false
 OutputDir: tmp/.htmltest
+# alt="" is intentional for decorative images (e.g. author avatars next to the name); a missing alt still fails.
+IgnoreAltEmpty: true

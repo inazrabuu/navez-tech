@@ -5,7 +5,7 @@ title: How to tell if your company has outgrown spreadsheets and needs an ERP
 slug: outgrown-spreadsheets-need-erp
 description: "Seven signs your company has outgrown spreadsheets, what an ERP fixes, and how to get ready before you choose a system."
 date: 2026-11-10
-author: navez-team
+author: arman-rizal
 category: erp-business-systems
 service: erp-business-systems
 tags: [erp, spreadsheets, operations, finance]

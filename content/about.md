@@ -27,6 +27,6 @@ We're based at Jl. Kalibata Selatan 1A No. 14, Jakarta 12740, and work with comp
 
 ## Team
 
-**Arman Rizal**, Founder
+**[Arman Rizal](/authors/arman-rizal/)**, Founder
 
 <!-- TODO(content): add team profiles with real photos, roles and credentials. -->
