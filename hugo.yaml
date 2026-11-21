@@ -109,7 +109,6 @@ params:
     - key: nav_about
       url: /about/
   social:
-    # TODO(content): confirm real profile URLs
     linkedin: https://www.linkedin.com/company/navez-tech/
 
 security:
