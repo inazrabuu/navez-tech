@@ -79,7 +79,7 @@ sysmap_ai_chips: Pemilahan, Laporan, Tindak lanjut
 sysmap_security: Keamanan di setiap lapisan
 clients_title: Tim yang pernah bekerja sama dengan kami
 services_eyebrow: Apa yang kami kerjakan
-services_title: Empat keahlian, satu mitra yang bertanggung jawab
+services_title: Empat keahlian, satu partner yang bertanggung jawab
 services_lead: Banyak perusahaan yang sedang bertumbuh harus mengelola agensi, konsultan ERP, vendor AI, dan perusahaan keamanan sekaligus. Kami menangani keempatnya, sehingga semuanya benar-benar terhubung.
 process_title: Cara kerja kami
 process_lead: Setiap proyek mengikuti empat langkah yang sama, disesuaikan dengan anggaran dan jadwal Anda.
@@ -222,7 +222,7 @@ meetings_fallback_text: "Kalender akan dimuat di sini. Jika tidak muncul, kirim 
 form_note: Kami hanya menggunakan data Anda untuk membalas pertanyaan ini. Lihat kebijakan privasi kami.
 
 # --- Footer ------------------------------------------------------------
-footer_blurb: "Satu mitra untuk seluruh teknologi digital perusahaan Anda: website yang mendatangkan pelanggan, sistem yang menjalankan operasional, AI yang mengotomatiskannya, dan keamanan yang melindunginya."
+footer_blurb: "Satu partner untuk seluruh teknologi digital perusahaan Anda: website yang mendatangkan pelanggan, sistem yang menjalankan operasional, AI yang mengotomatiskannya, dan keamanan yang melindunginya."
 footer_nav: Navigasi footer
 footer_company: Perusahaan
 footer_latest: Artikel terbaru

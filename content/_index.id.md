@@ -4,7 +4,7 @@ description: "Mitra teknologi B2B di Indonesia: website yang mendatangkan pelang
 hero:
   eyebrow: Mitra teknologi B2B di Indonesia
   # TODO(content): confirm positioning line
-  headline: Satu mitra untuk semua sistem yang menjalankan perusahaan Anda
+  headline: Satu partner untuk semua sistem yang menjalankan perusahaan Anda
   lead: Website yang mendatangkan pelanggan, sistem bisnis yang menjalankan operasional, AI yang mengotomatiskannya, dan keamanan yang melindunginya, semuanya dirancang untuk saling terhubung.
   note: Konsultan senior di Jakarta. Proyek dirancang dan diberi harga per fase, dalam rupiah.
 process:
