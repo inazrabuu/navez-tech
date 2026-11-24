@@ -1,5 +1,5 @@
 ---
-title: Jasa website & digital marketing B2B
+title: Jasa web & digital marketing B2B
 slug: jasa-website-digital-marketing-b2b
 summary: Website, konten, dan kampanye yang mengubah calon pembeli B2B menjadi percakapan penjualan yang berkualitas.
 icon: monitor

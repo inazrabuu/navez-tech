@@ -13,7 +13,7 @@ Perusahaan yang sedang bertumbuh di Indonesia biasanya membeli teknologi secara 
 
 navez.tech adalah satu tim yang menangani keempatnya. Kami merancang website yang mendatangkan pelanggan, menyiapkan sistem yang menjalankan operasional, membangun AI agent yang mengambil alih pekerjaan berulang, dan mengamankan semuanya. Karena kami melihat gambaran utuhnya, setiap bagian bisa saling cocok.
 
-## Cara kami bekerja
+## Cara kerja kami
 
 - **Orang senior yang mengerjakan.** Orang yang Anda temui di panggilan pertama adalah orang yang membangun dan menjalankan proyek Anda.
 - **Bertahap, dengan harga di awal.** Setiap fase memiliki lingkup dan harga tetap dalam rupiah, sehingga Anda selalu tahu apa yang Anda bayar.
