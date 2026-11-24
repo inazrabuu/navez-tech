@@ -1,5 +1,7 @@
 ---
-title: Jadwalkan konsultasi
+title: Ngobrol yuk
+seo:
+  title: Jadwalkan konsultasi 30 menit dengan konsultan senior
 description: "Jadwalkan konsultasi 30 menit dengan konsultan senior navez.tech tentang proyek website, ERP, otomatisasi AI, atau keamanan Anda."
 layout: book-a-call
 slug: jadwalkan-konsultasi

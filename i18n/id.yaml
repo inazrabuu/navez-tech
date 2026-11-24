@@ -39,15 +39,15 @@ mega_help_title: Belum tahu harus mulai dari mana?
 mega_help_text: Ceritakan apa yang menghambat tim Anda. Kami akan menunjukkan solusi yang tepat, meskipun solusinya bukan dari kami.
 
 # --- CTAs --------------------------------------------------------------
-cta_book_call: Jadwalkan konsultasi
+cta_book_call: Ngobrol yuk
 cta_whatsapp: Chat via WhatsApp
 # Label pendek untuk bar bawah di ponsel (dua tombol berdampingan di layar 320px).
-cta_book_call_short: Konsultasi
+cta_book_call_short: Ngobrol yuk
 cta_whatsapp_short: WhatsApp
 cta_band_title: Mari rancang sistem Anda berikutnya bersama
 cta_band_text: Konsultasi 30 menit dengan konsultan senior. Anda akan mendapatkan langkah selanjutnya yang jelas, baik Anda bekerja sama dengan kami maupun tidak.
 cta_inline_title: Ingin menerapkan ini di perusahaan Anda?
-cta_inline_text: Jadwalkan konsultasi 30 menit dan kami akan menjelaskan apa saja yang dibutuhkan.
+cta_inline_text: Ngobrol 30 menit dengan kami, nanti kami jelaskan apa saja yang dibutuhkan.
 service_cta_title: "Diskusikan {{ .Service }} dengan kami"
 whatsapp_prefill_default: "Halo navez.tech, saya ingin berdiskusi tentang sebuah proyek."
 whatsapp_prefill_service: "Halo navez.tech, saya ingin berdiskusi tentang {{ .Service }}."
@@ -104,7 +104,7 @@ insights_latest_lead: Panduan praktis tentang website, ERP, AI, dan keamanan unt
 all_insights: Semua artikel
 contact_title: Bicara langsung dengan orang, bukan mesin penjualan
 contact_lead: Pilih cara yang paling mudah bagi Anda. Pesan WhatsApp dibalas dalam 2 jam pada jam kerja (WIB); email dibalas dalam satu hari kerja.
-contact_call_title: Jadwalkan konsultasi
+contact_call_title: Ngobrol yuk
 contact_call_text: 30 menit lewat video call. Pilih waktu yang sesuai untuk Anda.
 contact_wa_title: WhatsApp
 contact_wa_text: Ada pertanyaan singkat? Kirim pesan langsung kepada kami.
