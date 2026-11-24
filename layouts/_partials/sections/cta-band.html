@@ -17,7 +17,7 @@
           <p class="mt-4 max-w-xl text-lg/relaxed text-white/80">{{ or .text (i18n "cta_band_text") }}</p>
         </div>
         <div class="flex flex-col gap-3 sm:flex-row lg:justify-end">
-          {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "variant" "inverse" "size" "lg" "icon" "arrow-right") }}
+          {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "variant" "inverse" "size" "lg" "icon" "arrow-right") }}
           {{ partial "components/whatsapp-button.html" (dict "page" .page "variant" "outline-inverse" "size" "lg") }}
         </div>
       </div>

@@ -13,7 +13,7 @@
       <div class="rounded-card border border-line p-6">
         <p class="flex items-center gap-2 font-semibold">{{ partial "components/icon.html" (dict "name" "calendar" "class" "size-5 text-brand") }}{{ i18n "contact_call_title" }}</p>
         <p class="mt-1 text-sm text-ink-soft">{{ i18n "contact_call_text" }}</p>
-        <div class="mt-4">{{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "sm") }}</div>
+        <div class="mt-4">{{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "size" "sm") }}</div>
       </div>
       <div class="rounded-card border border-line p-6">
         <p class="flex items-center gap-2 font-semibold">{{ partial "components/icon.html" (dict "name" "mail" "class" "size-5 text-brand") }}{{ i18n "contact_email_title" }}</p>

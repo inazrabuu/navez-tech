@@ -30,7 +30,7 @@ slug:
 # Single locale today; add `id` to `locales` to enable Indonesian without restructuring.
 i18n:
   structure: multiple_files
-  locales: [en]
+  locales: [en, id]
   default_locale: en
   omit_default_locale_from_filename: true
 
@@ -50,6 +50,7 @@ collections:
     summary: "{{title}} ({{date | date('YYYY-MM-DD')}})"
     fields:
       - { name: title, label: Title, widget: string, i18n: true }
+      - { name: slug, label: URL slug (per language; Indonesian pages need their own), widget: string, required: false, i18n: true }
       - { name: description, label: Meta description (≤155 chars), widget: text, i18n: true }
       - { name: answer_summary, label: Answer summary (2–3 sentences that directly answer the title), widget: text, i18n: true }
       - { name: date, label: Published, widget: datetime, i18n: duplicate }
@@ -102,7 +103,7 @@ collections:
     sortable_fields: [weight, title]
     fields:
       - { name: title, label: Title, widget: string, i18n: true }
-      - { name: slug, label: Slug, widget: string, i18n: duplicate }
+      - { name: slug, label: URL slug (per language), widget: string, i18n: true }
       - { name: summary, label: One-line summary (mega menu, cards), widget: string, i18n: true }
       - { name: icon, label: Icon, widget: select, options: [monitor, layers, bot, shield], i18n: duplicate }
       - { name: weight, label: Order, widget: number, value_type: int, i18n: duplicate }
@@ -144,6 +145,7 @@ collections:
     sortable_fields: [weight, title]
     fields:
       - { name: title, label: Title, widget: string, i18n: true }
+      - { name: slug, label: URL slug (per language; Indonesian pages need their own), widget: string, required: false, i18n: true }
       - { name: description, label: Meta description (≤155), widget: text, i18n: true }
       - { name: service, label: Service, i18n: duplicate, widget: select, options: [{ label: B2B Digital Agency, value: digital-agency }, { label: Agentic AI Development, value: agentic-ai }, { label: Cybersecurity, value: cybersecurity }, { label: ERP & Business System Setup, value: erp-business-systems }] }
       - name: industry
@@ -184,6 +186,7 @@ collections:
     i18n: true
     fields:
       - { name: title, label: Title, widget: string, i18n: true }
+      - { name: slug, label: URL slug (per language; Indonesian pages need their own), widget: string, required: false, i18n: true }
       - { name: description, label: Meta description (≤155), widget: text, i18n: true }
       - { name: client, label: Client (internal, real name), widget: string, i18n: duplicate }
       - { name: client_display, label: Client as shown (real or anonymized), widget: string, i18n: true }
@@ -223,6 +226,7 @@ collections:
     sortable_fields: [title]
     fields:
       - { name: title, label: Term, widget: string, i18n: true }
+      - { name: slug, label: URL slug (per language; Indonesian pages need their own), widget: string, required: false, i18n: true }
       - { name: short_definition, label: Short definition (1–2 sentences), widget: text, i18n: true }
       - { name: related_service, label: Related service, i18n: duplicate, widget: select, options: [{ label: B2B Digital Agency, value: digital-agency }, { label: Agentic AI Development, value: agentic-ai }, { label: Cybersecurity, value: cybersecurity }, { label: ERP & Business System Setup, value: erp-business-systems }] }
       - *faq
@@ -240,6 +244,7 @@ collections:
     i18n: true
     fields:
       - { name: title, label: Page title (usually the name), widget: string, i18n: true }
+      - { name: slug, label: URL slug (per language; Indonesian pages need their own), widget: string, required: false, i18n: true }
       - { name: name, label: Name, widget: string, i18n: duplicate }
       - { name: role, label: Role, widget: string, i18n: true }
       - { name: bio, label: Bio, widget: text, i18n: true }
@@ -281,6 +286,7 @@ collections:
         i18n: true
         fields:
           - { name: title, label: Title, widget: string, i18n: true }
+          - { name: slug, label: URL slug (per language), widget: string, required: false, i18n: true }
           - { name: description, label: Meta description, widget: text, i18n: true }
           - { name: body, label: Body, widget: markdown, i18n: true }
       - name: book-a-call
@@ -289,6 +295,7 @@ collections:
         i18n: true
         fields:
           - { name: title, label: Title, widget: string, i18n: true }
+          - { name: slug, label: URL slug (per language), widget: string, required: false, i18n: true }
           - { name: description, label: Intro / meta description, widget: text, i18n: true }
           - name: expect
             label: What to expect (3 points)
@@ -301,16 +308,17 @@ collections:
         i18n: true
         fields:
           - { name: title, label: Title, widget: string, i18n: true }
+          - { name: slug, label: URL slug (per language), widget: string, required: false, i18n: true }
           - { name: description, label: Intro, widget: text, i18n: true }
           - name: steps
             label: Next steps
             widget: list
             i18n: true
             fields: [{ name: title, label: Title, widget: string }, { name: text, label: Text, widget: text }]
-      - { name: contact, label: Contact, file: content/contact.md, i18n: true, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }] }
-      - { name: privacy, label: Privacy policy, file: content/privacy.md, i18n: true, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }, { name: body, label: Body, widget: markdown, i18n: true }] }
-      - { name: terms, label: Terms of use, file: content/terms.md, i18n: true, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }, { name: body, label: Body, widget: markdown, i18n: true }] }
-      - { name: security, label: Security, file: content/security.md, i18n: true, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }, { name: body, label: Body, widget: markdown, i18n: true }] }
+      - { name: contact, label: Contact, file: content/contact.md, i18n: true, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: slug, label: URL slug (per language), widget: string, required: false, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }] }
+      - { name: privacy, label: Privacy policy, file: content/privacy.md, i18n: false, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }, { name: body, label: Body, widget: markdown, i18n: true }] }
+      - { name: terms, label: Terms of use, file: content/terms.md, i18n: false, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }, { name: body, label: Body, widget: markdown, i18n: true }] }
+      - { name: security, label: Security, file: content/security.md, i18n: false, fields: [{ name: title, label: Title, widget: string, i18n: true }, { name: description, label: Meta description, widget: text, i18n: true }, { name: body, label: Body, widget: markdown, i18n: true }] }
 
   # ------------------------------------------------------------------ Site settings (data/*.yaml)
   - name: settings
@@ -357,6 +365,12 @@ collections:
         fields:
           - { name: enabled, label: Show on site (real numbers only), widget: boolean, default: false }
           - { name: items, label: Stats, widget: list, fields: [{ name: value, label: Value, widget: string }, { name: label, label: Label, widget: string }] }
+      - name: stats_id
+        label: Stats (Bahasa Indonesia)
+        file: data/lang/id/stats.yaml
+        fields:
+          - { name: enabled, label: Show on site (real numbers only), widget: boolean, default: true }
+          - { name: items, label: Stats, widget: list, fields: [{ name: value, label: Value, widget: string }, { name: label, label: Label, widget: string }] }
       - name: clients
         label: Client logos
         file: data/clients.yaml
@@ -372,6 +386,23 @@ collections:
       - name: comparison
         label: Comparison table
         file: data/comparison.yaml
+        fields:
+          - name: columns
+            label: Columns
+            widget: list
+            fields: [{ name: key, label: Key, widget: string }, { name: label, label: Label, widget: string }, { name: highlight, label: Highlight, widget: boolean, default: false }]
+          - name: rows
+            label: Rows
+            widget: list
+            fields:
+              - { name: label, label: Criterion, widget: string }
+              - { name: navez, label: navez.tech, widget: select, options: ["yes", "partial", "no"] }
+              - { name: inhouse, label: In-house, widget: select, options: ["yes", "partial", "no"] }
+              - { name: freelancers, label: Freelancers, widget: select, options: ["yes", "partial", "no"] }
+              - { name: si, label: Large SI, widget: select, options: ["yes", "partial", "no"] }
+      - name: comparison_id
+        label: Comparison table (Bahasa Indonesia)
+        file: data/lang/id/comparison.yaml
         fields:
           - name: columns
             label: Columns

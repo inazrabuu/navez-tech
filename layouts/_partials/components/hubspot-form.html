@@ -14,4 +14,4 @@
     <div class="mt-4">{{ partial "components/whatsapp-button.html" (dict "page" .page "size" "sm") }}</div>
   </div>
 </div>
-<p class="mt-4 text-xs text-ink-soft">{{ i18n "form_note" }} <a class="underline hover:text-ink" href="{{ "/privacy/" | relURL }}">{{ i18n "nav_privacy" }}</a></p>
+<p class="mt-4 text-xs text-ink-soft">{{ i18n "form_note" }} <a class="underline hover:text-ink" href="{{ partial "functions/url.html" "/privacy/" }}">{{ i18n "nav_privacy" }}</a></p>

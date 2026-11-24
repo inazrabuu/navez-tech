@@ -1,0 +1,42 @@
+# Indonesian version of data/comparison.yaml. Keep the yes/partial/no values identical to the English file.
+columns:
+  - key: navez
+    label: "navez.tech"
+    highlight: true
+  - key: inhouse
+    label: "Tim internal"
+  - key: freelancers
+    label: "Freelancer"
+  - key: si
+    label: "System integrator besar"
+rows:
+  - label: "Website, ERP, AI, dan keamanan dari satu tim"
+    navez: "yes"
+    inhouse: "partial"
+    freelancers: "no"
+    si: "yes"
+  - label: "Tenaga senior yang mengerjakan, bukan hanya saat presentasi"
+    navez: "yes"
+    inhouse: "partial"
+    freelancers: "partial"
+    si: "partial"
+  - label: "Mulai dalam hitungan minggu, bukan kuartal"
+    navez: "yes"
+    inhouse: "no"
+    freelancers: "yes"
+    si: "no"
+  - label: "Lingkup dan harga tetap per fase"
+    navez: "yes"
+    inhouse: "no"
+    freelancers: "partial"
+    si: "partial"
+  - label: "Dukungan berkelanjutan setelah go-live"
+    navez: "yes"
+    inhouse: "yes"
+    freelancers: "no"
+    si: "yes"
+  - label: "Harga sesuai untuk perusahaan menengah di Indonesia"
+    navez: "yes"
+    inhouse: "partial"
+    freelancers: "yes"
+    si: "no"

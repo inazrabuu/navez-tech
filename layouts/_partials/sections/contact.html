@@ -13,7 +13,7 @@
           <span class="inline-flex size-10 items-center justify-center rounded-control bg-brand/10 text-brand">{{ partial "components/icon.html" (dict "name" "calendar") }}</span>
           <h3 class="mt-4 text-lg">{{ i18n "contact_call_title" }}</h3>
           <p class="mt-1 flex-1 text-sm text-ink-soft">{{ i18n "contact_call_text" }}</p>
-          {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "sm" "class" "mt-5 self-start") }}
+          {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "size" "sm" "class" "mt-5 self-start") }}
         </li>
         <li class="flex flex-col rounded-card border border-line bg-white p-6">
           <span class="inline-flex size-10 items-center justify-center rounded-control bg-signal/10 text-signal">{{ partial "components/icon.html" (dict "name" "chat") }}</span>

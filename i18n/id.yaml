@@ -1,0 +1,258 @@
+# Indonesian UI strings (same keys as i18n/en.yaml). Never hardcode UI text in templates.
+
+# --- Site / global ---------------------------------------------------
+site_tagline: Mitra teknologi B2B di Indonesia
+skip_to_content: Langsung ke konten
+home: Beranda
+close: Tutup
+related: Terkait
+breadcrumb: Jejak navigasi
+table: Tabel
+tags: Tag
+pagination: Navigasi halaman
+learn_more: Selengkapnya
+published: Diterbitkan
+updated: Diperbarui
+reading_time:
+  one: "{{ .Count }} menit baca"
+  other: "{{ .Count }} menit baca"
+posts_count:
+  one: "{{ .Count }} artikel"
+  other: "{{ .Count }} artikel"
+
+# --- Navigation --------------------------------------------------------
+nav_main: Utama
+nav_services: Layanan
+nav_all_services: Semua layanan
+nav_use_cases: Solusi
+nav_work: Studi kasus
+nav_insights: Artikel
+nav_glossary: Glosarium
+nav_about: Tentang kami
+nav_contact: Kontak
+nav_privacy: Privasi
+nav_terms: Ketentuan
+nav_security: Keamanan
+menu_open: Buka menu
+menu_close: Tutup menu
+mega_help_title: Belum tahu harus mulai dari mana?
+mega_help_text: Ceritakan apa yang menghambat tim Anda. Kami akan menunjukkan solusi yang tepat, meskipun solusinya bukan dari kami.
+
+# --- CTAs --------------------------------------------------------------
+cta_book_call: Jadwalkan konsultasi
+cta_whatsapp: Chat via WhatsApp
+# Label pendek untuk bar bawah di ponsel (dua tombol berdampingan di layar 320px).
+cta_book_call_short: Konsultasi
+cta_whatsapp_short: WhatsApp
+cta_band_title: Mari rancang sistem Anda berikutnya bersama
+cta_band_text: Konsultasi 30 menit dengan konsultan senior. Anda akan mendapatkan langkah selanjutnya yang jelas, baik Anda bekerja sama dengan kami maupun tidak.
+cta_inline_title: Ingin menerapkan ini di perusahaan Anda?
+cta_inline_text: Jadwalkan konsultasi 30 menit dan kami akan menjelaskan apa saja yang dibutuhkan.
+service_cta_title: "Diskusikan {{ .Service }} dengan kami"
+whatsapp_prefill_default: "Halo navez.tech, saya ingin berdiskusi tentang sebuah proyek."
+whatsapp_prefill_service: "Halo navez.tech, saya ingin berdiskusi tentang {{ .Service }}."
+whatsapp_prefill_page: "Halo navez.tech, saya membaca \"{{ .Title }}\" dan ingin berdiskusi lebih lanjut."
+
+# --- Search ------------------------------------------------------------
+search: Cari
+search_open: Cari di situs
+search_label: Cari di situs
+search_placeholder: Cari layanan, solusi, artikel…
+search_insights: Cari artikel
+search_results: Hasil pencarian
+search_quick_links: Tautan cepat
+search_no_results: Tidak ada hasil. Coba kata lain.
+search_unavailable: Pencarian tersedia di situs yang sudah dipublikasikan.
+
+# --- Home --------------------------------------------------------------
+sysmap_title: Cara navez menghubungkan sistem Anda
+sysmap_desc: "Tiga lapisan yang saling terhubung: website dan kanal digital Anda mengalirkan data ke sistem bisnis (ERP), yang digunakan AI agent untuk mengotomatiskan pekerjaan. Lapisan keamanan melindungi ketiganya."
+sysmap_web_title: Website & digital
+sysmap_web_text: Mendapatkan dan melayani pelanggan
+sysmap_web_chips: Prospek, Konten, Penjualan
+sysmap_erp_title: Sistem bisnis
+sysmap_erp_text: Mengelola pesanan, stok, dan keuangan
+sysmap_erp_chips: Pesanan, Inventaris, Keuangan
+sysmap_ai_title: AI agent
+sysmap_ai_text: Mengambil alih pekerjaan berulang
+sysmap_ai_chips: Pemilahan, Laporan, Tindak lanjut
+sysmap_security: Keamanan di setiap lapisan
+clients_title: Tim yang pernah bekerja sama dengan kami
+services_eyebrow: Apa yang kami kerjakan
+services_title: Empat keahlian, satu mitra yang bertanggung jawab
+services_lead: Banyak perusahaan yang sedang bertumbuh harus mengelola agensi, konsultan ERP, vendor AI, dan perusahaan keamanan sekaligus. Kami menangani keempatnya, sehingga semuanya benar-benar terhubung.
+process_title: Cara kami bekerja
+process_lead: Setiap proyek mengikuti empat langkah yang sama, disesuaikan dengan anggaran dan jadwal Anda.
+use_cases_featured_title: Masalah yang kami selesaikan setiap minggu
+use_cases_featured_lead: Skenario nyata dari perusahaan Indonesia, dan cara kami menanganinya.
+all_use_cases: Semua solusi
+featured_case_study: Studi kasus pilihan
+compare_title: Perbandingan dengan pilihan lain
+compare_lead: Gambaran jujur tentang pilihan Anda untuk membangun dan menjalankan sistem perusahaan.
+compare_caption: "Perbandingan navez.tech dengan tim internal, freelancer, dan system integrator besar"
+compare_criteria: Yang Anda dapatkan
+compare_yes: "Ya"
+compare_partial: Sebagian
+compare_no: "Tidak"
+stats_title: navez.tech dalam angka
+testimonials_title: Kata klien kami
+faq_title: Pertanyaan yang sering diajukan
+faq_lead: Tidak menemukan jawaban Anda?
+faq_contact: Hubungi kami
+insights_latest_title: Artikel terbaru
+insights_latest_lead: Panduan praktis tentang website, ERP, AI, dan keamanan untuk bisnis di Indonesia.
+all_insights: Semua artikel
+contact_title: Bicara langsung dengan orang, bukan mesin penjualan
+contact_lead: Pilih cara yang paling mudah bagi Anda. Pesan WhatsApp dibalas dalam 2 jam pada jam kerja (WIB); email dibalas dalam satu hari kerja.
+contact_call_title: Jadwalkan konsultasi
+contact_call_text: 30 menit lewat video call. Pilih waktu yang sesuai untuk Anda.
+contact_wa_title: WhatsApp
+contact_wa_text: Ada pertanyaan singkat? Kirim pesan langsung kepada kami.
+contact_email_title: Email
+contact_email_text: Kirim brief, RFP, atau dokumen.
+
+# --- Services ----------------------------------------------------------
+explore_service: "Pelajari {{ .Service }}"
+service_problems_title: Masalah yang kami selesaikan
+service_included_title: Yang termasuk
+service_platforms_title: Platform dan teknologi
+service_platforms_lead: Kami menggunakan tools yang teruji dan didukung dengan baik, dan kami akan memberi tahu Anda jika Anda tidak memerlukan tools baru.
+service_engagement_title: Model kerja sama
+service_glance_title: Sekilas
+service_glance_all: Lihat semua yang termasuk
+service_glance_platforms: Platform
+service_glance_engagements: Model kerja sama
+best_for: "Cocok untuk:"
+related_work_title: Studi kasus terkait
+related_use_cases_title: Solusi terkait
+related_insights_title: "Artikel tentang {{ .Service }}"
+cross_sell_title: Cocok dipadukan dengan
+cross_sell_lead: Layanan kami dirancang untuk saling terhubung. Berikut layanan yang biasanya dipilih klien bersama layanan ini.
+
+# --- Use cases ---------------------------------------------------------
+read_use_case: Baca solusinya
+use_case_problem: Masalahnya
+use_case_approach: Pendekatan kami
+use_case_outcome: Hasil yang diharapkan
+use_case_aside_title: Terdengar familiar?
+use_case_aside_text: Ceritakan kondisinya di perusahaan Anda. Kami akan menyarankan langkah pertama saat konsultasi.
+related_service: Layanan terkait
+related_case_study: Studi kasus terkait
+filter_service: Layanan
+filter_industry: Industri
+filter_all_services: Semua layanan
+filter_all_industries: Semua industri
+filter_no_results: Belum ada solusi yang sesuai dengan filter ini.
+
+# --- Work --------------------------------------------------------------
+case_study: Studi kasus
+read_case_study: Baca studi kasus
+next_case_study: Studi kasus berikutnya
+work_client: Klien
+work_industry: Industri
+work_location: Lokasi
+work_services: Layanan
+work_challenge: Tantangannya
+work_solution: Yang kami kerjakan
+work_results: Hasil
+work_stack: Teknologi
+work_empty_title: Studi kasus segera hadir
+work_empty_text: Kami sedang menyelesaikan penulisan dengan persetujuan klien. Sementara itu, lihat skenario yang paling sering kami tangani.
+
+# --- Insights ----------------------------------------------------------
+answer_summary: Jawaban singkat
+on_this_page: Di halaman ini
+written_by: Ditulis oleh
+about_author: Tentang penulis
+credentials: Kredensial
+author_posts: "Artikel oleh {{ .Name }}"
+related_posts: Artikel terkait
+post_service_cta_eyebrow: Butuh bantuan untuk ini?
+post_service_cta_title: "Dapatkan bantuan untuk {{ .Service }}"
+newer_posts: Lebih baru
+older_posts: Lebih lama
+categories_title: Kategori
+categories_lead: Telusuri artikel berdasarkan topik.
+category_lead: "Artikel tentang {{ .Category }}."
+all_categories: Semua
+glossary_title: Glosarium
+glossary_lead: Definisi sederhana untuk istilah yang sering muncul dalam proyek kami.
+glossary_all: Lihat glosarium
+glossary_term: Glosarium
+glossary_az: Glosarium A sampai Z
+
+# --- Share images (type label above the title, by section) ------------
+og_label_services: Layanan
+og_label_use_cases: Solusi
+og_label_work: Studi kasus
+og_label_insights: Artikel
+og_label_glossary: Glosarium
+og_label_authors: Penulis
+
+# --- Labels (slugs → names) -------------------------------------------
+label_digital_agency: Agensi digital
+label_agentic_ai: Agentic AI
+label_cybersecurity: Keamanan siber
+label_erp_business_systems: ERP & sistem bisnis
+label_business_technology: Teknologi bisnis
+label_manufacturing: Manufaktur
+label_distribution: Distribusi & grosir
+label_retail: Ritel
+label_ecommerce: E-commerce
+label_professional_services: Jasa profesional
+label_agribusiness: Agribisnis
+label_logistics: Logistik
+label_financial_services: Jasa keuangan
+label_healthcare: Kesehatan
+label_construction: Konstruksi
+label_hospitality: Perhotelan
+label_property: Properti
+label_cross_industry: Semua industri
+
+# --- Book a call / contact --------------------------------------------
+book_expect_title: Yang dapat Anda harapkan
+book_tab_time: Pilih waktu
+book_tab_details: Kirim detail
+book_tabs_label: Bagaimana Anda ingin memulai?
+book_wa_title: Lebih suka WhatsApp?
+book_wa_text: Kirim pesan kepada kami dan kami akan membalas dalam 2 jam pada jam kerja (WIB).
+form_title: Ceritakan proyek Anda
+form_fallback_text: "Formulir akan dimuat di sini. Jika tidak muncul, kirim email kepada kami di"
+meetings_fallback_text: "Kalender akan dimuat di sini. Jika tidak muncul, kirim email kepada kami untuk mengatur waktu:"
+form_note: Kami hanya menggunakan data Anda untuk membalas pertanyaan ini. Lihat kebijakan privasi kami.
+
+# --- Footer ------------------------------------------------------------
+footer_blurb: "Satu mitra untuk seluruh teknologi digital perusahaan Anda: website yang mendatangkan pelanggan, sistem yang menjalankan operasional, AI yang mengotomatiskannya, dan keamanan yang melindunginya."
+footer_nav: Navigasi footer
+footer_company: Perusahaan
+footer_latest: Artikel terbaru
+footer_no_posts: Artikel baru segera hadir.
+footer_nib: NIB
+language_switch: Bahasa
+
+# --- llms.txt -----------------------------------------------------------
+llms_intro: "{{ .Brand }} adalah mitra teknologi B2B untuk perusahaan di Indonesia dan Asia Tenggara."
+llms_case_studies: Studi kasus
+llms_security: Keamanan dan pelaporan kerentanan
+follow_linkedin: Ikuti navez.tech di LinkedIn
+footer_rights: Hak cipta dilindungi undang-undang.
+
+# --- 404 ---------------------------------------------------------------
+not_found_title: Halaman tidak ditemukan
+not_found_text: Tautan mungkin sudah tidak berlaku atau salah ketik. Coba gunakan pencarian, atau mulai dari beranda.
+not_found_home: Ke beranda
+
+# --- Consent (UU PDP) --------------------------------------------------
+consent_title: Pilihan privasi Anda
+consent_description: Kami menggunakan cookie esensial untuk menjalankan situs ini. Dengan izin Anda, kami juga menggunakan analitik HubSpot untuk memahami halaman mana yang bermanfaat bagi pengunjung.
+consent_privacy_link: Kebijakan privasi
+consent_accept_all: Terima semua
+consent_reject_all: Hanya esensial
+consent_manage: Pilih
+consent_save: Simpan pilihan
+consent_settings: Pengaturan cookie
+consent_prefs_title: Preferensi cookie
+consent_necessary_title: Esensial
+consent_necessary_description: Diperlukan agar situs berfungsi, misalnya untuk mengingat pilihan persetujuan Anda. Selalu aktif.
+consent_analytics_title: Analitik (HubSpot)
+consent_analytics_description: Membantu kami memahami cara pengunjung menggunakan situs dan menghubungkan pertanyaan yang masuk dengan halaman yang mendorongnya. Nonaktif kecuali Anda mengaktifkannya.

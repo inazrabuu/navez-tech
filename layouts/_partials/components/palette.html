@@ -22,8 +22,8 @@
           {{- range (site.GetPage "/services").Pages.ByWeight }}
           <li><a href="{{ .RelPermalink }}" class="flex min-h-11 items-center gap-3 rounded-control px-3 hover:bg-surface">{{ partial "components/icon.html" (dict "name" .Params.icon "class" "size-5 text-brand") }}{{ .Title }}</a></li>
           {{- end }}
-          <li><a href="{{ "/book-a-call/" | relURL }}" class="flex min-h-11 items-center gap-3 rounded-control px-3 hover:bg-surface">{{ partial "components/icon.html" (dict "name" "calendar" "class" "size-5 text-brand") }}{{ i18n "cta_book_call" }}</a></li>
-          <li><a href="{{ "/insights/" | relURL }}" class="flex min-h-11 items-center gap-3 rounded-control px-3 hover:bg-surface">{{ partial "components/icon.html" (dict "name" "file" "class" "size-5 text-brand") }}{{ i18n "nav_insights" }}</a></li>
+          <li><a href="{{ partial "functions/url.html" "/book-a-call/" }}" class="flex min-h-11 items-center gap-3 rounded-control px-3 hover:bg-surface">{{ partial "components/icon.html" (dict "name" "calendar" "class" "size-5 text-brand") }}{{ i18n "cta_book_call" }}</a></li>
+          <li><a href="{{ partial "functions/url.html" "/insights/" }}" class="flex min-h-11 items-center gap-3 rounded-control px-3 hover:bg-surface">{{ partial "components/icon.html" (dict "name" "file" "class" "size-5 text-brand") }}{{ i18n "nav_insights" }}</a></li>
         </ul>
       </div>
     </template>

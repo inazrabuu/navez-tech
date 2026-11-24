@@ -6,7 +6,7 @@
 {{- $cur := .current -}}
 <nav aria-label="{{ i18n "categories_title" }}">
   <ul class="flex flex-wrap gap-2">
-    <li><a href="{{ "/insights/" | relURL }}" class="inline-flex min-h-10 items-center rounded-full border px-4 text-sm font-medium {{ if not $cur }}border-ink bg-ink text-white{{ else }}border-line text-ink hover:border-ink/30{{ end }}"{{ if not $cur }} aria-current="page"{{ end }}>{{ i18n "all_categories" }}</a></li>
+    <li><a href="{{ partial "functions/url.html" "/insights/" }}" class="inline-flex min-h-10 items-center rounded-full border px-4 text-sm font-medium {{ if not $cur }}border-ink bg-ink text-white{{ else }}border-line text-ink hover:border-ink/30{{ end }}"{{ if not $cur }} aria-current="page"{{ end }}>{{ i18n "all_categories" }}</a></li>
     {{- range site.Taxonomies.category.Alphabetical }}
     {{- $active := eq .Page.Data.Term $cur }}
     <li><a href="{{ .Page.RelPermalink }}" class="inline-flex min-h-10 items-center rounded-full border px-4 text-sm font-medium {{ if $active }}border-ink bg-ink text-white{{ else }}border-line text-ink hover:border-ink/30{{ end }}"{{ if $active }} aria-current="page"{{ end }}>{{ partial "functions/label.html" .Page.Data.Term }}</a></li>

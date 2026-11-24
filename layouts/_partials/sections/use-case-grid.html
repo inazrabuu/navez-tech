@@ -14,7 +14,7 @@
   <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-12 lg:px-8">
     <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
       {{ partial "components/section-heading.html" (dict "id" $id "title" $.title "lead" $.lead) }}
-      {{- if $.more }}{{ partial "components/button.html" (dict "url" ("/use-cases/" | relURL) "label" (i18n "all_use_cases") "variant" "secondary" "icon" "arrow-right") }}{{ end }}
+      {{- if $.more }}{{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/use-cases/") "label" (i18n "all_use_cases") "variant" "secondary" "icon" "arrow-right") }}{{ end }}
     </div>
     <ul class="mt-10 grid gap-4 md:grid-cols-2 {{ if eq (len .) 4 }}xl:grid-cols-4{{ else }}lg:grid-cols-3{{ end }}">
       {{- range . }}

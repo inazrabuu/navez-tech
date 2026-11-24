@@ -5,6 +5,7 @@
     variant string  button variant (default "whatsapp")
     size    string  button size
     class   string  extra classes
+    label   string  optional label (default i18n "cta_whatsapp")
 */ -}}
 {{- $url := partial "functions/whatsapp-url.html" (dict "page" .page) -}}
-{{ partial "components/button.html" (dict "url" $url "label" (i18n "cta_whatsapp") "variant" (or .variant "whatsapp") "size" (or .size "md") "icon" "chat" "external" true "class" (or .class "")) }}
+{{ partial "components/button.html" (dict "url" $url "label" (or .label (i18n "cta_whatsapp")) "variant" (or .variant "whatsapp") "size" (or .size "md") "icon" "chat" "external" true "class" (or .class "")) }}

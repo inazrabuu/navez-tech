@@ -1,0 +1,8 @@
+{{- /*
+  Language-aware data file. Context: string name, e.g. "stats".
+  Returns data/lang/<lang>/<name>.yaml for the current language when it exists,
+  otherwise data/<name>.yaml (English, and the fallback for any language).
+*/ -}}
+{{- $d := index hugo.Data . -}}
+{{- with hugo.Data.lang }}{{ with index . site.Language.Lang }}{{ with index . $ }}{{ $d = . }}{{ end }}{{ end }}{{ end -}}
+{{- return $d -}}

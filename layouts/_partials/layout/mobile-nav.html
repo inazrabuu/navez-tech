@@ -27,13 +27,14 @@
       </ul>
       <ul class="mt-4 grid gap-1 border-t border-line pt-4">
         {{- range site.Params.nav }}
-        <li><a href="{{ .url | relURL }}" class="flex min-h-11 items-center rounded-control px-2 font-medium hover:bg-surface">{{ i18n .key }}</a></li>
+        <li><a href="{{ partial "functions/url.html" .page }}" class="flex min-h-11 items-center rounded-control px-2 font-medium hover:bg-surface">{{ i18n .key }}</a></li>
         {{- end }}
-        <li><a href="{{ "/contact/" | relURL }}" class="flex min-h-11 items-center rounded-control px-2 font-medium hover:bg-surface">{{ i18n "nav_contact" }}</a></li>
+        <li><a href="{{ partial "functions/url.html" "/contact/" }}" class="flex min-h-11 items-center rounded-control px-2 font-medium hover:bg-surface">{{ i18n "nav_contact" }}</a></li>
       </ul>
+      {{ partial "components/lang-switch.html" (dict "page" .page "class" "mt-4 border-t border-line pt-3") }}
     </nav>
     <div class="grid gap-2 border-t border-line p-4">
-      {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "icon" "calendar" "size" "lg") }}
+      {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "icon" "calendar" "size" "lg") }}
       {{ partial "components/whatsapp-button.html" (dict "page" .page "variant" "whatsapp" "size" "lg") }}
     </div>
   </div>

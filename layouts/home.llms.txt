@@ -3,35 +3,35 @@
 
 > {{ site.Params.description }}
 
-{{ $s.brand_name }} is a B2B technology partner for companies in Indonesia and Southeast Asia. Book a call: {{ "/book-a-call/" | absURL }} · Email: {{ $s.email }}
+{{ i18n "llms_intro" (dict "Brand" $s.brand_name) }} {{ i18n "cta_book_call" }}: {{ (partial "functions/url.html" "/book-a-call/") | absURL }} · Email: {{ $s.email }}
 
-## Services
+## {{ i18n "nav_services" }}
 {{ range (site.GetPage "/services").Pages.ByWeight }}
 - [{{ .Title }}]({{ .Permalink }}): {{ .Params.summary }}
 {{- end }}
 
-## Use cases
+## {{ i18n "nav_use_cases" }}
 {{ range (where site.RegularPages "Section" "use-cases").ByWeight }}
 - [{{ .Title }}]({{ .Permalink }}): {{ .Params.problem | plainify | truncate 160 }}
 {{- end }}
 {{ with (where site.RegularPages "Section" "work") }}
-## Case studies
+## {{ i18n "llms_case_studies" }}
 {{ range . }}
 - [{{ .Title }}]({{ .Permalink }}): {{ .Description | default (.Params.challenge | plainify | truncate 160) }}
 {{- end }}
 {{ end }}
-## Insights
+## {{ i18n "nav_insights" }}
 {{ range first 20 (where site.RegularPages "Section" "insights").ByDate.Reverse }}
 - [{{ .Title }}]({{ .Permalink }}): {{ .Description | default (.Params.answer_summary | plainify | truncate 160) }}
 {{- end }}
 
-## Glossary
+## {{ i18n "nav_glossary" }}
 {{ range (where site.RegularPages "Section" "glossary").ByTitle }}
 - [{{ .Title }}]({{ .Permalink }}): {{ .Params.short_definition | plainify }}
 {{- end }}
 
-## Company
-- [About]({{ "/about/" | absURL }})
-- [Contact]({{ "/contact/" | absURL }})
-- [Security and responsible disclosure]({{ "/security/" | absURL }})
-- [Privacy policy]({{ "/privacy/" | absURL }})
+## {{ i18n "footer_company" }}
+- [{{ i18n "nav_about" }}]({{ (partial "functions/url.html" "/about/") | absURL }})
+- [{{ i18n "nav_contact" }}]({{ (partial "functions/url.html" "/contact/") | absURL }})
+- [{{ i18n "llms_security" }}]({{ (partial "functions/url.html" "/security/") | absURL }})
+- [{{ i18n "consent_privacy_link" }}]({{ (partial "functions/url.html" "/privacy/") | absURL }})

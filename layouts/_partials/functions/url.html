@@ -1,0 +1,20 @@
+{{- /*
+  Language-aware internal URL. Use instead of piping a "/path/" string to relURL.
+  Context: string content path, e.g. "/book-a-call/", "/glossary/", "/".
+  Returns the RelPermalink of that page in the current language (e.g. /id/jadwalkan-konsultasi/).
+  If the page has no translation (privacy, terms, security are English-only), returns the
+  default-language page's URL, so Indonesian pages link to the English legal pages.
+  Last resort: the path with the language prefix (relLangURL).
+*/ -}}
+{{- $path := strings.TrimSuffix "/" . | default "/" -}}
+{{- $url := "" -}}
+{{- with site.GetPage $path -}}
+  {{- $url = .RelPermalink -}}
+{{- else -}}
+  {{- with (index hugo.Sites 0).GetPage $path -}}
+    {{- $url = .RelPermalink -}}
+  {{- else -}}
+    {{- $url = relLangURL . -}}
+  {{- end -}}
+{{- end -}}
+{{- return $url -}}

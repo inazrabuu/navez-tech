@@ -14,7 +14,7 @@
     {{- end }}
   </ol>
   <div class="mt-12 flex flex-col gap-3 sm:flex-row">
-    {{ partial "components/button.html" (dict "url" ("/insights/" | relURL) "label" (i18n "all_insights") "variant" "secondary" "icon" "arrow-right") }}
+    {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/insights/") "label" (i18n "all_insights") "variant" "secondary" "icon" "arrow-right") }}
     {{ partial "components/whatsapp-button.html" (dict "page" .) }}
   </div>
 </section>

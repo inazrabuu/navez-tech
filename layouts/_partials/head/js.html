@@ -7,7 +7,7 @@
   {{- $params := dict
       "hubspotPortalId" hugo.Data.site.hubspot.portal_id
       "hubspotRegion" hugo.Data.site.hubspot.region
-      "privacyUrl" ("/privacy/" | relURL)
+      "privacyUrl" (partial "functions/url.html" "/privacy/")
       "i18n" (dict
         "searchNoResults" (i18n "search_no_results")
         "searchUnavailable" (i18n "search_unavailable")

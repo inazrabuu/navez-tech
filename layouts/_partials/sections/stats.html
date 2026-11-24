@@ -3,7 +3,7 @@
   Renders when `enabled`, or always on the dev server.
   Params: none.
 */ -}}
-{{- $d := hugo.Data.stats -}}
+{{- $d := partial "functions/data.html" "stats" -}}
 {{- if and $d (or $d.enabled hugo.IsDevelopment) }}
 <section aria-labelledby="stats-title">
   <div class="mx-auto max-w-site px-4 py-10 sm:px-6 md:py-10 lg:px-8">

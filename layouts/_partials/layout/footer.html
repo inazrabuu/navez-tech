@@ -9,10 +9,10 @@
   <div class="mx-auto max-w-site px-4 pt-16 pb-10 sm:px-6 lg:px-8">
     <div class="grid gap-10 lg:grid-cols-[1.3fr_1fr_1fr_1.4fr]">
       <div>
-        <a href="{{ "/" | relURL }}" class="inline-flex rounded-control text-white" aria-label="{{ $s.brand_name }}: {{ i18n "home" }}">{{ partial "components/logo.html" (dict "class" "h-7 w-auto") }}</a>
+        <a href="{{ partial "functions/url.html" "/" }}" class="inline-flex rounded-control text-white" aria-label="{{ $s.brand_name }}: {{ i18n "home" }}">{{ partial "components/logo.html" (dict "class" "h-7 w-auto") }}</a>
         <p class="mt-4 max-w-xs text-sm/relaxed">{{ i18n "footer_blurb" }}</p>
         <div class="mt-6 flex flex-wrap gap-2">
-          {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "variant" "inverse" "size" "sm") }}
+          {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "variant" "inverse" "size" "sm") }}
           {{ partial "components/whatsapp-button.html" (dict "page" . "variant" "outline-inverse" "size" "sm") }}
         </div>
       </div>
@@ -24,18 +24,18 @@
             {{- range $services }}
             <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
             {{- end }}
-            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/use-cases/" | relURL }}">{{ i18n "nav_use_cases" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/use-cases/" }}">{{ i18n "nav_use_cases" }}</a></li>
           </ul>
         </div>
         <div>
           <h2 class="text-sm font-semibold text-white">{{ i18n "footer_company" }}</h2>
           <ul class="mt-4 grid gap-1 text-sm">
-            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/about/" | relURL }}">{{ i18n "nav_about" }}</a></li>
-            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/work/" | relURL }}">{{ i18n "nav_work" }}</a></li>
-            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/insights/" | relURL }}">{{ i18n "nav_insights" }}</a></li>
-            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/insights/glossary/" | relURL }}">{{ i18n "nav_glossary" }}</a></li>
-            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/contact/" | relURL }}">{{ i18n "nav_contact" }}</a></li>
-            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/book-a-call/" | relURL }}">{{ i18n "cta_book_call" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/about/" }}">{{ i18n "nav_about" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/work/" }}">{{ i18n "nav_work" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/insights/" }}">{{ i18n "nav_insights" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/glossary/" }}">{{ i18n "nav_glossary" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/contact/" }}">{{ i18n "nav_contact" }}</a></li>
+            <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/book-a-call/" }}">{{ i18n "cta_book_call" }}</a></li>
           </ul>
         </div>
       </nav>
@@ -72,11 +72,14 @@
     </div>
 
     <div class="mt-8 flex flex-col gap-4 border-t border-white/15 pt-6 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
-      <p>© {{ now.Year }} {{ $s.legal_name }}. {{ i18n "footer_rights" }}</p>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
+        <p>© {{ now.Year }} {{ $s.legal_name }}. {{ i18n "footer_rights" }}</p>
+        {{ partial "components/lang-switch.html" (dict "page" $ "tone" "dark") }}
+      </div>
       <ul class="flex flex-wrap gap-x-5 gap-y-1">
-        <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/privacy/" | relURL }}">{{ i18n "nav_privacy" }}</a></li>
-        <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/terms/" | relURL }}">{{ i18n "nav_terms" }}</a></li>
-        <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ "/security/" | relURL }}">{{ i18n "nav_security" }}</a></li>
+        <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/privacy/" }}">{{ i18n "nav_privacy" }}</a></li>
+        <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/terms/" }}">{{ i18n "nav_terms" }}</a></li>
+        <li><a class="inline-flex min-h-9 items-center hover:text-white hover:underline" href="{{ partial "functions/url.html" "/security/" }}">{{ i18n "nav_security" }}</a></li>
         <li><button type="button" class="inline-flex min-h-9 items-center hover:text-white hover:underline" data-cc="show-preferencesModal" data-consent-settings hidden>{{ i18n "consent_settings" }}</button></li>
       </ul>
     </div>

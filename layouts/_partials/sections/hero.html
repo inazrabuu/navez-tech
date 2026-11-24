@@ -15,7 +15,7 @@
       <h1 id="hero-title" class="text-4xl/[1.08] sm:text-5xl/[1.06] lg:text-[3.5rem]/[1.04]">{{ $h.headline }}</h1>
       <p class="mt-6 max-w-xl text-lg/relaxed text-ink-soft md:text-xl/relaxed">{{ $h.lead }}</p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "lg" "icon" "arrow-right") }}
+        {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "size" "lg" "icon" "arrow-right") }}
         {{ partial "components/whatsapp-button.html" (dict "page" .page "size" "lg") }}
       </div>
       {{- with $h.note }}

@@ -43,7 +43,7 @@
       <div class="rounded-card bg-ink p-6 text-white">
         <p class="text-lg font-bold">{{ i18n "use_case_aside_title" }}</p>
         <p class="mt-2 text-sm text-white/75">{{ i18n "use_case_aside_text" }}</p>
-        {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "variant" "inverse" "size" "sm" "class" "mt-5") }}
+        {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "variant" "inverse" "size" "sm" "class" "mt-5") }}
       </div>
     </aside>
   </div>

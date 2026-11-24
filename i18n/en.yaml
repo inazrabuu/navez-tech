@@ -42,6 +42,9 @@ mega_help_text: Tell us what's slowing your team down. We'll point you to the ri
 # --- CTAs --------------------------------------------------------------
 cta_book_call: Book a call
 cta_whatsapp: Chat on WhatsApp
+# Short labels for the mobile bottom bar (two buttons side by side on a 320px screen).
+cta_book_call_short: Book a call
+cta_whatsapp_short: Chat on WhatsApp
 cta_band_title: Let's map your next system together
 cta_band_text: A 30-minute call with a senior consultant. You leave with a clear next step, whether or not you work with us.
 cta_inline_title: Want this working in your company?
@@ -226,6 +229,12 @@ footer_company: Company
 footer_latest: Latest insights
 footer_no_posts: New articles coming soon.
 footer_nib: NIB
+language_switch: Language
+
+# --- llms.txt -----------------------------------------------------------
+llms_intro: "{{ .Brand }} is a B2B technology partner for companies in Indonesia and Southeast Asia."
+llms_case_studies: Case studies
+llms_security: Security and responsible disclosure
 follow_linkedin: Follow navez.tech on LinkedIn
 footer_rights: All rights reserved.
 

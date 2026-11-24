@@ -6,7 +6,7 @@
   <p class="text-xl font-bold">{{ .Get "title" | default (i18n "cta_inline_title") }}</p>
   <p class="mt-2 text-white/80">{{ .Get "text" | default (i18n "cta_inline_text") }}</p>
   <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-    {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "variant" "inverse") }}
+    {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "variant" "inverse") }}
     {{ partial "components/whatsapp-button.html" (dict "page" .Page "variant" "outline-inverse") }}
   </div>
 </aside>

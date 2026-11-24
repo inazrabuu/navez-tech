@@ -6,7 +6,7 @@ Guidance for Claude (and humans) working in this repo. Read fully before making 
 
 - **Company:** navez.tech — B2B technology partner
 - **Primary market:** Indonesia & Southeast Asia (B2B decision makers: founders, COOs, CFOs, IT leads)
-- **Language:** English only at launch; structure must be i18n-ready for `/id/` later
+- **Language:** English (main, site root) + Indonesian under `/id/` with Indonesian URL slugs. Translations are `<name>.id.md` / `index.id.md` next to the English file and need the full front matter; UI strings in `i18n/id.yaml`; translated data in `data/lang/id/`. Privacy, terms and security are English-only for now (Indonesian pages link to them). Every content change should be made in both languages.
 - **Site goal:** Convert qualified visitors into booked calls (HubSpot) or WhatsApp chats; grow organic + AI-search visibility via the blog
 - **Services (4) and slugs:**
   - B2B Digital Agency → `digital-agency`

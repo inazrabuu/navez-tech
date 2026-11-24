@@ -32,8 +32,8 @@
           <p class="mt-1 text-sm/snug text-ink-soft">{{ i18n "mega_help_text" }}</p>
         </div>
         <div class="mt-4 flex flex-col gap-2">
-          {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "sm") }}
-          {{ partial "components/button.html" (dict "url" ("/services/" | relURL) "label" (i18n "nav_all_services") "variant" "link" "icon" "arrow-right" "class" "justify-center text-sm") }}
+          {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "size" "sm") }}
+          {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/services/") "label" (i18n "nav_all_services") "variant" "link" "icon" "arrow-right" "class" "justify-center text-sm") }}
         </div>
       </div>
     </div>

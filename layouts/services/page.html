@@ -18,7 +18,7 @@
         <h1 class="text-4xl sm:text-5xl">{{ .Params.hero_headline }}</h1>
         <p class="mt-5 max-w-2xl text-lg/relaxed text-ink-soft md:text-xl/relaxed">{{ .Params.summary }}</p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "lg" "icon" "arrow-right") }}
+          {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "size" "lg" "icon" "arrow-right") }}
           {{ partial "components/whatsapp-button.html" (dict "page" . "size" "lg") }}
         </div>
       </div>

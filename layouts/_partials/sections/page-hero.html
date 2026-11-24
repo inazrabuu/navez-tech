@@ -21,7 +21,7 @@
       {{- with .meta }}<div class="mt-6">{{ . | safeHTML }}</div>{{ end }}
       {{- if .ctas }}
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        {{ partial "components/button.html" (dict "url" ("/book-a-call/" | relURL) "label" (i18n "cta_book_call") "size" "lg" "icon" "arrow-right") }}
+        {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/book-a-call/") "label" (i18n "cta_book_call") "size" "lg" "icon" "arrow-right") }}
         {{ partial "components/whatsapp-button.html" (dict "page" $p "size" "lg") }}
       </div>
       {{- end }}

@@ -9,7 +9,7 @@
   <div class="max-w-2xl rounded-card border border-dashed border-line p-8">
     <h2 class="text-2xl">{{ i18n "work_empty_title" }}</h2>
     <p class="mt-3 text-ink-soft">{{ i18n "work_empty_text" }}</p>
-    {{ partial "components/button.html" (dict "url" ("/use-cases/" | relURL) "label" (i18n "all_use_cases") "variant" "secondary" "icon" "arrow-right" "class" "mt-6") }}
+    {{ partial "components/button.html" (dict "url" (partial "functions/url.html" "/use-cases/") "label" (i18n "all_use_cases") "variant" "secondary" "icon" "arrow-right" "class" "mt-6") }}
   </div>
   {{- end }}
 </div>

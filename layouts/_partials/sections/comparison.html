@@ -3,7 +3,7 @@
   Params (dict):
     title, lead strings (optional)
 */ -}}
-{{- $d := hugo.Data.comparison -}}
+{{- $d := partial "functions/data.html" "comparison" -}}
 {{- $labels := dict "yes" (i18n "compare_yes") "partial" (i18n "compare_partial") "no" (i18n "compare_no") -}}
 {{- $icons := dict "yes" "check" "partial" "minus" "no" "x" -}}
 {{- $tone := dict "yes" "text-signal" "partial" "text-ink-soft" "no" "text-ink-soft/70" -}}

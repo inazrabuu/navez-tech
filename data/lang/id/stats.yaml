@@ -1,0 +1,11 @@
+# Indonesian labels for data/stats.yaml (same numbers; real numbers only).
+enabled: true
+items:
+  - value: "50"
+    label: "Proyek selesai"
+  - value: "20"
+    label: "Total tahun pengalaman"
+  - value: "4"
+    label: "Disiplin dalam satu mitra"
+  - value: "< 2 jam"
+    label: "Balasan WhatsApp di jam kerja"

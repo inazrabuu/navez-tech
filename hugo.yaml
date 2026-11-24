@@ -7,12 +7,41 @@ enableRobotsTXT: false # we ship static/robots.txt
 timeZone: Asia/Jakarta
 summaryLength: 30
 
-# English only at launch. Adding Indonesian later = add an `id` block here,
-# i18n/id.yaml, and `id` to the Sveltia i18n locales.
+# English is the main language at the site root; Indonesian lives under /id/.
+# Translations are files named <name>.id.md (or index.id.md in bundles) next to the English file.
+# Legal pages (privacy, terms, security) are English-only for now; Indonesian pages link to them.
 languages:
   en:
     label: English
+    locale: en-US
     weight: 1
+  id:
+    label: Bahasa Indonesia
+    locale: id-ID
+    weight: 2
+    title: navez.tech
+    params:
+      description: "Mitra teknologi B2B di Indonesia: website yang mendatangkan pelanggan, ERP yang menjalankan operasional, AI agent yang mengotomatiskan pekerjaan, dan keamanan untuk semuanya."
+    # Indonesian section URLs (keyword-led). Page slugs come from `slug:` in each .id.md file.
+    permalinks:
+      page:
+        services: /layanan/:slug/
+        use-cases: /solusi/:slug/
+        work: /studi-kasus/:slug/
+        insights: /artikel/:slug/
+        glossary: /artikel/glosarium/:slug/
+        authors: /penulis/:slug/
+      section:
+        services: /layanan/
+        use-cases: /solusi/
+        work: /studi-kasus/
+        insights: /artikel/
+        glossary: /artikel/glosarium/
+        authors: /penulis/
+      taxonomy:
+        category: /artikel/kategori/
+      term:
+        category: /artikel/kategori/:slug/
 
 module:
   hugoVersion:
@@ -99,15 +128,16 @@ params:
   # Sections listed in /llms.txt and the sitemap-style overview
   mainSections: [insights]
   # Main navigation (labels come from i18n keys)
+  # `page` is a content path; templates resolve it to the current language's URL.
   nav:
     - key: nav_use_cases
-      url: /use-cases/
+      page: /use-cases
     - key: nav_work
-      url: /work/
+      page: /work
     - key: nav_insights
-      url: /insights/
+      page: /insights
     - key: nav_about
-      url: /about/
+      page: /about
   # Share-image text colours (hex needed by Hugo's image filters; mirror the @theme tokens in main.css).
   og:
     title_color: "#ffffff"

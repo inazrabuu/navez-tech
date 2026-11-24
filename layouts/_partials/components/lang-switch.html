@@ -1,0 +1,22 @@
+{{- /*
+  Language switcher: "EN · ID". Links to this page's translation, or to that language's
+  home page when the page has no translation (e.g. English-only legal pages).
+  Params (dict):
+    page  Page    current page
+    class string  extra classes on the <nav>
+    tone  string  "light" (default, on white) | "dark" (footer)
+*/ -}}
+{{- $p := .page -}}
+{{- $dark := eq .tone "dark" -}}
+<nav class="flex items-center gap-1 text-sm {{ .class }}" aria-label="{{ i18n "language_switch" }}">
+  {{- range $i, $site := hugo.Sites }}{{ $lang := $site.Language }}
+  {{- $href := "" }}
+  {{- range $p.AllTranslations }}{{ if eq .Language.Lang $lang.Lang }}{{ $href = .RelPermalink }}{{ end }}{{ end }}
+  {{- if not $href }}{{ $href = $site.Home.RelPermalink }}{{ end }}
+  {{- $current := eq $lang.Lang site.Language.Lang }}
+  {{- if $i }}<span aria-hidden="true" class="{{ if $dark }}text-white/30{{ else }}text-line{{ end }}">·</span>{{ end }}
+  <a href="{{ $href }}" hreflang="{{ $lang.Locale | lower }}" lang="{{ $lang.Locale }}" title="{{ $lang.Label }}"
+     class="inline-flex min-h-11 min-w-9 items-center justify-center rounded-control px-1.5 font-semibold uppercase {{ if $current }}{{ if $dark }}text-white{{ else }}text-ink{{ end }}{{ else }}{{ if $dark }}text-white/60 hover:text-white{{ else }}text-ink-soft hover:text-brand{{ end }}{{ end }}"
+     {{- if $current }} aria-current="true"{{ end }}><span class="sr-only">{{ $lang.Label }}</span><span aria-hidden="true">{{ $lang.Lang }}</span></a>
+  {{- end }}
+</nav>

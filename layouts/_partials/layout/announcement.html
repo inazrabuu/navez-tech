@@ -6,7 +6,7 @@
 <div class="bg-ink text-sm text-white" data-pagefind-ignore="all">
   <div class="mx-auto flex max-w-site items-center justify-center gap-2 px-4 py-2.5 text-center sm:px-6 lg:px-8">
     {{- if .url }}
-    <a href="{{ .url | relURL }}" class="inline-flex items-center gap-1.5 underline-offset-4 hover:underline">{{ .text }} {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "size-4") }}</a>
+    <a href="{{ .url | relLangURL }}" class="inline-flex items-center gap-1.5 underline-offset-4 hover:underline">{{ .text }} {{ partial "components/icon.html" (dict "name" "arrow-right" "class" "size-4") }}</a>
     {{- else }}<p>{{ .text }}</p>{{ end }}
   </div>
 </div>
