@@ -2,7 +2,7 @@
 # Real metrics only. `client` is internal and never shown on the site.
 title: AI agent yang menambah tamu kembali dan pendapatan hotel
 slug: ai-agent-hotel
-description: Hotel bintang 4 memakai tiga AI agent untuk loyalitas tamu, upselling dan pemantauan pesaing; pendapatan naik 30% dan booking 3× dalam enam bulan.
+description: Hotel bintang 4 memakai tiga AI agent untuk loyalitas tamu, upselling dan pemantauan pesaing, pendapatan naik 30% dan booking 3× dalam enam bulan.
 date: 2026-11-19
 client: "TODO(content): client legal name (internal only)"
 client_display: Hotel bintang 4
@@ -31,7 +31,7 @@ solution: |
   **3. Agent pemantau pesaing.** Setiap hari, agent memantau harga publik, ketersediaan kamar, promosi dan ulasan hotel pesaing.
 
   - Agent memberi tahu revenue manager saat pasar bergerak dan menyarankan perubahan harga serta promosi, lengkap dengan alasannya.
-  - Keputusan tetap di tangan revenue manager; agent tidak pernah mengubah harga sendiri.
+  - Keputusan tetap di tangan revenue manager, agent tidak pernah mengubah harga sendiri.
 
   **Pengaman bawaan.** Tamu hanya dihubungi dengan persetujuan mereka dan bisa berhenti berlangganan kapan saja, sesuai Undang-Undang Pelindungan Data Pribadi (UU PDP). Setiap pesan dan rekomendasi tercatat, dan tim hotel bisa meninjau serta menyesuaikan aturan setiap agent.
 results:

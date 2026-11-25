@@ -269,6 +269,8 @@ Spend boldness in one place: the **home hero "systems map"** — an inline SVG s
 - CTAs say what happens: "Book a call", "Chat on WhatsApp", "Read the case study".
 - Local context welcome (Indonesian business realities, IDR, local platforms) but site language is English.
 - Never ship lorem ipsum. Placeholder copy is marked `TODO(content):` so it can be grepped.
+- No em dashes in any language; use commas, colons, parentheses or full stops.
+- Indonesian copy: friendly and conversational but not slangy, reader is "Anda" (e.g. CTA "Ngobrol yuk", "Cara kerja kami", "satu partner"). No semicolons, use commas. Keep keyword-led phrasing in SEO titles and URLs (e.g. "Jadwalkan konsultasi", "Jasa pembuatan website perusahaan").
 - Case studies: real metrics only; anonymize client names when under NDA.
 
 ## 14. Open items

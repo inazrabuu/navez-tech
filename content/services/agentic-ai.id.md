@@ -54,7 +54,7 @@ faq:
   - q: Apa yang terjadi jika agent membuat kesalahan?
     a: Setiap agent memiliki langkah review untuk tindakan berisiko, log atas apa yang dikerjakannya, dan alur serah terima yang jelas ke manusia. Kami mengukur akurasi sebelum dan sesudah go-live.
   - q: Apakah agent bisa bekerja dalam bahasa Indonesia?
-    a: Bisa. Model AI saat ini sudah menangani bahasa Indonesia dengan baik; kami menguji setiap agent dengan contoh nyata berbahasa Indonesia dari bisnis Anda.
+    a: Bisa. Model AI saat ini sudah menangani bahasa Indonesia dengan baik, kami menguji setiap agent dengan contoh nyata berbahasa Indonesia dari bisnis Anda.
 related_services:
   - erp-business-systems
   - cybersecurity

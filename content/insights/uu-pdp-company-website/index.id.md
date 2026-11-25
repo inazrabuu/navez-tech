@@ -21,7 +21,7 @@ faq:
 draft: false
 ---
 
-*Artikel ini adalah gambaran umum dan praktis untuk tim bisnis dan IT. Ini bukan nasihat hukum; pastikan kewajiban Anda bersama konsultan hukum yang kompeten.*
+*Artikel ini adalah gambaran umum dan praktis untuk tim bisnis dan IT. Ini bukan nasihat hukum, pastikan kewajiban Anda bersama konsultan hukum yang kompeten.*
 
 Undang-undang pelindungan data pribadi Indonesia (**Undang-Undang No. 27 Tahun 2022 tentang Pelindungan Data Pribadi**, biasa disingkat **UU PDP**) adalah undang-undang pelindungan data komprehensif pertama di Indonesia. Masa transisinya yang dua tahun berakhir pada Oktober 2024, sehingga organisasi yang memproses data pribadi orang di Indonesia kini diharapkan sudah patuh. Lalu, apa arti UU PDP untuk website perusahaan?
 
@@ -59,9 +59,9 @@ Berikut checklist praktis yang kami pakai saat meninjau website perusahaan:
 
 | Area | Yang perlu dicek | Perbaikan umum |
 |---|---|---|
-| Formulir | Apakah Anda hanya meminta data yang dibutuhkan? Apakah tujuannya dicantumkan di dekat formulir? | Hapus kolom yang tidak perlu; tambahkan satu baris tujuan dan link ke kebijakan privasi |
+| Formulir | Apakah Anda hanya meminta data yang dibutuhkan? Apakah tujuannya dicantumkan di dekat formulir? | Hapus kolom yang tidak perlu, tambahkan satu baris tujuan dan link ke kebijakan privasi |
 | Pelacakan | Apakah script analytics dan pemasaran sudah berjalan sebelum ada yang setuju? | Pasang consent manager yang memblokir script non-esensial sampai pengunjung menyetujui |
-| Kebijakan privasi | Apakah masih berlaku, spesifik, dan mudah ditemukan? Apakah mencantumkan tools dan vendor Anda? | Tulis ulang dengan bahasa sederhana; tautkan dari setiap formulir dan footer |
+| Kebijakan privasi | Apakah masih berlaku, spesifik, dan mudah ditemukan? Apakah mencantumkan tools dan vendor Anda? | Tulis ulang dengan bahasa sederhana, tautkan dari setiap formulir dan footer |
 | Permintaan hak | Apakah orang bisa dengan mudah meminta melihat atau menghapus datanya? | Publikasikan jalur kontak dan prosedur internal dengan penanggung jawab |
 | Keamanan | HTTPS di semua halaman, security header, CMS dan plugin yang selalu diperbarui, akses admin yang kuat | Perkuat hosting, aktifkan MFA, hapus plugin dan akun yang tidak dipakai |
 | Vendor | Tools mana yang menerima data formulir, dan di mana data disimpan? | Daftar semua prosesor, cek ketentuannya, dokumentasikan transfer data |

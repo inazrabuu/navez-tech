@@ -3,7 +3,7 @@ seo:
   title: "Apa itu agentic AI? Perbedaan AI agent dan chatbot"
 title: Apa itu agentic AI dan apa bedanya dengan chatbot?
 slug: apa-itu-agentic-ai
-description: "Agentic AI merencanakan dan menjalankan tugas bertahap di sistem Anda; chatbot hanya membalas. Ini perbedaannya dan di mana AI agent cocok dalam bisnis."
+description: "Agentic AI merencanakan dan menjalankan tugas bertahap di sistem Anda, chatbot hanya membalas. Ini perbedaannya dan di mana AI agent cocok dalam bisnis."
 date: 2026-10-14
 author: arman-rizal
 category: agentic-ai
@@ -87,6 +87,6 @@ Sebagian besar usaha ada di integrasi dengan sistem yang sudah Anda miliki, peng
 
 ## Apa versi singkatnya?
 
-Chatbot berbicara; AI agent bertindak. AI agent bisa mengambil alih pekerjaan nyata dari tim Anda, tetapi hanya dengan hak akses yang sempit, titik pemeriksaan oleh manusia, dan pemantauan yang baik. Mulailah dari satu tugas yang jelas, buktikan dengan data nyata, lalu kembangkan dari sana.
+Chatbot berbicara, AI agent bertindak. AI agent bisa mengambil alih pekerjaan nyata dari tim Anda, tetapi hanya dengan hak akses yang sempit, titik pemeriksaan oleh manusia, dan pemantauan yang baik. Mulailah dari satu tugas yang jelas, buktikan dengan data nyata, lalu kembangkan dari sana.
 
 Pelajari cara kami merancang dan membangun AI agent di halaman [pengembangan AI agent](/id/layanan/pengembangan-ai-agent/), atau baca definisi [RAG](/id/artikel/glosarium/rag/), teknik yang dipakai banyak AI agent untuk menjawab dari dokumen milik Anda sendiri.

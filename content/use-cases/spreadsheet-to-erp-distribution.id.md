@@ -16,7 +16,7 @@ approach: |
   - Migrasikan dan rekonsiliasi data pelanggan, produk, dan stok awal.
   - Go-live secara bertahap (penjualan dan persediaan dulu, lalu pembelian dan akuntansi) dengan pelatihan untuk setiap peran.
 outcome: |
-  Satu sumber data yang andal untuk pesanan, stok, dan invoice; tutup buku akhir bulan lebih cepat; dan laporan yang bisa dipercaya manajemen tanpa harus meminta seseorang "memperbarui file".
+  Satu sumber data yang andal untuk pesanan, stok, dan invoice, tutup buku akhir bulan lebih cepat, dan laporan yang bisa dipercaya manajemen tanpa harus meminta seseorang "memperbarui file".
 faq:
   - q: Apakah operasional harus berhenti saat go-live?
     a: Tidak. Kami menjalankan go-live secara bertahap dan menjadwalkan tanggal cut-over di periode yang tidak sibuk, dengan dukungan di lokasi atau online selama minggu-minggu pertama.

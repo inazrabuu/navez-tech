@@ -17,7 +17,7 @@ approach: |
   - Siapkan draf jurnal di sistem akuntansi atau ERP Anda. Staf finance meninjau dan menyetujuinya sebelum ada yang dibukukan.
   - Catat apa saja yang dicocokkan agent beserta alasannya, agar kepala finance dan auditor bisa menelusuri setiap angka sampai ke sumbernya.
 outcome: |
-  Rekonsiliasi berjalan setiap hari, bukan kejar-kejaran di akhir bulan. Tim finance meninjau pengecualian, bukan ribuan baris; dana yang menjadi hak Anda dari marketplace dan payment gateway terdeteksi dan bisa diklaim; dan tutup buku lebih cepat dengan jejak audit di balik setiap entri.
+  Rekonsiliasi berjalan setiap hari, bukan kejar-kejaran di akhir bulan. Tim finance meninjau pengecualian, bukan ribuan baris, dana yang menjadi hak Anda dari marketplace dan payment gateway terdeteksi dan bisa diklaim, dan tutup buku lebih cepat dengan jejak audit di balik setiap entri.
 faq:
   - q: Apakah agent membukukan entri sendiri?
     a: Tidak. Agent menyiapkan dan menjelaskan setiap entri, lalu staf menyetujuinya. Ke depannya, Anda bisa memilih untuk mengizinkan pembukuan otomatis untuk item berisiko rendah yang cocok sepenuhnya.

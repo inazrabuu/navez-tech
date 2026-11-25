@@ -15,7 +15,7 @@ faq:
   - q: Apakah ada ukuran perusahaan tertentu yang menandakan kami butuh ERP?
     a: Tidak ada angka pasti. Pemicunya adalah kompleksitas (jumlah produk, lokasi, transaksi, dan orang yang mengolah data yang sama), bukan sekadar jumlah karyawan atau omzet.
   - q: Apakah kami masih bisa memakai Excel setelah beralih ke ERP?
-    a: Bisa, untuk analisis. Bedanya, Excel tidak lagi menjadi tempat mencatat transaksi; Excel menjadi alat untuk mengolah data yang diekspor dari ERP.
+    a: Bisa, untuk analisis. Bedanya, Excel tidak lagi menjadi tempat mencatat transaksi, Excel menjadi alat untuk mengolah data yang diekspor dari ERP.
   - q: Apa yang biasanya membuat proyek ERP gagal?
     a: Melewatkan pemetaan proses, memigrasikan data yang berantakan, dan kurang berinvestasi dalam pelatihan. Software-nya jarang menjadi masalah utama.
 draft: false

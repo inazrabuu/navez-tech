@@ -22,4 +22,4 @@ Undang-undang ini disahkan pada Oktober 2022 dengan masa transisi dua tahun yang
 
 Perusahaan perlu tahu data pribadi apa yang mereka simpan dan untuk apa, melindunginya dengan kontrol keamanan yang memadai, memberikan informasi privasi yang jelas, dan siap menangani insiden.
 
-Ini ringkasan umum, bukan nasihat hukum; pastikan kewajiban Anda bersama penasihat hukum yang kompeten. Baca [arti UU PDP untuk website perusahaan Anda](/id/artikel/uu-pdp-untuk-website-perusahaan/).
+Ini ringkasan umum, bukan nasihat hukum, pastikan kewajiban Anda bersama penasihat hukum yang kompeten. Baca [arti UU PDP untuk website perusahaan Anda](/id/artikel/uu-pdp-untuk-website-perusahaan/).

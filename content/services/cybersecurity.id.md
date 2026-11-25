@@ -53,7 +53,7 @@ faq:
   - q: Bisakah Anda membantu kami mematuhi UU PDP?
     a: Kami menangani sisi teknis dan proses (pemetaan data, kontrol keamanan, persetujuan, dan prosedur kebocoran data) dan bekerja bersama penasihat hukum Anda, yang sebaiknya mengonfirmasi interpretasi hukumnya.
   - q: Apakah Anda juga memperbaiki masalah yang ditemukan?
-    a: Ya, jika Anda menginginkannya. Banyak perusahaan keamanan hanya melaporkan temuan; kami juga bisa memperbaikinya dan menguji ulang.
+    a: Ya, jika Anda menginginkannya. Banyak perusahaan keamanan hanya melaporkan temuan, kami juga bisa memperbaikinya dan menguji ulang.
   - q: Bagaimana cara melaporkan celah keamanan di sistem navez.tech sendiri?
     a: Lihat halaman keamanan kami di /security/ untuk kebijakan responsible disclosure dan kontak kami.
 related_services:

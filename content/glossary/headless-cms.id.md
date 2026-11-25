@@ -5,7 +5,7 @@ short_definition: Headless CMS mengelola konten website terpisah dari tampilanny
 related_service: digital-agency
 ---
 
-Pada CMS tradisional, seperti WordPress versi klasik, konten, template dan server yang menampilkan halaman menjadi satu paket. CMS **headless** hanya menyimpan dan mengedit konten; website dibangun terpisah dan mengambil konten dari CMS tersebut.
+Pada CMS tradisional, seperti WordPress versi klasik, konten, template dan server yang menampilkan halaman menjadi satu paket. CMS **headless** hanya menyimpan dan mengedit konten, website dibangun terpisah dan mengambil konten dari CMS tersebut.
 
 ## Mengapa perusahaan memilih CMS headless atau berbasis Git?
 
